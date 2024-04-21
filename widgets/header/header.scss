@@ -1,0 +1,11 @@
+@import '../../app/scss/mixins';
+@import '../../app/scss/colors';
+
+.header {
+  width: 100vw;
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

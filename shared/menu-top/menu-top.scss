@@ -1,0 +1,11 @@
+@import '../../app/scss/mixins';
+
+.menu-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+  &__item {
+    @include link-menu-top;
+  }
+}
