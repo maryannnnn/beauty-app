@@ -101,9 +101,9 @@
 
 @mixin link-menu-top {
   @include caption-lg;
-  color: $primary;
+  color: $white;
   cursor: pointer;
   &:hover {
-    color: $brown-2;
+    color: $primary;
   }
 }
