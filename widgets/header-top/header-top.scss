@@ -11,5 +11,17 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    &-menu-top {
+    width: 70%;
+    }
+
+    &-menu-soc {
+      width: 30%;
+    }
+
+    &-menu-account {
+      width: 1%;
+    }
   }
 }

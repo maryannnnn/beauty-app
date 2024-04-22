@@ -10,13 +10,13 @@ const HeaderTop = () => {
         <div className='header-top'>
             <div className="container">
                 <div className="header-top__inner">
-                    <div className='header-top__menu-top'>
+                    <div className='header-top__inner-menu-top'>
                         <MenuTop/>
                     </div>
-                    <div className='header-top__menu-soc'>
+                    <div className='header-top__inner-menu-soc'>
                         <MenuSoc/>
                     </div>
-                    <div className='header-top__menu-account'>
+                    <div className='header-top__inner-menu-account'>
                         <MenuAccount/>
                     </div>
                 </div>
