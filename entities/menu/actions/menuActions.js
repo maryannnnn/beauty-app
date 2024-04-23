@@ -1,8 +1,11 @@
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import { useState, useEffect } from 'react';
+import { gql } from '@apollo/client';
 
-export const getMenuAction = () => {
-
-
-
-}
+export const GET_POSTS = gql`
+  query GetPosts {
+        posts {
+            nodes {
+            id
+            }
+        }
+    }
+`;
