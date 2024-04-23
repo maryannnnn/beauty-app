@@ -18,7 +18,7 @@ const MenuTop = () => {
         const fetchData = async () => {
             try {
                 console.log("response Before")
-                const response = await axios.get('https://psih.neo-lines.com//wp-json/wp/v2/posts');
+                const response = await axios.get('https://massage.neo-lines.com//wp-json/wp/v2/posts');
                 console.log("response.data", response.data)
                 setTopMenu(response.data);
             } catch (error) {
