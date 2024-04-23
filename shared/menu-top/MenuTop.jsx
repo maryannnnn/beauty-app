@@ -32,18 +32,14 @@ const MenuTop = () => {
                         ))}
                     </Alert>
                 </Stack>
-            ) : data.posts.nodes.length > 0 ? (
-                data.posts.nodes
-                    // .filter(link => link.isVisible)
-                    // .sort((a, b) => a.orderLink - b.orderLink)
+            ) : data.menuItems.edges.length > 0 ? (
+                data.menuItems.edges
+                    // .sort((a, b) => a.node.order - b.node.order)
                     .map((link, index) =>
-                        <li key={index}>
-                            <Link href="" className='menu-top__item'>
-                                {link.id}
+                        <li key={link.node.id}>
+                            <Link href={link.node.path} className='menu-top__item'>
+                                {link.node.label}
                             </Link>
-                            {/*<Link href={link.urlLink} className='menu-top__item' >*/}
-                            {/*    {link.nameLink}*/}
-                            {/*</Link>*/}
                         </li>
                     )
             ) : (
