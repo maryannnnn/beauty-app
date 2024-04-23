@@ -17,8 +17,8 @@ const MenuTop = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                console.log("response Before")
-                const response = await axios.get('https://massage.neo-lines.com//wp-json/wp/v2/posts');
+                console.log("process.env.WP_URL", process.env.WP_URL)
+                const response = await axios.get(`${process.env.WP_URL}/wp/v2/posts`);
                 console.log("response.data", response.data)
                 setTopMenu(response.data);
             } catch (error) {
@@ -30,14 +30,6 @@ const MenuTop = () => {
 
         fetchData();
     }, []);
-
-    // if (isLoadingTopMenu) {
-    //     return <div className="menu-top__item">Loading...</div>;
-    // }
-    //
-    // if (errorTopMenu) {
-    //     return <div className="menu-top__item">Error: {errorTopMenu.message}</div>;
-    // }
 
     return (
         <ul className="menu-top">
