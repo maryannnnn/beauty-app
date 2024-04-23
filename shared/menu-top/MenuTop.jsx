@@ -17,7 +17,7 @@ const MenuTop = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                console.log("process.env.WP_URL", process.env.WP_URL)
+                console.log("process.env.WP_URL", process.env.WP_URL);
                 const response = await axios.get(`${process.env.WP_URL}/wp/v2/posts`);
                 console.log("response.data", response.data)
                 setTopMenu(response.data);
