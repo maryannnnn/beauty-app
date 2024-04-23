@@ -7,47 +7,37 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import {ApolloClient, InMemoryCache, gql} from '@apollo/client';
+import {ApolloClient, InMemoryCache, gql, useQuery} from '@apollo/client';
 import {WP_URL} from "@/app/config/config";
+import {GET_POSTS} from "@/entities/menu/actions/menuActions";
 
 const MenuTop = () => {
-    const [isLoadingTopMenu, setIsLoadingTopMenu] = useState(true);
-    const [errorTopMenu, setErrorTopMenu] = useState(null);
-    const [topMenu, setTopMenu] = useState([]);
+    // const [isLoadingTopMenu, setIsLoadingTopMenu] = useState(true);
+    // const [errorTopMenu, setErrorTopMenu] = useState(null);
+    // const [topMenu, setTopMenu] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                console.log("process.env.WP_URL", WP_URL);
-                const response = await axios.get(`${WP_URL}/wp/v2/posts`);
-                console.log("response.data", response.data)
-                setTopMenu(response.data);
-            } catch (error) {
-                setErrorTopMenu(error);
-            } finally {
-                setIsLoadingTopMenu(false);
-            }
-        };
-
-        fetchData();
-    }, []);
+    const { loading, error, data } = useQuery(GET_POSTS);
 
     return (
         <ul className="menu-top">
-            {isLoadingTopMenu ? (
+            {loading ? (
                 <Box sx={{display: 'flex'}}>
                     <CircularProgress/>
                 </Box>
-            ) : errorTopMenu ? (
-                <Stack sx={{width: '100%'}} spacing={2}>
-                    <Alert severity="error">{errorTopMenu}</Alert>
+            ) : error ? (
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert severity="error">
+                        {error.graphQLErrors.map((err, index) => (
+                            <div key={index}>{err.message}</div>
+                        ))}
+                    </Alert>
                 </Stack>
-            ) : topMenu.length > 0 ? (
-                topMenu
+            ) : data.posts.nodes.length > 0 ? (
+                data.posts.nodes
                     // .filter(link => link.isVisible)
                     // .sort((a, b) => a.orderLink - b.orderLink)
-                    .map(link =>
-                        <li key={link.id}>
+                    .map((link, index) =>
+                        <li key={index}>
                             <Link href="" className='menu-top__item'>
                                 {link.id}
                             </Link>
