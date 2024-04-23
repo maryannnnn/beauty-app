@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client';
+import {WP_URL} from "@/app/config/config";
 
 const MenuTop = () => {
     const [isLoadingTopMenu, setIsLoadingTopMenu] = useState(true);
@@ -17,8 +18,8 @@ const MenuTop = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                console.log("process.env.WP_URL", process.env.WP_URL);
-                const response = await axios.get(`${process.env.WP_URL}/wp/v2/posts`);
+                console.log("process.env.WP_URL", WP_URL);
+                const response = await axios.get(`${WP_URL}/wp/v2/posts`);
                 console.log("response.data", response.data)
                 setTopMenu(response.data);
             } catch (error) {
