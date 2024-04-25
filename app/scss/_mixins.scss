@@ -99,11 +99,43 @@
   line-height: 180%;
 }
 
-@mixin link-menu-top {
-  @include caption-lg;
-  color: $white;
+@mixin link-red {
+  color: $Logo-1;
   cursor: pointer;
   &:hover {
     color: $primary;
   }
 }
+
+@mixin link-black {
+  color: $black;
+  cursor: pointer;
+  &:hover {
+    color: $primary;
+  }
+}
+
+@mixin link-brown {
+  color: $brown-7;
+  cursor: pointer;
+  &:hover {
+    color: $primary;
+  }
+}
+
+@mixin link-white {
+  color: $white;
+  cursor: pointer;
+  &:hover {
+    color: $white-full;
+  }
+}
+
+@mixin link-white-full {
+  color: $white-full;
+  cursor: pointer;
+  &:hover {
+    color: $white;
+  }
+}
+

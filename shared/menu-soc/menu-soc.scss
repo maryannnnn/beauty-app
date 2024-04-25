@@ -6,6 +6,6 @@
   justify-content: flex-end;
   gap: 15px;
   &__item {
-    @include link-menu-top;
+    @include link-white;
   }
 }

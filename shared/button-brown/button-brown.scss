@@ -1,0 +1,16 @@
+@import '../../app/scss/mixins';
+@import '../../app/scss/colors';
+
+.button-brown {
+  @include caption-lg;
+  @include link-white-full;
+  background-color: $brown-7;
+  transition: background-color 0.3s ease; /* Добавляем плавный переход */
+
+  &:hover {
+    background-color: $brown-4; /* Задаем желаемый цвет фона при наведении */
+  }
+  width: 136px;
+  height: 35px;
+  border: color($black) 1px;
+}

@@ -1,12 +1,13 @@
 @import '../../app/scss/mixins';
+@import '../../app/scss/colors';
 
-.menu-top {
+.menu-main {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 15px;
+  gap: 20px;
   &__item {
-    @include caption-lg;
-    @include link-white;
+    @include body-xl;
+    @include link-black;
   }
 }
