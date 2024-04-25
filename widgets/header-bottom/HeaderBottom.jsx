@@ -1,17 +1,17 @@
 import React from 'react';
+import './header-button.scss'
 import MenuMain from "../../shared/menu-main/MenuMain";
 
 
 const HeaderBottom = () => {
 
     return (
-        <div className='w-screen bg-khaki-200'>
-            <div className='container flex flex-row justify-between gap-2 items-center h-11'>
-                <div className='basis-3/4 content-start'>
+        <div className='header-bottom'>
+            <div className='container'>
+                <div className='header-buttons__inner'>
                     <MenuMain/>
                 </div>
-                <div className='basis-1/4 content-end flex flex-row'>
-
+                <div className=''>
                 </div>
             </div>
         </div>
