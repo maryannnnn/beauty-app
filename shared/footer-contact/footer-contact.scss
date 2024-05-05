@@ -1,29 +1,33 @@
 @import '../../app/scss/mixins';
 @import '../../app/scss/colors';
 
-.header-contact {
+.footer-contact {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: end;
-  height: 90px;
+  gap: 5px;
+  width: 265px;
+
+  &__title {
+    @include title-h3;
+  }
 
   &__mobile {
     @include title-h4;
     &-link {
-      @include  link-red;
+      @include  link-white;
     }
   }
 
   &__email {
     @include body-sm;
     &-link {
-      @include  link-black;
+      @include  link-white;
     }
   }
 
   &__address {
     @include body-sm;
-    color: $black;
+    color: $white;
   }
 }

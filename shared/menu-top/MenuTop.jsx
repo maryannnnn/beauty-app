@@ -16,9 +16,10 @@ const MenuTop = () => {
     return (
         <ul className="menu-top">
             {loading ? (
-                <Box sx={{display: 'flex'}}>
-                    <CircularProgress/>
-                </Box>
+                <div>...</div>
+                // <Box sx={{display: 'flex'}}>
+                //     <CircularProgress/>
+                // </Box>
             ) : error ? (
                 <Stack sx={{ width: '100%' }} spacing={2}>
                     <Alert severity="error">

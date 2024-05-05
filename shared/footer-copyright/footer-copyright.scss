@@ -1,13 +1,11 @@
 @import '../../app/scss/mixins';
 @import '../../app/scss/colors';
 
-.menu-main {
+.footer-copyright {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 40px;
-  &__item {
-    @include body-xl;
-    @include link-black;
-  }
+  align-items: center;
+  gap: 7px;
+  @include body-xs;
 }

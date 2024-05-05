@@ -21,7 +21,7 @@ const MainLayout
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
             </Head>
             <Header/>
-            {children}
+                {children}
             <Footer/>
         </div>
     );
