@@ -8,10 +8,13 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import {useQuery} from '@apollo/client';
 import {GET_MENU_TOP} from "@/entities/menu/actions/menuActions";
+import client from '@/app/graphql/apollo-client';
 
-const MenuTop = () => {
+const MenuTop = ({ initialData }) => {
 
-    const { loading, error, data } = useQuery(GET_MENU_TOP);
+    const { loading, error, data } = useQuery(GET_MENU_TOP, {
+        initialData: initialData
+    });
 
     return (
         <ul className="menu-top">
@@ -45,6 +48,18 @@ const MenuTop = () => {
         </ul>
     );
 };
+
+export async function getStaticProps() {
+    const { data } = await client.query({
+        query: GET_MENU_TOP
+    });
+
+    return {
+        props: {
+            initialData: data // Передаем данные в компонент через пропс initialData
+        }
+    };
+}
 
 export default MenuTop;
 
