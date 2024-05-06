@@ -7,11 +7,14 @@ import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import {useQuery} from '@apollo/client';
-import {GET_MENU_MAIN} from "@/entities/menu/actions/menuActions";
+import {GET_MENU_MAIN, GET_MENU_TOP} from "@/entities/menu/actions/menuActions";
+import client from "@/app/graphql/apollo-client";
 
-const FooterMenuService = () => {
+const FooterMenuService = ({ initialData }) => {
 
-    const {loading, error, data} = useQuery(GET_MENU_MAIN);
+    const {loading, error, data} = useQuery(GET_MENU_MAIN, {
+        initialData: initialData
+    });
 
     return (
         <div className="footer-service">
@@ -51,5 +54,17 @@ const FooterMenuService = () => {
         </div>
     );
 };
+
+export async function getStaticProps() {
+    const { data } = await client.query({
+        query: GET_MENU_MAIN
+    });
+
+    return {
+        props: {
+            initialData: data
+        }
+    };
+}
 
 export default FooterMenuService;
