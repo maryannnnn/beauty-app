@@ -1,7 +1,8 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import {BASIS_URL} from "@/app/config/config";
 
 const apolloClient = new ApolloClient({
-    uri: 'https://massage.neo-lines.com/graphql', // Замените на ваш URL GraphQL сервера
+    uri: `${BASIS_URL}/graphql`,
     cache: new InMemoryCache()
 });
 

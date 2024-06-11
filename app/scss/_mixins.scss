@@ -43,6 +43,13 @@
   line-height: 140%;
 }
 
+@mixin title-banner {
+  font-family: $font-bold;
+  font-style: normal;
+  font-size: 128px;
+  line-height: 140%;
+}
+
 @mixin body-xl {
   font-family: $font-regular;
   font-style: normal;
@@ -112,6 +119,14 @@
   cursor: pointer;
   &:hover {
     color: $primary;
+  }
+}
+
+@mixin link-black-white {
+  color: $black;
+  cursor: pointer;
+  &:hover {
+    color: $white-full;
   }
 }
 

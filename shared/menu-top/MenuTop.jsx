@@ -2,8 +2,6 @@ import React from 'react';
 import './menu-top.scss'
 import './media.scss'
 import Link from 'next/link';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import {useQuery} from '@apollo/client';
@@ -20,9 +18,6 @@ const MenuTop = ({ initialData }) => {
         <ul className="menu-top">
             {loading ? (
                 <div>...</div>
-                // <Box sx={{display: 'flex'}}>
-                //     <CircularProgress/>
-                // </Box>
             ) : error ? (
                 <Stack sx={{ width: '100%' }} spacing={2}>
                     <Alert severity="error">
@@ -56,7 +51,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            initialData: data // Передаем данные в компонент через пропс initialData
+            initialData: data // Put data to component initialData
         }
     };
 }
