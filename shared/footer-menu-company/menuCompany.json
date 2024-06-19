@@ -1,0 +1,38 @@
+{
+  "data": {
+    "menuItems": {
+      "edges": [
+        {
+          "node": {
+            "id": "cG9zdDozNjkx",
+            "path": "/salon/aktsii/",
+            "parentId": null,
+            "order": 1,
+            "label": "Акции"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjky",
+            "path": "/",
+            "parentId": null,
+            "order": 2,
+            "label": "Центр Массажа"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjkz",
+            "path": "/client",
+            "parentId": null,
+            "order": 3,
+            "label": "Клиентам"
+          }
+        }
+      ]
+    },
+    "menu": {
+      "name": "Компания"
+    }
+  }
+}
