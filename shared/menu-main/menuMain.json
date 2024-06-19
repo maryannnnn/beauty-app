@@ -1,0 +1,146 @@
+{
+  "data": {
+    "menuItems": {
+      "edges": [
+        {
+          "node": {
+            "id": "cG9zdDoxNTgz",
+            "path": "/",
+            "parentId": null,
+            "order": 1,
+            "label": "Главная"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDoyNjI5",
+            "path": "/category/bonus",
+            "parentId": null,
+            "order": 2,
+            "label": "Акции"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjc4",
+            "path": "/category/massage-2",
+            "parentId": null,
+            "order": 3,
+            "label": "Массаж"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjgz",
+            "path": "/massage/kombinirovaniy-massage",
+            "parentId": "cG9zdDozNjc4",
+            "order": 4,
+            "label": "Комбинированный"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozODc3",
+            "path": "/massage/massage-matah/",
+            "parentId": "cG9zdDozNjc4",
+            "order": 5,
+            "label": "Массаж на матах"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjg0",
+            "path": "/massage/massage-maslami",
+            "parentId": "cG9zdDozNjc4",
+            "order": 6,
+            "label": "С эфирными маслами"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozODc2",
+            "path": "/massage/osteopatya/",
+            "parentId": "cG9zdDozNjc4",
+            "order": 7,
+            "label": "Остеопатия"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozODc1",
+            "path": "/massage/massage-kamnyami/",
+            "parentId": "cG9zdDozNjc4",
+            "order": 8,
+            "label": "Массаж с камнями"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozODc0",
+            "path": "/massage/massage-kistochkami/",
+            "parentId": "cG9zdDozNjc4",
+            "order": 9,
+            "label": "Массаж с кисточками"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjc5",
+            "path": "/category/course",
+            "parentId": null,
+            "order": 10,
+            "label": "Курсы"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozODgw",
+            "path": "/course/massazh-dlya-lyubitelej/",
+            "parentId": "cG9zdDozNjc5",
+            "order": 11,
+            "label": "СПА-Терапефт"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozODgy",
+            "path": "/course/spa-terapeft",
+            "parentId": "cG9zdDozNjc5",
+            "order": 12,
+            "label": "Массаж для любителей"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozODc5",
+            "path": "/course/biblejskij-massazh/",
+            "parentId": "cG9zdDozNjc5",
+            "order": 13,
+            "label": "Библейский массаж"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozODc4",
+            "path": "/course/rasslablyayushhij-massazh/",
+            "parentId": "cG9zdDozNjc5",
+            "order": 14,
+            "label": "Расслабляющий массаж"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjYy",
+            "path": "/contact/",
+            "parentId": null,
+            "order": 15,
+            "label": "Контакты"
+          }
+        }
+      ]
+    },
+    "menu": {
+      "name": "Услуги"
+    }
+  }
+}

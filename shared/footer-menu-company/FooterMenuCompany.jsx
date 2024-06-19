@@ -1,20 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './footer-menu-company.scss'
 import './media.scss'
 import Link from 'next/link';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import {useQuery} from '@apollo/client';
-import {GET_MENU_COMPANY} from "@/entities/menu/actions/menuActions";
-import client from "@/app/graphql/apollo-client";
+// import {useQuery} from '@apollo/client';
+// import {GET_MENU_COMPANY} from "@/entities/menu/actions/menuActions";
+// import client from "@/app/graphql/apollo-client";
+import menuCompany from "./menuCompany.json";
+
 
 const FooterMenuCompany = ({ initialData }) => {
 
-    const {loading, error, data} = useQuery(GET_MENU_COMPANY, {
-        initialData: initialData
-    });
+    const {data} = menuCompany
+
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
+
+    // const {loading, error, data} = useQuery(GET_MENU_COMPANY, {
+    //     initialData: initialData
+    // });
 
     return (
         <div className="footer-client">
@@ -24,9 +29,6 @@ const FooterMenuCompany = ({ initialData }) => {
             <ul className="footer-client__menu">
                 {loading ? (
                     <div>...</div>
-                    // <Box sx={{display: 'flex'}}>
-                    //     <CircularProgress/>
-                    // </Box>
                 ) : error ? (
                     <Stack sx={{width: '100%'}} spacing={2}>
                         <Alert severity="error">
@@ -55,13 +57,15 @@ const FooterMenuCompany = ({ initialData }) => {
 };
 
 export async function getStaticProps() {
-    const { data } = await client.query({
-        query: GET_MENU_COMPANY
-    });
+    // const { data } = await client.query({
+    //     query: GET_MENU_COMPANY
+    // });
+
+    const {data} = menuCompany
 
     return {
         props: {
-            initialData: data // Передаем данные в компонент через пропс initialData
+            initialData: data
         }
     };
 }

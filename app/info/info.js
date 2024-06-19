@@ -20,7 +20,9 @@ export const sizeText = {
     xs: 100,
     s: 150,
     m: 200,
+    ma: 230,
     xm: 250,
+    xp: 350,
     l: 400,
     xl: 500
 }
@@ -28,4 +30,21 @@ export const sizeText = {
 export const colorType = {
     white: 1,
     brawn: 2
+}
+
+export const numberItems = {
+    numberTwo: 2,
+    numberThree: 3,
+    numberFour: 4,
+    numberSix: 6,
+    numberEight: 8
+}
+
+export const contentType = {
+    bonuses: 'bonuses',
+    massages: 'massages',
+    courses: 'courses',
+    testimonials: 'testimonials',
+    posts: 'posts',
+    category: 'category'
 }

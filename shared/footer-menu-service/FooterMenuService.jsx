@@ -1,20 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './fooetr-menu-service.scss'
 import './media.scss'
 import Link from 'next/link';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import {useQuery} from '@apollo/client';
-import {GET_MENU_MAIN, GET_MENU_TOP} from "@/entities/menu/actions/menuActions";
-import client from "@/app/graphql/apollo-client";
+// import {useQuery} from '@apollo/client';
+// import {GET_MENU_MAIN, GET_MENU_TOP} from "@/entities/menu/actions/menuActions";
+// import client from "@/app/graphql/apollo-client";
+import menuMain from "../../shared/menu-main/menuMain.json";
 
 const FooterMenuService = ({ initialData }) => {
 
-    const {loading, error, data} = useQuery(GET_MENU_MAIN, {
-        initialData: initialData
-    });
+    const {data} = menuMain
+
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
+
+    // const {loading, error, data} = useQuery(GET_MENU_MAIN, {
+    //     initialData: initialData
+    // });
 
     return (
         <div className="footer-service">
@@ -24,9 +28,6 @@ const FooterMenuService = ({ initialData }) => {
             <ul className="footer-service__menu">
                 {loading ? (
                         <div>...</div>
-                    // <Box sx={{display: 'flex'}}>
-                    //     <CircularProgress/>
-                    // </Box>
                 ) : error ? (
                     <Stack sx={{width: '100%'}} spacing={2}>
                         <Alert severity="error">
@@ -56,9 +57,11 @@ const FooterMenuService = ({ initialData }) => {
 };
 
 export async function getStaticProps() {
-    const { data } = await client.query({
-        query: GET_MENU_MAIN
-    });
+    // const { data } = await client.query({
+    //     query: GET_MENU_MAIN
+    // });
+
+    const {data} = menuMain
 
     return {
         props: {

@@ -1,0 +1,62 @@
+{
+  "data": {
+    "menuItems": {
+      "edges": [
+        {
+          "node": {
+            "id": "cG9zdDoxNDY2",
+            "path": "/",
+            "parentId": null,
+            "order": 1,
+            "label": "Салон"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDoxNTEy",
+            "path": "##",
+            "parentId": null,
+            "order": 2,
+            "label": "Клиенты"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjc1",
+            "path": "/category/testimonios/",
+            "parentId": null,
+            "order": 3,
+            "label": "Отзывы"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjc3",
+            "path": "/salon/aktsii/",
+            "parentId": null,
+            "order": 4,
+            "label": "Акции"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDoxNTE5",
+            "path": "/blog",
+            "parentId": null,
+            "order": 5,
+            "label": "Блог"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDoxNDY3",
+            "path": "/contact/",
+            "parentId": null,
+            "order": 6,
+            "label": "Контакты"
+          }
+        }
+      ]
+    }
+  }
+}

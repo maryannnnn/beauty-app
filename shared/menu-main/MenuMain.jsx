@@ -1,17 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import './menu-nain.scss'
 import './media.scss'
-import {useQuery} from "@apollo/client";
-import client from '@/app/graphql/apollo-client';
-import {GET_MENU_MAIN} from "@/entities/menu/actions/menuActions";
+// import {useQuery} from "@apollo/client";
+// import client from '@/app/graphql/apollo-client';
+// import {GET_MENU_MAIN} from "@/entities/menu/actions/menuActions";
 import { Box, CircularProgress, Stack, Alert, Button, Popover } from '@mui/material';
 import Link from "next/link";
 import {checkMenuItem, getMenuItems} from "../utils/utils-menu";
+import menuMain from './menuMain.json';
 
 const MenuMain = ({initialData}) => {
-    const { loading, error, data } = useQuery(GET_MENU_MAIN, {
-        initialData: initialData
-    });
+
+    const {data} = menuMain
+
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
+
+    // const { loading, error, data } = useQuery(GET_MENU_MAIN, {
+    //     initialData: initialData
+    // });
     const [anchorEl, setAnchorEl] = useState(null);
     const [activeLink, setActiveLink] = useState(null);
 
@@ -39,9 +46,6 @@ const MenuMain = ({initialData}) => {
         <ul className="menu-main">
             {loading ? (
                 <div>...</div>
-                // <Box sx={{ display: 'flex' }}>
-                //     <CircularProgress />
-                // </Box>
             ) : error ? (
                 <Stack sx={{ width: '100%' }} spacing={2}>
                     <Alert severity="error">
@@ -96,9 +100,11 @@ const MenuMain = ({initialData}) => {
 };
 
 export async function getStaticProps() {
-    const { data } = await client.query({
-        query: GET_MENU_MAIN
-    });
+    // const { data } = await client.query({
+    //     query: GET_MENU_MAIN
+    // });
+
+    const {data} = menuMain
 
     return {
         props: {
