@@ -105,7 +105,7 @@ export const GET_HOME_DATA = gql`
           id
           AcfPost {
             titleLong
-            titleShort
+            descriptionAnons
             imageAnons {
               uri
               title
@@ -114,6 +114,16 @@ export const GET_HOME_DATA = gql`
           }
           uri
           title
+          date
+          categories {
+            edges {
+              node {
+                id
+                uri
+                name
+              }
+            }
+          }
         }
       }
     }

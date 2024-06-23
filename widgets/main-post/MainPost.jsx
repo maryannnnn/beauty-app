@@ -13,7 +13,7 @@ const MainPost = ({ data }) => {
             <div className="container">
                     <MainTemplate
                         data={data}
-                        number={numberItems.numberFour}
+                        number={numberItems.numberThree}
                         typeContent={contentType.posts}
                     />
             </div>
