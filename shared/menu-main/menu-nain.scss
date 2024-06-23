@@ -6,8 +6,8 @@
   flex-direction: row;
   justify-content: flex-start;
   gap: 40px;
-  &__item {
-    @include body-xl;
-    @include link-black;
-  }
+  //&__item {
+  //  @include body-xl;
+  //  @include link-black;
+  //}
 }
