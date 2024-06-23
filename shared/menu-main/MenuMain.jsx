@@ -4,10 +4,11 @@ import './media.scss'
 // import {useQuery} from "@apollo/client";
 // import client from '@/app/graphql/apollo-client';
 // import {GET_MENU_MAIN} from "@/entities/menu/actions/menuActions";
-import { Box, CircularProgress, Stack, Alert, Button, Popover } from '@mui/material';
+import {Box, CircularProgress, Stack, Alert, Button, Popover, Typography, Link as MuiLink} from '@mui/material';
 import Link from "next/link";
 import {checkMenuItem, getMenuItems} from "../utils/utils-menu";
 import menuMain from './menuMain.json';
+import theme from "../../material.config";
 
 const MenuMain = ({initialData}) => {
 
@@ -44,21 +45,11 @@ const MenuMain = ({initialData}) => {
 
     return (
         <ul className="menu-main">
-            {loading ? (
-                <div>...</div>
-            ) : error ? (
-                <Stack sx={{ width: '100%' }} spacing={2}>
-                    <Alert severity="error">
-                        {error.graphQLErrors.map((err, index) => (
-                            <div key={index}>{err.message}</div>
-                        ))}
-                    </Alert>
-                </Stack>
-            ) : data.menuItems.edges.length > 0 ? (
+            {data.menuItems.edges.length > 0 ? (
                 data.menuItems.edges
                     .filter((link) => link.node.parentId === null)
                     .sort((a, b) => a.node.order - b.node.order)
-                    .map((link, index) => (
+                    .map((link) => (
                         <li
                             key={link.node.id}
                             onMouseEnter={(event) => handleMouseEnter(event, link.node.id)}
@@ -68,8 +59,25 @@ const MenuMain = ({initialData}) => {
                                 aria-controls={activeLink === link.node.id ? `menu-${link.node.id}` : undefined}
                                 aria-haspopup="true"
                                 onClick={(event) => handleMenuOpen(event, link.node.id)}
+                                sx={{
+                                    color: theme.palette.primary.dark,
+                                    textDecoration: 'none',
+                                    '&:hover': {
+                                        textDecoration: 'none',
+                                        color: theme.palette.primary.light,
+                                    },
+                                }}
                             >
-                                    <Link href={link.node.path}>{link.node.label}</Link>
+                                <MuiLink component={Link} href={link.node.path} sx={{
+                                    color: theme.palette.primary.dark,
+                                    textDecoration: 'none',
+                                    '&:hover': {
+                                        textDecoration: 'none',
+                                        color: theme.palette.primary.light,
+                                    },
+                                }}>
+                                    {link.node.label}
+                                </MuiLink>
                             </Button>
                             {checkMenuItem(link.node.id, data.menuItems.edges) && (
                                 <Popover
@@ -86,6 +94,11 @@ const MenuMain = ({initialData}) => {
                                         horizontal: 'left',
                                     }}
                                     onMouseLeave={handleMouseLeave}
+                                    sx={{
+                                        '& .MuiPopover-paper': {
+                                            backgroundColor: theme.palette.primary.contrastText,
+                                        },
+                                    }}
                                 >
                                     {getMenuItems(link.node.id, data.menuItems.edges)}
                                 </Popover>
@@ -112,5 +125,6 @@ export async function getStaticProps() {
         }
     };
 }
+
 export default MenuMain;
 

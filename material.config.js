@@ -4,9 +4,9 @@ const theme = createTheme({
     palette: {
         primary: {
             main: '#865547',
-            dark: '#865547',
-            light: '#333333',
-            contrastText: '#fff',
+            dark: '#3E2F2C',
+            light: '#AB8D7A',
+            contrastText: '#E1CECA',
         },
         secondary: {
             main: '#333300',
@@ -72,48 +72,35 @@ const theme = createTheme({
         MuiButton: {
             styleOverrides: {
                 root: {
-                    padding: 0, // Убираем отступы
-                    minWidth: 'auto', // Минимальная ширина кнопки равна ширине текста
-                    color: 'inherit', // Цвет текста как у родительского элемента
-                    backgroundColor: 'transparent', // Прозрачный фон
-                    boxShadow: 'none', // Убираем тень
+                    padding: 0,
+                    minWidth: 'auto',
+                    color: 'inherit',
+                    backgroundColor: 'transparent',
+                    boxShadow: 'none',
                     '&:hover': {
-                        backgroundColor: 'transparent', // Прозрачный фон при наведении
+                        backgroundColor: 'transparent',
                     },
                 },
             },
         },
-        MuiTextField: {
+        MuiPopover: {
             styleOverrides: {
-                root: {
-                    backgroundColor: '#fff',
+                paper: {
+                    backgroundColor: '#E1CECA',
+                    padding: '16px',
                 },
             },
         },
         MuiLink: {
             styleOverrides: {
                 root: {
-                    color: 'inherit', // Используем цвет текста, установленный в родительском элементе
-                    textDecoration: 'none', // Убираем подчеркивание
-                    '&:hover': {
-                        textDecoration: 'underline', // Подчеркиваем ссылку при наведении
-                    },
-                },
-                // root: {
-                //     color: '#3E2F2C',
-                //     '&:hover': {
-                //         textDecoration: 'underline',
-                //         color: '#865547',
-                //     },
-                // },
-                // Второй вариант цвета для ссылок
-                underlineHover: {
+                    color: '#3E2F2C',
+                    textDecoration: 'none',
                     '&:hover': {
                         textDecoration: 'underline',
-                        color: '#00ff00', // Зеленый цвет при наведении
+                        color: '#AB8D7A',
                     },
                 },
-                // Добавьте дополнительные варианты цветов для ссылок при необходимости
             },
         },
     },
