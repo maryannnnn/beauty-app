@@ -8,7 +8,7 @@ import MainCompany from "@/widgets/main-company/MainCompany";
 import MainMassage from "@/widgets/main-massage/MainMassage";
 import MainCourse from "@/widgets/main-course/MainCourse";
 import MainTestimonial from "@/widgets/main-testimonial/MainTestimonial";
-import MainBlog from "@/widgets/main-post/MainPost";
+import MainPost from "@/widgets/main-post/MainPost";
 import MainTitle from "@/widgets/main-title/MainTitle";
 import { useQuery } from "@apollo/client";
 import apolloClient from '../app/graphql/apollo-client';
@@ -51,7 +51,7 @@ const Index = ({ initialData }) => {
                     <MainMassage data={displayData} />
                     <MainCourse data={displayData} />
                     {/*<MainTestimonial data={displayData} />*/}
-                    {/*<MainBlog data={displayData} />*/}
+                    <MainPost data={displayData} />
                 </>
             )}
             <SpeedInsights />

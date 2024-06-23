@@ -1,62 +1,58 @@
 @import '../../app/scss/mixins';
 @import '../../app/scss/colors';
 
-.bonus-block {
+.block-item-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 353px;
+  height: 503px;
+  border: 1px solid $black;
+  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.15);
+  padding: 15px;
 
-  &-title {
-    position: relative;
-    @include title-h4;
-    color: $black;
-    margin-top: -85px;
-    padding-left: 15px;
-    z-index: 2;
-    transition: color 0.3s ease;
+  &__img {
+    width: 329px;
+    height: 237px;
+    border: 1px solid $black;
   }
 
-  &-title-short {
-    position: relative;
-    @include body-md;
-    color: $black;
-    padding-left: 15px;
-    z-index: 2;
-    transition: color 0.3s ease;
-  }
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
 
-}
+    &-date {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      @include body-md;
+      width: 40%;
+    }
 
-.image-container {
-  position: relative;
-  display: inline-block;
+    &-category {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 5px;
+      width: 60%;
 
-  &:hover {
-    .bonus-block-title,
-    .bonus-block-title-short {
-      color: $white-full;
+      &-link {
+        @include body-md;
+        @include link-brown;
+      }
     }
   }
 
-  img {
-    display: block;
-    //width: 250px;
-    //height: 130px;
+  &__title {
+    @include title-h4;
+    @include link-brown;
   }
 
-  .overlay {
-    border: 1px solid $black;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 130px;
-    background-color: rgba(255, 255, 255, 0.6);
-    transition: opacity 0.3s ease;
+  &__anons {
+    @include body-lg;
   }
 
-  &:hover .overlay {
-    opacity: 0;
-  }
 }
-
-
-
-
