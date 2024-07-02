@@ -4,6 +4,7 @@ import './media.scss'
 import HeaderButtons from "@/shared/header-buttons/HeaderButtons";
 import HeaderContact from "@/shared/header-contact/HeaderContact";
 import Link from "next/link";
+import Image from 'next/image';
 
 const HeaderMiddle = () => {
     return (
@@ -12,7 +13,14 @@ const HeaderMiddle = () => {
                 <div className="header-middle__inner">
                     <div className='header-middle__inner-logo'>
                         <Link href="/" className="header-middle__inner">
-                            <img className="header-middle__inner-link-img" src="/logo_3.png" alt="Logo"/>
+                            <Image
+                                src="/logo_3.png"
+                                alt="Logo"
+                                width={343}
+                                height={60}
+                                layout="responsive"
+                                priority
+                            />
                         </Link>
                     </div>
                     <div className='header-middle__inner-buttons'>

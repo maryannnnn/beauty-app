@@ -42,6 +42,7 @@ export const GET_HOME_DATA = gql`
               uri
               title
               altText
+              sourceUrl
             }
             banner
           }
@@ -61,6 +62,7 @@ export const GET_HOME_DATA = gql`
               uri
               title
               altText
+              sourceUrl
             }
           }
           uri
@@ -79,6 +81,7 @@ export const GET_HOME_DATA = gql`
               uri
               title
               altText
+              sourceUrl
             }
           }
           uri
@@ -102,6 +105,7 @@ export const GET_HOME_DATA = gql`
               fullName
               imageAuthor {
                 altText
+                sourceUrl
                 uri
               }
             }
@@ -122,6 +126,7 @@ export const GET_HOME_DATA = gql`
               uri
               title
               altText
+              sourceUrl
             }
           }
           uri
