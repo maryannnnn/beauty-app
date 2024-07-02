@@ -23,20 +23,20 @@ const MainCompany = ({data}) => {
         <div className='main-company'>
             <div className="container">
                 <div className="main-company__block">
-                    <div className="main-company__title">{data.salon.title}</div>
+                    <div className="main-company__title">{data.salon?.title}</div>
                     <div className="main-company__content">
                         <div className="main-company__content-info">
                             <div className="main-company__content-info-description">
-                                {trimTextFullCleanedHTML(data.salon.content, sizeText.l)}
+                                {trimTextFullCleanedHTML(data.salon?.content, sizeText.l)}
                             </div>
                             <ul className="main-company__content-info-options">
-                                {data.salons.edges
-                                    .filter(el => el.node.id !== 'cG9zdDozNjk2')
+                                {data.salons?.edges
+                                    .filter(el => el?.node?.id !== 'cG9zdDozNjk2')
                                     .map(item =>
-                                        <li key={item.node.id}>
+                                        <li key={item?.node?.id}>
                                             <Link className="main-company__content-info-options__link"
-                                                  href={item.node.uri}>
-                                                <BsArrowRightShort/>{item.node.title}
+                                                  href={item?.node?.uri}>
+                                                <BsArrowRightShort/>{item?.node?.title}
                                             </Link>
                                         </li>
                                     )

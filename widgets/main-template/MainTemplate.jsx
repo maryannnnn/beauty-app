@@ -13,15 +13,14 @@ const MainTemplate = ({data, number, typeContent}) => {
     const typeCategory = (typeContent === contentType.bonuses ? 'category1'
         : typeContent === contentType.massages ? 'category2'
             : typeContent === contentType.courses ? 'category3'
-                : typeContent === contentType.testimonials ? 'category4'
-                    : typeContent === contentType.posts ? 'category5'
-                        : '')
+                : typeContent === contentType.posts ? 'category5'
+                    : '')
 
     return (
         <div className="main-template">
             <BlockHeader
                 title={data[typeCategory]?.AcfCategory?.categoryTitleLong1 || ''}
-                content={data[typeCategory]?.AcfCategory?.categoryDescriptionAnons  || ''}
+                content={data[typeCategory]?.AcfCategory?.categoryDescriptionAnons || ''}
                 typeCategory={typeCategory}
             />
             <BlockGroupItems

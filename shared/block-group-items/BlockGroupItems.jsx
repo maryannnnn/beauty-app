@@ -4,7 +4,6 @@ import BlockItemBonus from "../block-item-bonus/BlockItemBonus";
 import React from "react";
 import BlockItemMassage from "../block-item-massage/BlockItemMassage";
 import BlockItemCourse from "../block-item-course/BlockItemCourse";
-import BlockItemTestimonial from "../block-item-testimonial/BlockItemTestimonial";
 import BlockItemPost from "../block-item-post/BlockItemPost";
 import {contentType} from "../../app/info/info";
 
@@ -14,8 +13,7 @@ const BlockGroupItems = ({data, number, typeContent}) => {
 
      return (
          <ul className={`block-group-items${typeContent === contentType.massages ? '-massages' : 
-             typeContent === contentType.courses ? '-courses' : 
-                 typeContent === contentType.testimonials ? '-testimonials' : '' }`}>
+             typeContent === contentType.courses ? '-courses' : '' }`}>
              {
                  data[typeContent]?.edges
                  .slice(0, number)
@@ -27,8 +25,6 @@ const BlockGroupItems = ({data, number, typeContent}) => {
                                  <BlockItemMassage item={item} />
                              ) : typeContent === contentType.courses ? (
                                  <BlockItemCourse item={item} />
-                             ) : typeContent === contentType.testimonials ? (
-                                 <BlockItemTestimonial item={item} />
                              ) : typeContent === contentType.posts ? (
                                  <BlockItemPost item={item} />
                              ) : (<div>...</div>)

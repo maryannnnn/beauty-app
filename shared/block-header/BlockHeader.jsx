@@ -10,7 +10,7 @@ const BlockHeader = ({title, content, typeCategory = null}) => {
         <div className="block-header">
             <div className={`block-header__title${typeCategory === 'category3' ? '-white' : ''}`}>{title}</div>
             <div
-                className={`block-header__content${typeCategory === 'category3' ? '-white' : ''}`}>{trimTextFullCleanedHTML(content, sizeText.xm)}</div>
+                className={`block-header__content${typeCategory === 'category3' ? '-white' : ''}`}>{trimTextFullCleanedHTML(content, sizeText.xp)}</div>
         </div>
     )
 }

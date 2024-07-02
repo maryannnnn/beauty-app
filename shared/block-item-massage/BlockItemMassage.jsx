@@ -11,11 +11,12 @@ const BlockItemMassage = ({item}) => {
     console.log("BlockItemMassage data: ", item);
 
     return (
-        <Link className="block-item-massage" href={item.node.uri}>
-            <div className="block-item-massage__title">{trimText(item.node.title, sizeText.xp)}</div>
+        <Link className="block-item-massage" href={item?.node?.uri}>
+            <div className="block-item-massage__title">{trimText(item?.node?.title, sizeText.xp)}</div>
             <div className="block-item-massage__info">
-                <img className="block-item-massage__info-img" src={`${BASIS_URL}/${item.node.AcfMassage.imageAnons.uri}`} alt={item.node.AcfMassage.imageAnons.altText}/>
-                <div className="block-item-massage__info-anons">{trimTextFullCleanedHTML(item.node.AcfMassage.descriptionAnons, sizeText.xs)}</div>
+                <img className="block-item-massage__info-img" src={`${BASIS_URL}/${item?.node?.AcfMassage?.imageAnons?.uri}`}
+                     alt={item?.node?.AcfMassage?.imageAnons?.altText}/>
+                <div className="block-item-massage__info-anons">{trimTextFullCleanedHTML(item?.node?.AcfMassage?.descriptionAnons, sizeText.xs)}</div>
             </div>
         </Link>
     )

@@ -1,5 +1,4 @@
-import React, {useRef, useState} from 'react';
-import Image from 'next/image';
+import React, from 'react';
 // Import Swiper React components
 import {Swiper, SwiperSlide} from 'swiper/react';
 
@@ -12,21 +11,17 @@ import './media.scss'
 
 // import required modules
 import {Parallax, Pagination, Navigation} from 'swiper/modules';
-import ButtonRed from "@/shared/button-red/ButtonRed";
-import {buttonOptions} from "../../shared/button-options/button-options";
+import theme from "../../material.config";
+import BlockSlideBanner from "../../shared/block-slide-banner/BlockSlideBanner";
 
-const MainBanner = () => {
-
-    const courseHandler = () => {
-
-    }
+const MainBanner = ({ data }) => {
 
     return (
         <div className="main-banner">
             <Swiper
                 style={{
-                    '--swiper-navigation-color': '#fff',
-                    '--swiper-pagination-color': '#fff',
+                    '--swiper-navigation-color': theme.palette.secondary.contrastText,
+                    '--swiper-pagination-color': theme.palette.secondary.contrastText,
                 }}
                 speed={600}
                 parallax={true}
@@ -46,45 +41,15 @@ const MainBanner = () => {
                     data-swiper-parallax="-23%"
                 >
                 </div>
-                <SwiperSlide>
-                    <div className="container">
-                        <div className="slide-info">
-                            <div className="title" data-swiper-parallax="-300">
-                                СКИДКА
-                            </div>
-                            <div className="subtitle" data-swiper-parallax="-200">
-                                -25% для новых гостей
-                            </div>
-                            <ButtonRed name={buttonOptions.massage} type="submit" onClick={courseHandler} />
+                {data.bonuses?.edges
+                    .filter(el => el?.node?.AcfBonus?.banner === true)
+                    .map(item => (
+                    <SwiperSlide key={item?.node?.id}>
+                        <div className="container">
+                            <BlockSlideBanner item={item} />
                         </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="container">
-                        <div className="slide-info">
-                            <div className="title" data-swiper-parallax="-300">
-                                ВЫГОДНО
-                            </div>
-                            <div className="subtitle" data-swiper-parallax="-200">
-                                Скидки на тайский массаж
-                            </div>
-                            <ButtonRed name={buttonOptions.massage} type="submit" onClick={courseHandler} />
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="container">
-                        <div className="slide-info">
-                            <div className="title" data-swiper-parallax="-300">
-                                ЛЕТО, ПОЛДЕНЬ!
-                            </div>
-                            <div className="subtitle" data-swiper-parallax="-200">
-                                10% скидка на все программы
-                            </div>
-                            <ButtonRed name={buttonOptions.massage} type="submit" onClick={courseHandler} />
-                        </div>
-                    </div>
-                </SwiperSlide>
+                    </SwiperSlide>
+                ))}
             </Swiper>
         </div>
     );

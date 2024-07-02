@@ -17,6 +17,7 @@ export const mainTitle = {
 }
 
 export const sizeText = {
+    xt: 60,
     xs: 100,
     s: 150,
     m: 200,
