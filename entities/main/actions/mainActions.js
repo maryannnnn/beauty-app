@@ -91,11 +91,23 @@ export const GET_HOME_DATA = gql`
         node {
           id
           AcfTestimonial {
-            titleLong
-            titleShort
+            afterTaste
+            descriptionAnons
+            front
+            whatProcess
+            whyChiced
+            groupInfoPost {
+              speciality
+              position
+              fullName
+              imageAuthor {
+                altText
+                uri
+              }
+            }
           }
-          uri
           title
+          uri
         }
       }
     }

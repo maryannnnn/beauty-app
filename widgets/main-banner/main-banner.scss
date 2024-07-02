@@ -33,19 +33,4 @@
   background-position: center;
 }
 
-.slide-info {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding-top: 60px;
-}
 
-.swiper-slide .title {
-@include title-banner;
-  color: $black
-}
-
-.swiper-slide .subtitle {
-  @include title-h2;
-  color: $white-full;
-}

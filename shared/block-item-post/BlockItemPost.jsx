@@ -19,28 +19,28 @@ const BlockItemPost = ({item}) => {
 
     return (
         <div className='block-item-post'>
-            <img className='block-item-post__img' src={`${BASIS_URL}/${item.node.AcfPost.imageAnons.uri}`}
-                 alt={item.node.AcfPost.imageAnons.altText}/>
+            <img className='block-item-post__img' src={`${BASIS_URL}/${item?.node?.AcfPost?.imageAnons.uri}`}
+                 alt={item?.node?.AcfPost?.imageAnons?.altText}/>
             <div className="block-item-post__info">
-                <div className="block-item-post__info-date">{normalizeDatetime(item.node.date)}</div>
+                <div className="block-item-post__info-date">{normalizeDatetime(item?.node?.date)}</div>
                 <ul className='block-item-post__info-category'>
-                    {item.node.categories.edges.length > 0 && item.node.categories.edges
-                        .filter((el, index) => el.node.id !== 'dGVybToxMzM1' && index < 5)
-                        .sort((a, b) => a.node.date - b.node.date)
+                    {item?.node?.categories?.edges?.length > 0 && item?.node?.categories?.edges
+                        .filter((el, index) => el?.node?.id !== 'dGVybToxMzM1' && index < 5)
+                        .sort((a, b) => a?.node?.date - b?.node?.date)
                         .map(item => (
-                            <Link className='block-item-post__info-category-link' href={item.node.uri}>
-                                <li>{item.node.name}</li>
+                            <Link className='block-item-post__info-category-link' href={item?.node?.uri}>
+                                <li>{item?.node?.name}</li>
                             </Link>
                         ))
                     }
                 </ul>
             </div>
-            <Link className='block-item-post__title' href={item.node.uri}>
-                {trimText(item.node.title, sizeText.xp)}
+            <Link className='block-item-post__title' href={item?.node?.uri}>
+                {trimText(item?.node?.title, sizeText.xp)}
             </Link>
             <div
-                className="block-item-post__anons">{trimTextFullCleanedHTML(item.node.AcfPost.descriptionAnons, sizeText.xs)}</div>
-            <ButtonRed name={buttonOptions.detail} type="submit" onClick={() => postHandler(item.node.uri)} />
+                className="block-item-post__anons">{trimTextFullCleanedHTML(item?.node?.AcfPost?.descriptionAnons, sizeText.xs)}</div>
+            <ButtonRed name={buttonOptions.detail} type="submit" onClick={() => postHandler(item?.node?.uri)} />
         </div>
     )
 }

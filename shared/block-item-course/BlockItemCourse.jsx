@@ -16,18 +16,18 @@ const BlockItemCourse = ({item}) => {
 
     return (
         <>
-            <Link className="block-item-course" href={item.node.uri}>
-                <img className="block-item-course__img" src={`${BASIS_URL}/${item.node.AcfCourse.imageAnons.uri}`}
-                     alt={item.node.AcfCourse.imageAnons.altText}/>
+            <Link className="block-item-course" href={item?.node?.uri}>
+                <img className="block-item-course__img" src={`${BASIS_URL}/${item?.node?.AcfCourse?.imageAnons?.uri}`}
+                     alt={item?.node?.AcfCourse?.imageAnons?.altText}/>
                 <div className="block-item-course__img-overlay "></div>
                 <div className="block-item-course__info">
                     <div className="block-item-course__info-link">
                         Курсы
                     </div>
 
-                    <div className="block-item-course__info-title">{item.node.title}</div>
+                    <div className="block-item-course__info-title">{item?.node?.title}</div>
                     <div className="block-item-course__info-description-anons">
-                        {trimTextFullCleanedHTML(item.node.AcfCourse.descriptionAnons, sizeText.s)}
+                        {trimTextFullCleanedHTML(item?.node?.AcfCourse?.descriptionAnons, sizeText.s)}
                     </div>
                     <ButtonRed name={buttonOptions.detail} type="submit" onClick={courseHandler}/>
                 </div>
