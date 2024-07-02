@@ -8,6 +8,7 @@ import {buttonOptions} from "../../shared/button-options/button-options";
 import {contactSalon, sizeText} from "../../app/info/info";
 import {trimTextFullCleanedHTML} from "../../shared/utils/utils-content";
 import {BsArrowRightShort} from "react-icons/bs";
+import YouTubeVideoWithCover from "../../shared/youtube-video/YouTubeVideoWithCover";
 
 const MainCompany = ({data}) => {
 
@@ -44,8 +45,9 @@ const MainCompany = ({data}) => {
                             </ul>
                             <ButtonRed name={buttonOptions.read} type="button" onClick={handleClick}/>
                         </div>
-                        <div className="main-company__content-video"
-                             dangerouslySetInnerHTML={{__html: contactSalon.video}}></div>
+                        <div className="main-company__content-video">
+                            <YouTubeVideoWithCover/>
+                        </div>
                     </div>
                 </div>
             </div>
