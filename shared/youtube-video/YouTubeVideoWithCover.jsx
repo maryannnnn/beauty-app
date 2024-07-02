@@ -3,7 +3,7 @@ import './youtube-video.scss'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-const DynamicYouTubeVideo = dynamic(() => import('./YouTubeVideo'), {
+const DynamicYouTubeVideo = dynamic(() => import('./YouTubeVideo.jsx'), {
     ssr: false,
 });
 
