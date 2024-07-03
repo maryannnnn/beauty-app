@@ -24,9 +24,6 @@ const BlockItemBonus = ({item}) => {
                         layout="intrinsic"
                     />
                 </div>
-                {/*<img className="block-item-bonus__image-img"*/}
-                {/*     src={`${BASIS_URL}/${item?.node?.AcfBonus?.imageAnons?.uri}`}*/}
-                {/*     alt={item?.node?.AcfBonus?.imageAnons?.altText}/>*/}
                 <div className="block-item-bonus__image-title">{trimText(item?.node?.title, sizeText.ma)}</div>
                 <div
                     className="block-item-bonus__image-short">{trimText(item?.node?.AcfBonus?.titleShort, sizeText.ma)}</div>
