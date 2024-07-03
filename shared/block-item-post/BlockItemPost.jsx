@@ -8,6 +8,7 @@ import {normalizeDatetime, trimText, trimTextFullCleanedHTML} from "../utils/uti
 import {sizeText} from "../../app/info/info";
 import {buttonOptions} from "../button-options/button-options";
 import ButtonRed from "../button-red/ButtonRed";
+import Image from "next/image";
 
 const BlockItemPost = ({item}) => {
 
@@ -19,8 +20,17 @@ const BlockItemPost = ({item}) => {
 
     return (
         <div className='block-item-post'>
-            <img className='block-item-post__img' src={`${BASIS_URL}/${item?.node?.AcfPost?.imageAnons.uri}`}
-                 alt={item?.node?.AcfPost?.imageAnons?.altText}/>
+            <div className='block-item-post__img'>
+                <Image
+                    src={item?.node?.AcfPost?.imageAnons.sourceUrl}
+                    alt={item?.node?.AcfPost?.imageAnons?.altText}
+                    width={329}
+                    height={237}
+                    layout="intrinsic"
+                />
+            </div>
+            {/*<img className='block-item-post__img' src={`${BASIS_URL}/${item?.node?.AcfPost?.imageAnons.uri}`}*/}
+            {/*     alt={item?.node?.AcfPost?.imageAnons?.altText}/>*/}
             <div className="block-item-post__info">
                 <div className="block-item-post__info-date">{normalizeDatetime(item?.node?.date)}</div>
                 <ul className='block-item-post__info-category'>

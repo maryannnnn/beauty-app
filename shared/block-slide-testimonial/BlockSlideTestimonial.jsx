@@ -5,7 +5,6 @@ import Image from 'next/image';
 import React from "react";
 import {trimText, trimTextFullCleanedHTML} from "../utils/utils-content";
 import {sizeText} from "../../app/info/info";
-import {BASIS_URL} from "../../app/config/config";
 
 const BlockSlideTestimonial = ({item}) => {
 
