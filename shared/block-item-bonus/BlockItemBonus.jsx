@@ -2,7 +2,6 @@ import './block-item-bonus.scss'
 import './media.scss'
 import Link from "next/link";
 import Image from 'next/image';
-import {BASIS_URL} from "../../app/config/config";
 import React from "react";
 import {sizeText} from "../../app/info/info";
 import {trimText} from "../utils/utils-content";

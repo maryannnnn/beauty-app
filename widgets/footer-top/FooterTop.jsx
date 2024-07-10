@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import './footer-top.scss'
 import './media.scss'
-import FooterContact from "@/shared/footer-contact/FooterContact";
-import FooterMenuBlog from "@/shared/footer-menu-blog/FooterMenuBlog";
-import FooterMenuService from "@/shared/footer-menu-service/FooterMenuService";
-import FooterMenuCompany from "@/shared/footer-menu-company/FooterMenuCompany";
+import FooterContact from "../../shared/footer-contact/FooterContact";
+import FooterMenuBlog from "../../shared/footer-menu-blog/FooterMenuBlog";
+import FooterMenuService from "../../shared/footer-menu-service/FooterMenuService";
+import FooterMenuCompany from "../../shared/footer-menu-company/FooterMenuCompany";
 
 const FooterTop= () => {
     return (

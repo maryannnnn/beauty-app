@@ -3,14 +3,13 @@ import '../scss/app.scss'
 import Head from "next/head";
 import Header from "../../widgets/header/Header";
 import Footer from "../../widgets/footer/Footer";
-import {BASIS_URL} from "@/app/config/config";
+import {BASIS_URL} from "../config/config.js";
 
 const MainLayout
     = ({
            children,
            title,
-           description,
-           keywords
+           description
        }) => {
     const canonicalUrl = `${BASIS_URL}`;
 
@@ -20,7 +19,6 @@ const MainLayout
                 <title>{title + ` | запись по хорошей стоимости в Израиле`}</title>
                 <meta name="description" content={description}/>
                 <meta name="robots" content="index, follow"/>
-                <meta name="keywords" content={keywords || "массаж, курсы массажа"}/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="canonical" href={canonicalUrl}/>
                 <meta property="og:title" content={title}/>

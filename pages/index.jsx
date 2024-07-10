@@ -1,7 +1,7 @@
 import React from 'react';
 import '../app/scss/app.scss';
 import {SpeedInsights} from "@vercel/speed-insights/next";
-import MainLayout from "../app/layouts/layout";
+import MainLayout from "../app/layouts/MainLayout";
 import MainBanner from "@/widgets/main-banner/MainBanner";
 import MainBonus from "@/widgets/main-bonus/MainBonus";
 import MainCompany from "@/widgets/main-company/MainCompany";
@@ -20,19 +20,18 @@ import {mainTitle} from "../app/info/info";
 const Index = ({initialData}) => {
     const PageProps = {
         title: 'Главная',
-        description: 'Главная',
-        keywords: 'Главная'
+        description: 'Главная'
     };
 
     const {loading, error, data} = useQuery(GET_HOME_DATA, {
-        fetchPolicy: "cache-first", // Use initial data first
-        nextFetchPolicy: "cache-and-network" // Then fetch from network
+        fetchPolicy: "cache-first",
+        nextFetchPolicy: "cache-and-network"
     });
 
     const displayData = data || initialData;
 
     return (
-        <MainLayout title={PageProps.title} description={PageProps.description} keywords={PageProps.keywords}>
+        <MainLayout title={PageProps.title} description={PageProps.description}>
 
             {loading && !displayData ? (
                 <div>...</div>
@@ -95,7 +94,7 @@ export async function getStaticProps() {
         props: {
             initialData: data
         },
-        revalidate: 2592000, // Revalidate every 30 days
+       // revalidate: 2592000, // Revalidate every 30 days
     };
 }
 

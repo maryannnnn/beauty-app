@@ -22,7 +22,7 @@ export const GET_HOME_DATA = gql`
       title
       content(format: RENDERED)
     }
-    salons {
+    salons(where: {categoryId: 1333}) {
       edges {
         node {
           id
