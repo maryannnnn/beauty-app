@@ -5,7 +5,7 @@
         {
           "node": {
             "id": "cG9zdDoxNDY2",
-            "path": "/",
+            "path": "/salon",
             "parentId": null,
             "order": 1,
             "label": "Салон"
@@ -14,7 +14,7 @@
         {
           "node": {
             "id": "cG9zdDoxNTEy",
-            "path": "##",
+            "path": "/client",
             "parentId": null,
             "order": 2,
             "label": "Клиенты"
@@ -23,7 +23,7 @@
         {
           "node": {
             "id": "cG9zdDozNjc1",
-            "path": "/category/testimonios/",
+            "path": "/testimonial",
             "parentId": null,
             "order": 3,
             "label": "Отзывы"
@@ -32,7 +32,7 @@
         {
           "node": {
             "id": "cG9zdDozNjc3",
-            "path": "/salon/aktsii/",
+            "path": "/bonus",
             "parentId": null,
             "order": 4,
             "label": "Акции"
@@ -50,7 +50,7 @@
         {
           "node": {
             "id": "cG9zdDoxNDY3",
-            "path": "/contact/",
+            "path": "/salon/contact",
             "parentId": null,
             "order": 6,
             "label": "Контакты"

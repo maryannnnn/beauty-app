@@ -31,12 +31,11 @@ const MainCompany = ({data}) => {
                                 {trimTextFullCleanedHTML(data.salon?.content, sizeText.l)}
                             </div>
                             <ul className="main-company__content-info-options">
-                                {data.salons?.edges
+                                {data.salons?.edges.length > 0 && data.salons?.edges
                                     .filter(el => el?.node?.id !== 'cG9zdDozNjk2')
                                     .map(item =>
                                         <li key={item?.node?.id}>
-                                            <Link className="main-company__content-info-options__link"
-                                                  href={item?.node?.uri}>
+                                            <Link className="main-company__content-info-options__link" href={item?.node?.uri}>
                                                 <BsArrowRightShort/>{item?.node?.title}
                                             </Link>
                                         </li>

@@ -36,12 +36,11 @@
         margin-bottom: 15px;
 
         &__link {
-          display: flex;
-          justify-content: center;
-          flex-direction: row;
+          //display: flex;
+          //justify-content: center;
+          //flex-direction: row;
           @include title-h5;
           @include link-brown;
-
         }
       }
     }

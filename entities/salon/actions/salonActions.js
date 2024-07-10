@@ -2,29 +2,70 @@ import axios from "axios";
 import {WP_URL} from "../../../app/config/config";
 import {gql} from '@apollo/client';
 
+export const GET_SALON_BY_SLUG = gql`
+  query GetSalonBySlug($slug: String!) {
+    salonBy(slug: $slug) {
+      id
+      title
+      content
+      slug
+      seo {
+        metaDesc
+        title
+      }
+    }
+  }
+`;
+
 export const GET_SALON_ABOUT = gql`
   query GetSalonAbout {
       salon(id: "cG9zdDozNjk2") {
         id
         title
         content(format: RENDERED)
-    }
+      }
   }
 `;
 
 export const GET_SALON_ALL = gql`
 query  GetSalonAll {
-  salons {
+  salons(where: {categoryId: 1333}) {
     edges {
       node {
         id
         title
         uri
+        slug
+      }
+    }
+  }
+  salon(id: "cG9zdDozNjk2") {
+        id
+        title
+        content(format: RENDERED)
+        seo {
+          metaDesc
+          title
+       }
+  }
+}
+`;
+
+export const GET_CLIENT_ALL = gql`
+query  GetSalonAll {
+  salons(where: {categoryId: 1334}) {
+    edges {
+      node {
+        id
+        title
+        uri
+        slug
       }
     }
   }
 }
 `;
+
 
 
 export const getSalonActions = async () => {

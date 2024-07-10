@@ -1,4 +1,4 @@
-import MainLayout from "../../../app/layouts/layout";
+import MainLayout from "../../app/layouts/MainLayout";
 
 const Index = () => {
 
@@ -12,7 +12,7 @@ const Index = () => {
         <MainLayout title={PageProps.title} description={PageProps.description} keywords={PageProps.keywords}>
             <div className="main">
                 <div className="container">
-                    <h1 className="t-30b text-gray-100">Правила возврата товара</h1>
+                    <h1 className="t-30b text-gray-100">Отзывы и комментарии</h1>
                 </div>
             </div>
         </MainLayout>

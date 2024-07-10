@@ -14,7 +14,7 @@
         {
           "node": {
             "id": "cG9zdDoyNjI5",
-            "path": "/category/bonus",
+            "path": "/bonus",
             "parentId": null,
             "order": 2,
             "label": "Акции"
@@ -23,7 +23,7 @@
         {
           "node": {
             "id": "cG9zdDozNjc4",
-            "path": "/category/massage-2",
+            "path": "/massage",
             "parentId": null,
             "order": 3,
             "label": "Массаж"
@@ -86,7 +86,7 @@
         {
           "node": {
             "id": "cG9zdDozNjc5",
-            "path": "/category/course",
+            "path": "/course",
             "parentId": null,
             "order": 10,
             "label": "Курсы"
@@ -131,7 +131,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "/contact/",
+            "path": "salon/contact/",
             "parentId": null,
             "order": 15,
             "label": "Контакты"
