@@ -9,7 +9,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 
-const DrawerList = () => {
+const DrawerList = ({toggleDrawer}) => {
 
      return (
          <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
