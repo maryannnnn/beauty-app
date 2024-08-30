@@ -6,7 +6,7 @@ const MainTitle = () => {
     return (
         <div className='main-title'>
             <div className="container">
-                <div className="main-title__title">{mainTitle.title}</div>
+                <h1 className="main-title__title">{mainTitle.title}</h1>
                 <div className="main-title__description">{mainTitle.description}</div>
             </div>
         </div>
