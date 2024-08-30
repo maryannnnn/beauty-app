@@ -8,7 +8,7 @@ const BlockHeader = ({title, content, typeCategory = null}) => {
 
     return (
         <div className="block-header">
-            <div className={`block-header__title${typeCategory === 'category3' ? '-white' : ''}`}>{title}</div>
+            <h2 className={`block-header__title${typeCategory === 'category3' ? '-white' : ''}`}>{title}</h2>
             <div
                 className={`block-header__content${typeCategory === 'category3' ? '-white' : ''}`}>{trimTextFullCleanedHTML(content, sizeText.xp)}</div>
         </div>

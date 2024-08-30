@@ -8,10 +8,30 @@ export const GET_SALON_BY_SLUG = gql`
       id
       title
       content
-      slug
+      featuredImage {
+        node {
+          altText
+          sourceUrl
+          }
+      }
       seo {
-        metaDesc
-        title
+          metaDesc
+          title
+      }
+      AcfSalon {
+        faqContent
+        faqTitle
+        videoTitle
+        videoDescription
+        video
+        titleLong
+        titleShort
+        descriptionAnons
+        titleCenter
+        imageAnons {
+          altText
+          sourceUrl
+         }
       }
     }
   }
@@ -43,10 +63,31 @@ query  GetSalonAll {
         id
         title
         content(format: RENDERED)
+        featuredImage {
+        node {
+          altText
+          sourceUrl
+          }
+        }
         seo {
           metaDesc
           title
-       }
+        }
+        AcfSalon {
+         faqContent
+         faqTitle
+         videoTitle
+         videoDescription
+         video
+         titleLong
+         titleShort
+         descriptionAnons
+         titleCenter
+         imageAnons {
+          altText
+          sourceUrl
+        }
+      }
   }
 }
 `;

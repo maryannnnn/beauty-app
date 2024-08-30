@@ -3,7 +3,7 @@ import sanitizeHtml from 'sanitize-html';
 
 export const cleanHtml = (html) => {
     return sanitizeHtml(html, {
-        allowedTags: [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'b', 'i', 'em', 'strong', 'a', 'p', 'ul', 'ol', 'li', 'blockquote', 'code', 'pre', 'div' ],
+        allowedTags: [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'b', 'i', 'em', 'strong', 'a', 'p', 'ul', 'ol', 'li', 'blockquote', 'code', 'pre', 'div' , 'img', 'frame', 'span'],
         allowedAttributes: {
             'a': [ 'href' ]
         }

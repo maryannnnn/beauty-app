@@ -21,6 +21,10 @@ export const GET_HOME_DATA = gql`
       id
       title
       content(format: RENDERED)
+      AcfSalon {
+            titleShort
+            descriptionAnons
+      }
     }
     salons(where: {categoryId: 1333}) {
       edges {
