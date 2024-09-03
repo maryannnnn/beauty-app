@@ -59,23 +59,25 @@ const IndexSalon = ({initialData}) => {
                                      dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.descriptionAnons}}>
                                 </div>
                             </div>
-                            <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter)}</h2>
-                            <div className="salon__description">
-                                <div className="salon__description-img">
-                                    <Image
-                                        src={salon?.featuredImage?.node?.sourceUrl}
-                                        alt={salon?.featuredImage?.node?.altText}
-                                        width={500}
-                                        height={600}
-                                        layout="intrinsic"
-                                    />
-                                </div>
-                                <div className="salon__description-text"
-                                     dangerouslySetInnerHTML={{__html: salon?.content}}>
+                            <div className="salon-block-center">
+                                <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter)}</h2>
+                                <div className="salon__description">
+                                    <div className="salon__description-img">
+                                        <Image
+                                            src={salon?.featuredImage?.node?.sourceUrl}
+                                            alt={salon?.featuredImage?.node?.altText}
+                                            width={500}
+                                            height={600}
+                                            layout="intrinsic"
+                                        />
+                                    </div>
+                                    <div className="salon__description-text"
+                                         dangerouslySetInnerHTML={{__html: salon?.content}}>
+                                    </div>
                                 </div>
                             </div>
                             {salon?.AcfSalon?.video && (
-                                <>
+                                <div className="salon-block-video">
                                     <h2
                                         className="salon__title-video">{cleanHtmlFull(salon?.AcfSalon?.videoTitle)}</h2>
                                     <div className="salon__video">
@@ -86,14 +88,15 @@ const IndexSalon = ({initialData}) => {
                                              dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.videoDescription}}>
                                         </div>
                                     </div>
-                                </>
+                                </div>
                             )}
+                            <div className="salon-block-bottom">
+                                <h2 className="salon__title-gallery">{cleanHtmlFull(salon?.AcfSalon?.faqTitle)}</h2>
+                                <div className="salon__gallery">
 
-                            <h2 className="salon__title-gallery">{cleanHtmlFull(salon?.AcfSalon?.faqTitle)}</h2>
-                            <div className="salon__gallery">
-
-                                <div className="salon__gallery-content"
-                                     dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent}}>
+                                    <div className="salon__gallery-content"
+                                         dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent}}>
+                                    </div>
                                 </div>
                             </div>
 
