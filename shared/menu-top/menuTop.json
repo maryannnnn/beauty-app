@@ -4,20 +4,11 @@
       "edges": [
         {
           "node": {
-            "id": "cG9zdDoxNDY2",
-            "path": "/salon",
+            "id": "cG9zdDozNjc3",
+            "path": "/bonus",
             "parentId": null,
             "order": 1,
-            "label": "Салон"
-          }
-        },
-        {
-          "node": {
-            "id": "cG9zdDoxNTEy",
-            "path": "/client",
-            "parentId": null,
-            "order": 2,
-            "label": "Клиенты"
+            "label": "Акции"
           }
         },
         {
@@ -29,15 +20,7 @@
             "label": "Отзывы"
           }
         },
-        {
-          "node": {
-            "id": "cG9zdDozNjc3",
-            "path": "/bonus",
-            "parentId": null,
-            "order": 4,
-            "label": "Акции"
-          }
-        },
+
         {
           "node": {
             "id": "cG9zdDoxNTE5",
