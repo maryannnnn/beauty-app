@@ -55,6 +55,7 @@ query  GetSalonAll {
           }
           title
           uri
+          slug
         }
     }
   }
