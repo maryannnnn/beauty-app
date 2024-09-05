@@ -37,26 +37,25 @@ export const GET_SALON_BY_SLUG = gql`
   }
 `;
 
-export const GET_SALON_ABOUT = gql`
-  query GetSalonAbout {
-      salon(id: "cG9zdDozNjk2") {
-        id
-        title
-        content(format: RENDERED)
-      }
-  }
-`;
-
 export const GET_SALON_ALL = gql`
 query  GetSalonAll {
-  salons(where: {categoryId: 1333}) {
+  salons {
     edges {
-      node {
-        id
-        title
-        uri
-        slug
-      }
+        node {
+          id
+          AcfSalon{
+            titleLong
+            titleShort
+            imageAnons {
+              uri
+              title
+              altText
+              sourceUrl
+            }
+          }
+          title
+          uri
+        }
     }
   }
   salon(id: "cG9zdDozNjk2") {
@@ -91,43 +90,5 @@ query  GetSalonAll {
   }
 }
 `;
-
-export const GET_CLIENT_ALL = gql`
-query  GetSalonAll {
-  salons(where: {categoryId: 1334}) {
-    edges {
-      node {
-        id
-        title
-        uri
-        slug
-      }
-    }
-  }
-}
-`;
-
-
-
-export const getSalonActions = async () => {
-
-    try {
-        const response = await axios.get(`${WP_URL}/wp/v2/pages`);
-        console.log("response: ", response);
-        return response.data;
-    } catch (e) {
-        if (e.response) {
-            // Сервер вернул ответ с ошибкой
-            console.error('Server responded with error:', e.response.status, e.response.data);
-        } else if (e.request) {
-            // Запрос был отправлен, но ответа не было
-            console.error('No response received:', e.request);
-        } else {
-            // Произошла ошибка при настройке запроса
-            console.error('Error setting up request:', e.message);
-        }
-        throw new Error('Failed to fetch pages');
-    }
-}
 
 

@@ -26,10 +26,20 @@ export const GET_HOME_DATA = gql`
             descriptionAnons
       }
     }
-    salons(where: {categoryId: 1333}) {
+    salons {
       edges {
         node {
           id
+          AcfSalon{
+            titleLong
+            titleShort
+            imageAnons {
+              uri
+              title
+              altText
+              sourceUrl
+            }
+          }
           title
           uri
         }

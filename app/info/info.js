@@ -42,6 +42,7 @@ export const numberItems = {
 }
 
 export const contentType = {
+    salons: 'salons',
     bonuses: 'bonuses',
     massages: 'massages',
     courses: 'courses',

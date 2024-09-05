@@ -1,25 +1,39 @@
-import React from 'react';
-import '../../app/scss/app.scss';
 import './index.scss';
 import './media.scss';
-import Link from "next/link";
-import LeftLayout from "../../app/layouts/LeftLayout";
+import {useRouter} from 'next/router';
 import {useQuery} from "@apollo/client";
-import apolloClient from '../../app/graphql/apollo-client';
-import {GET_SALON_ALL} from "../../entities/salon/actions/salonActions";
+import {GET_SALON_BY_SLUG, GET_SALON_ALL} from "../../entities/salon/actions/salonActions";
+import apolloClient from "../../app/graphql/apollo-client";
+import MainLayout from "../../app/layouts/MainLayout";
+import React from "react";
+import LeftLayout from "../../app/layouts/LeftLayout";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
+import {cleanHtmlFull} from "../../shared/utils/utils-content";
+import Link from "next/link";
 import Image from "next/image";
-import {cleanHtml, cleanHtmlFull, trimTextFullCleanedHTML} from "../../shared/utils/utils-content";
 
-const IndexSalon = ({initialData}) => {
+const SalonPage = ({initialData}) => {
+    const router = useRouter();
+    const {slug} = router.query;
 
-    const {loading, error, data} = useQuery(GET_SALON_ALL, {
-        fetchPolicy: "cache-first",
-        nextFetchPolicy: "cache-and-network",
+    console.log("Slug data: ", slug);
+
+    const {loading, error, data} = useQuery(GET_SALON_BY_SLUG, {
+        variables: {slug},
+        skip: !slug,
+        fetchPolicy: 'cache-and-network',
     });
 
-    const salon = data?.salon || initialData?.salon;
+    if (router.isFallback || loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    const salon = data?.salonBy || initialData?.salonBy;
 
     const PageProps = {
         title: salon?.seo?.title || 'Компания',
@@ -30,9 +44,7 @@ const IndexSalon = ({initialData}) => {
         <LeftLayout title={PageProps.title} description={PageProps.description}>
             <div className="salon">
                 <div className="container">
-                    {loading && !salon ? (
-                        <div>...</div>
-                    ) : error ? (
+                    {error ? (
                         <Stack sx={{width: '100%'}} spacing={2}>
                             <Alert severity="error">
                                 {error.graphQLErrors ? error.graphQLErrors.map((err, index) => (
@@ -45,15 +57,17 @@ const IndexSalon = ({initialData}) => {
                             <h1 className="salon__title">{cleanHtmlFull(salon?.AcfSalon?.titleLong)}</h1>
                             <div className="salon__anons">
                                 <div className="salon__anons-img">
-                                    <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
-                                        <Image
-                                            src={salon?.AcfSalon?.imageAnons?.sourceUrl}
-                                            alt={salon?.AcfSalon?.imageAnons?.altText}
-                                            width={500}
-                                            height={400}
-                                            layout="intrinsic"
-                                        />
-                                    </Link>
+                                    {salon?.AcfSalon?.imageAnons && (
+                                        <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
+                                            <Image
+                                                src={salon?.AcfSalon?.imageAnons?.sourceUrl}
+                                                alt={salon?.AcfSalon?.imageAnons?.altText}
+                                                width={500}
+                                                height={400}
+                                                layout="intrinsic"
+                                            />
+                                        </Link>
+                                    )}
                                 </div>
                                 <div className="salon__anons-text"
                                      dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.descriptionAnons}}>
@@ -62,15 +76,19 @@ const IndexSalon = ({initialData}) => {
                             <div className="salon-block-center">
                                 <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter)}</h2>
                                 <div className="salon__description">
-                                    <div className="salon__description-img">
-                                        <Image
-                                            src={salon?.featuredImage?.node?.sourceUrl}
-                                            alt={salon?.featuredImage?.node?.altText}
-                                            width={500}
-                                            height={600}
-                                            layout="intrinsic"
-                                        />
-                                    </div>
+                                    {salon?.AcfSalon?.imageAnons && (
+                                        <div className="salon__description-img">
+                                            <Link href={salon?.featuredImage?.node?.sourceUrl}>
+                                                <Image
+                                                    src={salon?.featuredImage?.node?.sourceUrl}
+                                                    alt={salon?.featuredImage?.node?.altText}
+                                                    width={500}
+                                                    height={400}
+                                                    layout="intrinsic"
+                                                />
+                                            </Link>
+                                        </div>
+                                    )}
                                     <div className="salon__description-text"
                                          dangerouslySetInnerHTML={{__html: salon?.content}}>
                                     </div>
@@ -91,25 +109,14 @@ const IndexSalon = ({initialData}) => {
                                 </div>
                             )}
                             <div className="salon-block-bottom">
-                                <h2 className="salon__title-gallery">{cleanHtmlFull(salon?.AcfSalon?.faqTitle)}</h2>
-                                <div className="salon__gallery">
+                                <h2 className="salon__title-faq">{cleanHtmlFull(salon?.AcfSalon?.faqTitle)}</h2>
+                                <div className="salon__faq">
 
-                                    <div className="salon__gallery-content"
+                                    <div className="salon__faq-content"
                                          dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent}}>
                                     </div>
                                 </div>
                             </div>
-
-
-                            {/*<ul>*/}
-                            {/*    {displayData?.salons?.edges?.map(item => (*/}
-                            {/*        <li key={item?.node?.id}>*/}
-                            {/*            <Link href={item?.node?.uri}>*/}
-                            {/*                <div>{item?.node?.title}</div>*/}
-                            {/*            </Link>*/}
-                            {/*        </li>*/}
-                            {/*    ))}*/}
-                            {/*</ul>*/}
                         </>
                     )}
                 </div>
@@ -118,22 +125,38 @@ const IndexSalon = ({initialData}) => {
     );
 };
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
     const {data} = await apolloClient.query({
-        query: GET_SALON_ALL
+        query: GET_SALON_ALL,
     });
 
-    console.log("Fetched data:", data);
+    console.log("Fetched salons data: ", data);
+
+    const paths = data.salons.edges.map(item => ({
+        params: {slug: item.node.slug},
+    }));
+
+    console.log("Generated paths: ", paths);
+
+    return {paths, fallback: true};
+}
+
+export async function getStaticProps({params}) {
+    const {data} = await apolloClient.query({
+        query: GET_SALON_BY_SLUG,
+        variables: {slug: params.slug},
+    });
 
     return {
         props: {
-            initialData: data
+            initialData: data,
         },
         //revalidate: 2592000, // Revalidate every 30 days
     };
 }
 
-export default IndexSalon;
+export default SalonPage;
+
 
 
 
