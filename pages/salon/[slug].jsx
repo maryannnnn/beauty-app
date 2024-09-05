@@ -120,34 +120,19 @@ const SalonPage = ({initialData}) => {
 };
 
 export async function getStaticPaths() {
-    try {
-        const {data} = await apolloClient.query({
-            query: GET_SALON_ALL,
-        });
+    const {data} = await apolloClient.query({
+        query: GET_SALON_ALL,
+    });
 
-        console.log("Fetched salons data: ", data);
+    console.log("Fetched salons data: ", data);
 
-        if (!data || !data.salons || !data.salons.edges) {
-            throw new Error('Invalid data structure');
-        }
+    const paths = data.salons.edges.map(item => ({
+        params: {slug: item.node.slug},
+    }));
 
-        const paths = data.salons.edges.map(item => {
-            if (!item.node || !item.node.slug) {
-                console.error('Missing slug:', item);
-                return null;
-            }
-            return {
-                params: {slug: item.node.slug},
-            };
-        }).filter(Boolean); // Remove null values
+    console.log("Generated paths: ", paths);
 
-        console.log("Generated paths: ", paths);
-
-        return {paths, fallback: true};
-    } catch (error) {
-        console.error('Error in getStaticPaths:', error);
-        return {paths: [], fallback: true}; // Return empty paths array on error
-    }
+    return {paths, fallback: true};
 }
 
 export async function getStaticProps({params}) {
@@ -160,11 +145,9 @@ export async function getStaticProps({params}) {
         props: {
             initialData: data,
         },
-        // revalidate: 2592000, // Пересборка раз в 30 дней
+        //revalidate: 2592000, // Revalidate every 30 days
     };
 }
-
-
 
 
 export default SalonPage;
