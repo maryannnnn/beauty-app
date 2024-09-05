@@ -6,6 +6,7 @@ import BlockItemMassage from "../block-item-massage/BlockItemMassage";
 import BlockItemCourse from "../block-item-course/BlockItemCourse";
 import BlockItemPost from "../block-item-post/BlockItemPost";
 import {contentType} from "../../app/info/info";
+import BlockItemSalons from "../block-item-salons/BlockItemSalons";
 
 const BlockGroupItems = ({data, number, typeContent}) => {
 
