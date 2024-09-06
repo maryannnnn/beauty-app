@@ -51,46 +51,54 @@ const SalonPage = ({initialData}) => {
             <div className="salon">
                 <div className="container">
                     <>
-                        <h1 className="salon__title">{cleanHtmlFull(salon?.AcfSalon?.titleLong || '')}</h1>
-                        <div className="salon__anons">
-                            {salon?.AcfSalon?.imageAnons && (
-                                <div className="salon__anons-img">
-                                    <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
-                                        <Image
-                                            src={salon?.AcfSalon?.imageAnons?.sourceUrl}
-                                            alt={salon?.AcfSalon?.imageAnons?.altText || 'Image'}
-                                            width={400}
-                                            height={400}
-                                            layout="intrinsic"
-                                        />
-                                    </Link>
-                                </div>
-                            )}
-                            <div className="salon__anons-text"
-                                 dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.descriptionAnons || ''}}>
-                            </div>
-                        </div>
-                        <div className="salon-block-center">
-                            <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter || '')}</h2>
-                            <div className="salon__description">
-                                {salon?.featuredImage?.node?.sourceUrl && (
-                                    <div className="salon__description-img">
-                                        <Link href={salon?.featuredImage?.node?.sourceUrl}>
-                                            <Image
-                                                src={salon?.featuredImage?.node?.sourceUrl}
-                                                alt={salon?.featuredImage?.node?.altText || 'Image'}
-                                                width={400}
-                                                height={400}
-                                                layout="intrinsic"
-                                            />
-                                        </Link>
+                        {salon?.AcfSalon?.descriptionAnons && (
+                            <>
+                                <h1 className="salon__title">{cleanHtmlFull(salon?.AcfSalon?.titleLong || '')}</h1>
+                                <div className="salon__anons">
+                                    {salon?.AcfSalon?.imageAnons && (
+                                        <div className="salon__anons-img">
+                                            <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
+                                                <Image
+                                                    src={salon?.AcfSalon?.imageAnons?.sourceUrl}
+                                                    alt={salon?.AcfSalon?.imageAnons?.altText || 'Image'}
+                                                    width={400}
+                                                    height={400}
+                                                    layout="intrinsic"
+                                                />
+                                            </Link>
+                                        </div>
+                                    )}
+                                    <div className="salon__anons-text"
+                                         dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.descriptionAnons || ''}}>
                                     </div>
-                                )}
-                                <div className="salon__description-text"
-                                     dangerouslySetInnerHTML={{__html: salon?.content || ''}}>
                                 </div>
-                            </div>
-                        </div>
+                            </>
+                        )}
+                        {salon?.content && (
+                            <>
+                                <div className="salon-block-center">
+                                    <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter || '')}</h2>
+                                    <div className="salon__description">
+                                        {salon?.featuredImage?.node?.sourceUrl && (
+                                            <div className="salon__description-img">
+                                                <Link href={salon?.featuredImage?.node?.sourceUrl}>
+                                                    <Image
+                                                        src={salon?.featuredImage?.node?.sourceUrl}
+                                                        alt={salon?.featuredImage?.node?.altText || 'Image'}
+                                                        width={400}
+                                                        height={400}
+                                                        layout="intrinsic"
+                                                    />
+                                                </Link>
+                                            </div>
+                                        )}
+                                        <div className="salon__description-text"
+                                             dangerouslySetInnerHTML={{__html: salon?.content || ''}}>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        )}
                         {salon?.AcfSalon?.video && (
                             <div className="salon-block-video">
                                 <h2 className="salon__title-video">{cleanHtmlFull(salon?.AcfSalon?.videoTitle || '')}</h2>
@@ -104,14 +112,16 @@ const SalonPage = ({initialData}) => {
                                 </div>
                             </div>
                         )}
-                        <div className="salon-block-bottom">
-                            <h2 className="salon__title-faq">{cleanHtmlFull(salon?.AcfSalon?.faqTitle || '')}</h2>
-                            <div className="salon__faq">
-                                <div className="salon__faq-content"
-                                     dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent || ''}}>
+                        {salon?.AcfSalon?.faqContent && (
+                            <div className="salon-block-bottom">
+                                <h2 className="salon__title-faq">{cleanHtmlFull(salon?.AcfSalon?.faqTitle || '')}</h2>
+                                <div className="salon__faq">
+                                    <div className="salon__faq-content"
+                                         dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent || ''}}>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </>
                 </div>
             </div>
