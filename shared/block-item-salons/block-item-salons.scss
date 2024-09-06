@@ -1,14 +1,6 @@
 @import '../../app/scss/mixins';
 @import '../../app/scss/colors';
 
-.block-salons {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding-bottom: 20px;
-}
-
 .block-item-salons__image {
   padding-bottom: 15px;
   &-title {

@@ -25,6 +25,8 @@ const MainLayout
                 <meta property="og:description" content={description}/>
                 <meta property="og:url" content={canonicalUrl}/>
                 <meta property="og:type" content="article"/>
+                <meta property="og:locale" content="ru_RU"/>
+                <meta property="og:site_name" content="Центр Массажа Крылья Ветра"/>
                 <meta name="twitter:card" content="summary"/>
                 <meta name="twitter:title" content={title}/>
                 <meta name="twitter:description" content={description}/>
