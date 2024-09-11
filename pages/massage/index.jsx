@@ -11,7 +11,7 @@ import Alert from "@mui/material/Alert";
 import Image from "next/image";
 import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import {GET_MASSAGE_ALL} from "../../entities/massage/actions/massageActions";
-import BlockItemMassage from "../../shared/block-item-massage/BlockItemmassage";
+import BlockItemMassage from "../../shared/block-item-massage/BlockItemMassage";
 
 const IndexMassage = ({initialData}) => {
 
