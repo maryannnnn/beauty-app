@@ -52,7 +52,7 @@ const MainTestimonial = ({data}) => {
                         .slice(0, 7)
                         .map(item => (
                             <SwiperSlide key={item?.node?.id}>
-                                <BlockSlideTestimonial item={item}/>
+                                <BlockSlideTestimonial item={item} />
                             </SwiperSlide>
                         ))}
                 </Swiper>

@@ -19,10 +19,10 @@ const BlockSlideBanner = ({item}) => {
     return (
         <div className="slide-info">
             <Link className="title" data-swiper-parallax="-300"  href={item.node.uri}>
-                {trimText(item.node.title, sizeText.ma)}
+                {trimText(item.node.title, sizeText.xb)}
             </Link>
             <div className="subtitle" data-swiper-parallax="-200">
-                {trimText(item.node.AcfBonus.titleShort, sizeText.ma)}
+                {trimText(item.node.AcfBonus.titleShort, sizeText.xt)}
             </div>
             <ButtonRed name={buttonOptions.detail} type="submit" onClick={() => postHandler(item.node.uri)} />
         </div>
