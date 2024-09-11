@@ -14,6 +14,8 @@ import {Navigation, Pagination, Mousewheel, Keyboard} from 'swiper/modules';
 import theme from "../../material.config";
 import BlockSlideTestimonial from "../../shared/block-slide-testimonial/BlockSlideTestimonial";
 import BlockHeader from "../../shared/block-header/BlockHeader";
+import Link from "next/link";
+import {buttonOptions} from "../../shared/button-options/button-options";
 
 const MainTestimonial = ({data}) => {
 
@@ -54,6 +56,11 @@ const MainTestimonial = ({data}) => {
                             </SwiperSlide>
                         ))}
                 </Swiper>
+                <div className='main-testimonial__block'>
+                    <Link className='main-testimonial__block-link'  href='/testimonial'>
+                        {buttonOptions.see}
+                    </Link>
+                </div>
             </div>
         </div>
     );

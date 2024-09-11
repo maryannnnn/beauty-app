@@ -6,31 +6,33 @@ import Link from "next/link";
 import LeftLayout from "../../app/layouts/LeftLayout";
 import {useQuery} from "@apollo/client";
 import apolloClient from '../../app/graphql/apollo-client';
-import {GET_SALON_ALL} from "../../entities/salon/actions/salonActions";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import Image from "next/image";
-import {cleanHtml, cleanHtmlFull, trimTextFullCleanedHTML} from "../../shared/utils/utils-content";
+import {cleanHtmlFull} from "../../shared/utils/utils-content";
+import {GET_MASSAGE_ALL} from "../../entities/massage/actions/massageActions";
+import BlockItemMassage from "../../shared/block-item-massage/BlockItemmassage";
 
 const IndexMassage = ({initialData}) => {
 
-    const {loading, error, data} = useQuery(GET_SALON_ALL, {
+    const {loading, error, data} = useQuery(GET_MASSAGE_ALL, {
         fetchPolicy: "cache-first",
         nextFetchPolicy: "cache-and-network",
     });
 
-    const salon = data?.salon || initialData?.salon;
+    const massage = data?.massage || initialData?.massage;
+    const massages = data?.massages?.edges || initialData?.massages?.edges;
 
     const PageProps = {
-        title: salon?.seo?.title || 'Компания',
-        description: salon?.seo?.metaDesc || 'Компания'
+        title: massage?.seo?.title || 'Компания',
+        description: massage?.seo?.metaDesc || 'Компания'
     };
 
     return (
         <LeftLayout title={PageProps.title} description={PageProps.description}>
-            <div className="salon">
+            <div className="massage">
                 <div className="container">
-                    {loading && !salon ? (
+                    {loading && !massage ? (
                         <div>...</div>
                     ) : error ? (
                         <Stack sx={{width: '100%'}} spacing={2}>
@@ -42,76 +44,86 @@ const IndexMassage = ({initialData}) => {
                         </Stack>
                     ) : (
                         <>
-                            <h1 className="salon__title">{cleanHtmlFull(salon?.AcfSalon?.titleLong)}</h1>
-                            <div className="salon__anons">
-                                <div className="salon__anons-img">
-                                    <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
-                                        <Image
-                                            src={salon?.AcfSalon?.imageAnons?.sourceUrl}
-                                            alt={salon?.AcfSalon?.imageAnons?.altText}
-                                            width={500}
-                                            height={400}
-                                            layout="intrinsic"
-                                        />
-                                    </Link>
-                                </div>
-                                <div className="salon__anons-text"
-                                     dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.descriptionAnons}}>
-                                </div>
-                            </div>
-                            <div className="salon-block-center">
-                                <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter)}</h2>
-                                <div className="salon__description">
-                                    <div className="salon__description-img">
-                                        <Link href={salon?.featuredImage?.node?.sourceUrl}>
-                                            <Image
-                                                src={salon?.featuredImage?.node?.sourceUrl}
-                                                alt={salon?.featuredImage?.node?.altText}
-                                                width={500}
-                                                height={400}
-                                                layout="intrinsic"
-                                            />
-                                        </Link>
-                                    </div>
-                                    <div className="salon__description-text"
-                                         dangerouslySetInnerHTML={{__html: salon?.content}}>
-                                    </div>
-                                </div>
-                            </div>
-                            {salon?.AcfSalon?.video && (
-                                <div className="salon-block-video">
-                                    <h2
-                                        className="salon__title-video">{cleanHtmlFull(salon?.AcfSalon?.videoTitle)}</h2>
-                                    <div className="salon__video">
-                                        <div className="salon__video-content"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.video}}>
-                                        </div>
-                                        <div className="salon__video-text"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.videoDescription}}>
+                            {massage?.AcfMassage?.descriptionAnons && (
+                                <div className="massage-block-top">
+                                    <h1 className="massage__title">{cleanHtmlFull(massage?.AcfMassage?.titleLong || '')}</h1>
+                                    <div className="massage__anons">
+                                        {massage?.AcfMassage?.imageAnonsPage && (
+                                            <div className="massage__anons-img">
+                                                <Link href={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}>
+                                                    <Image
+                                                        src={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}
+                                                        alt={massage?.AcfMassage?.imageAnonsPage?.altText}
+                                                        width={400}
+                                                        height={400}
+                                                        layout="intrinsic"
+                                                    />
+                                                </Link>
+                                            </div>
+                                        )}
+                                        <div className="massage__anons-text"
+                                             dangerouslySetInnerHTML={{__html: massage?.AcfMassage?.descriptionAnons || ''}}>
                                         </div>
                                     </div>
                                 </div>
                             )}
-                            <div className="salon-block-bottom">
-                                <h2 className="salon__title-faq">{cleanHtmlFull(salon?.AcfSalon?.faqTitle)}</h2>
-                                <div className="salon__faq">
-
-                                    <div className="salon__faq-content"
-                                         dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent}}>
+                            <div className="block-massages">
+                                {massages?.filter(el => el.node?.id !== massage.id)
+                                    .map(item => (
+                                        <div key={item?.node?.id}>
+                                            <BlockItemMassage item={item}/>
+                                        </div>
+                                    ))}
+                            </div>
+                            {massage?.content && (
+                                <>
+                                    <div className="massage-block-center">
+                                        <h2 className="massage__title-main">{cleanHtmlFull(massage?.AcfMassage?.titleCenter || '')}</h2>
+                                        <div className="massage__description">
+                                            {massage?.featuredImage?.node?.sourceUrl && (
+                                                <div className="massage__description-img">
+                                                    <Link href={massage?.featuredImage?.node?.sourceUrl}>
+                                                        <Image
+                                                            src={massage?.featuredImage?.node?.sourceUrl || ''}
+                                                            alt={massage?.featuredImage?.node?.altText || ''}
+                                                            width={400}
+                                                            height={600}
+                                                            layout="intrinsic"
+                                                        />
+                                                    </Link>
+                                                </div>
+                                            )}
+                                            <div className="massage__description-text"
+                                                 dangerouslySetInnerHTML={{__html: massage?.content || ''}}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                            {massage?.AcfMassage?.video && (
+                                <div className="massage-block-video">
+                                    <h2
+                                        className="massage__title-video">{cleanHtmlFull(massage?.AcfMassage?.videoTitle || '')}</h2>
+                                    <div className="massage__video">
+                                        <div className="massage__video-content"
+                                             dangerouslySetInnerHTML={{__html: massage?.AcfMassage?.video || ''}}>
+                                        </div>
+                                        <div className="massage__video-text"
+                                             dangerouslySetInnerHTML={{__html: massage?.AcfMassage?.videoDescription || ''}}>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-
-                            {/*<ul>*/}
-                            {/*    {displayData?.salons?.edges?.map(item => (*/}
-                            {/*        <li key={item?.node?.id}>*/}
-                            {/*            <Link href={item?.node?.uri}>*/}
-                            {/*                <div>{item?.node?.title}</div>*/}
-                            {/*            </Link>*/}
-                            {/*        </li>*/}
-                            {/*    ))}*/}
-                            {/*</ul>*/}
+                            )}
+                            {massage?.AcfMassage?.faqTitle && (
+                                <div className="massage-block-bottom">
+                                    <h2 className="massage__title-gallery">{cleanHtmlFull(massage?.AcfMassage?.faqTitle || '')}</h2>
+                                    <div className="massage__gallery">
+                                        <div className="massage__gallery-content"
+                                             dangerouslySetInnerHTML={{__html: massage?.AcfMassage?.faqContent || ''}}>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </>
                     )}
                 </div>
@@ -122,16 +134,14 @@ const IndexMassage = ({initialData}) => {
 
 export async function getStaticProps() {
     const {data} = await apolloClient.query({
-        query: GET_SALON_ALL
+        query: GET_MASSAGE_ALL
     });
-
-    console.log("Fetched data:", data);
 
     return {
         props: {
             initialData: data
         },
-        //revalidate: 2592000, // Revalidate every 30 days
+        // revalidate: 86400, // Пересборка каждый день
     };
 }
 

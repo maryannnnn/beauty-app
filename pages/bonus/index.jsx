@@ -6,31 +6,33 @@ import Link from "next/link";
 import LeftLayout from "../../app/layouts/LeftLayout";
 import {useQuery} from "@apollo/client";
 import apolloClient from '../../app/graphql/apollo-client';
-import {GET_SALON_ALL} from "../../entities/salon/actions/salonActions";
+import {GET_BONUS_ALL} from "../../entities/bonus/actions/bonusActions";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import Image from "next/image";
-import {cleanHtml, cleanHtmlFull, trimTextFullCleanedHTML} from "../../shared/utils/utils-content";
+import {cleanHtmlFull} from "../../shared/utils/utils-content";
+import BlockItemBonus from "../../shared/block-item-bonus/BlockItemBonus";
 
-const IndexSalon = ({initialData}) => {
+const IndexBonus = ({initialData}) => {
 
-    const {loading, error, data} = useQuery(GET_SALON_ALL, {
+    const {loading, error, data} = useQuery(GET_BONUS_ALL, {
         fetchPolicy: "cache-first",
         nextFetchPolicy: "cache-and-network",
     });
 
-    const salon = data?.salon || initialData?.salon;
+    const bonus = data?.bonus || initialData?.bonus;
+    const bonuses = data?.bonuses?.edges || initialData?.bonuses?.edges;
 
     const PageProps = {
-        title: salon?.seo?.title || 'Компания',
-        description: salon?.seo?.metaDesc || 'Компания'
+        title: bonus?.seo?.title || 'Компания',
+        description: bonus?.seo?.metaDesc || 'Компания'
     };
 
     return (
         <LeftLayout title={PageProps.title} description={PageProps.description}>
-            <div className="salon">
+            <div className="bonus">
                 <div className="container">
-                    {loading && !salon ? (
+                    {loading && !bonus ? (
                         <div>...</div>
                     ) : error ? (
                         <Stack sx={{width: '100%'}} spacing={2}>
@@ -42,74 +44,86 @@ const IndexSalon = ({initialData}) => {
                         </Stack>
                     ) : (
                         <>
-                            <h1 className="salon__title">{cleanHtmlFull(salon?.AcfSalon?.titleLong)}</h1>
-                            <div className="salon__anons">
-                                <div className="salon__anons-img">
-                                    <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
-                                        <Image
-                                            src={salon?.AcfSalon?.imageAnons?.sourceUrl}
-                                            alt={salon?.AcfSalon?.imageAnons?.altText}
-                                            width={500}
-                                            height={400}
-                                            layout="intrinsic"
-                                        />
-                                    </Link>
-                                </div>
-                                <div className="salon__anons-text"
-                                     dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.descriptionAnons}}>
-                                </div>
-                            </div>
-                            <div className="salon-block-center">
-                                <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter)}</h2>
-                                <div className="salon__description">
-                                    <div className="salon__description-img">
-                                        <Image
-                                            src={salon?.featuredImage?.node?.sourceUrl}
-                                            alt={salon?.featuredImage?.node?.altText}
-                                            width={500}
-                                            height={600}
-                                            layout="intrinsic"
-                                        />
-                                    </div>
-                                    <div className="salon__description-text"
-                                         dangerouslySetInnerHTML={{__html: salon?.content}}>
-                                    </div>
-                                </div>
-                            </div>
-                            {salon?.AcfSalon?.video && (
-                                <div className="salon-block-video">
-                                    <h2
-                                        className="salon__title-video">{cleanHtmlFull(salon?.AcfSalon?.videoTitle)}</h2>
-                                    <div className="salon__video">
-                                        <div className="salon__video-content"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.video}}>
-                                        </div>
-                                        <div className="salon__video-text"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.videoDescription}}>
+                            {bonus?.AcfBonus?.descriptionAnons && (
+                                <div className="bonus-block-top">
+                                    <h1 className="bonus__title">{cleanHtmlFull(bonus?.AcfBonus?.titleLong || '')}</h1>
+                                    <div className="bonus__anons">
+                                        {bonus?.AcfBonus?.imageAnonsPage && (
+                                            <div className="bonus__anons-img">
+                                                <Link href={bonus?.AcfBonus?.imageAnonsPage?.sourceUrl}>
+                                                    <Image
+                                                        src={bonus?.AcfBonus?.imageAnonsPage?.sourceUrl}
+                                                        alt={bonus?.AcfBonus?.imageAnonsPage?.altText}
+                                                        width={400}
+                                                        height={400}
+                                                        layout="intrinsic"
+                                                    />
+                                                </Link>
+                                            </div>
+                                        )}
+                                        <div className="bonus__anons-text"
+                                             dangerouslySetInnerHTML={{__html: bonus?.AcfBonus?.descriptionAnons || ''}}>
                                         </div>
                                     </div>
                                 </div>
                             )}
-                            <div className="salon-block-bottom">
-                                <h2 className="salon__title-gallery">{cleanHtmlFull(salon?.AcfSalon?.faqTitle)}</h2>
-                                <div className="salon__gallery">
-
-                                    <div className="salon__gallery-content"
-                                         dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent}}>
+                            <div className="block-bonuses">
+                                {bonuses?.filter(el => el.node?.id !== bonus.id)
+                                    .map(item => (
+                                        <div key={item?.node?.id}>
+                                            <BlockItemBonus item={item}/>
+                                        </div>
+                                    ))}
+                            </div>
+                            {bonus?.content && (
+                                <>
+                                    <div className="bonus-block-center">
+                                        <h2 className="bonus__title-main">{cleanHtmlFull(bonus?.AcfBonus?.titleCenter || '')}</h2>
+                                        <div className="bonus__description">
+                                            {bonus?.featuredImage?.node?.sourceUrl && (
+                                                <div className="bonus__description-img">
+                                                    <Link href={bonus?.featuredImage?.node?.sourceUrl}>
+                                                        <Image
+                                                            src={bonus?.featuredImage?.node?.sourceUrl || ''}
+                                                            alt={bonus?.featuredImage?.node?.altText || ''}
+                                                            width={400}
+                                                            height={600}
+                                                            layout="intrinsic"
+                                                        />
+                                                    </Link>
+                                                </div>
+                                            )}
+                                            <div className="bonus__description-text"
+                                                 dangerouslySetInnerHTML={{__html: bonus?.content || ''}}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                            {bonus?.AcfBonus?.video && (
+                                <div className="bonus-block-video">
+                                    <h2
+                                        className="bonus__title-video">{cleanHtmlFull(bonus?.AcfBonus?.videoTitle || '')}</h2>
+                                    <div className="bonus__video">
+                                        <div className="bonus__video-content"
+                                             dangerouslySetInnerHTML={{__html: bonus?.AcfBonus?.video || ''}}>
+                                        </div>
+                                        <div className="bonus__video-text"
+                                             dangerouslySetInnerHTML={{__html: bonus?.AcfBonus?.videoDescription || ''}}>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-
-                            {/*<ul>*/}
-                            {/*    {displayData?.salons?.edges?.map(item => (*/}
-                            {/*        <li key={item?.node?.id}>*/}
-                            {/*            <Link href={item?.node?.uri}>*/}
-                            {/*                <div>{item?.node?.title}</div>*/}
-                            {/*            </Link>*/}
-                            {/*        </li>*/}
-                            {/*    ))}*/}
-                            {/*</ul>*/}
+                            )}
+                            {bonus?.AcfBonus?.faqTitle && (
+                                <div className="bonus-block-bottom">
+                                    <h2 className="bonus__title-gallery">{cleanHtmlFull(bonus?.AcfBonus?.faqTitle || '')}</h2>
+                                    <div className="bonus__gallery">
+                                        <div className="bonus__gallery-content"
+                                             dangerouslySetInnerHTML={{__html: bonus?.AcfBonus?.faqContent || ''}}>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </>
                     )}
                 </div>
@@ -120,20 +134,19 @@ const IndexSalon = ({initialData}) => {
 
 export async function getStaticProps() {
     const {data} = await apolloClient.query({
-        query: GET_SALON_ALL
+        query: GET_BONUS_ALL
     });
-
-    console.log("Fetched data:", data);
 
     return {
         props: {
             initialData: data
         },
-        //revalidate: 2592000, // Revalidate every 30 days
+        // revalidate: 86400, // Пересборка каждый день
     };
 }
 
-export default IndexSalon;
+
+export default IndexBonus;
 
 
 
