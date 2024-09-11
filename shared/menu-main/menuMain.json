@@ -188,7 +188,25 @@
             "path": "salon/uiut",
             "parentId": "cG9zdDozNjYy",
             "order": 19,
-            "label": "Уют"
+            "label": "Домашний уют"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjYy",
+            "path": "salon/my-dayom-vam-vybor",
+            "parentId": "cG9zdDozNjYy",
+            "order": 19,
+            "label": "Даём вам выбор"
+          }
+        },
+        {
+          "node": {
+            "id": "cG9zdDozNjYy",
+            "path": "salon/my-ekonomim-vam-vremya",
+            "parentId": "cG9zdDozNjYy",
+            "order": 19,
+            "label": "Экономим вам время"
           }
         },
         {

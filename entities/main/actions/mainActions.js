@@ -62,6 +62,15 @@ export const GET_HOME_DATA = gql`
           }
           uri
           title
+          categories {
+            edges {
+              node {
+                id
+                uri
+                name
+              }
+            }
+          }
         }
       }
     }
@@ -81,6 +90,15 @@ export const GET_HOME_DATA = gql`
           }
           uri
           title
+          categories {
+            edges {
+              node {
+                id
+                uri
+                name
+              }
+            }
+          }
         }
       }
     }
@@ -100,6 +118,15 @@ export const GET_HOME_DATA = gql`
           }
           uri
           title
+          categories {
+            edges {
+              node {
+                id
+                uri
+                name
+              }
+            }
+          }
         }
       }
     }
@@ -126,6 +153,15 @@ export const GET_HOME_DATA = gql`
           }
           title
           uri
+          categories {
+            edges {
+              node {
+                id
+                uri
+                name
+              }
+            }
+          }
         }
       }
     }

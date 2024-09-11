@@ -4,7 +4,6 @@ import {useRouter} from 'next/router';
 import {useQuery} from "@apollo/client";
 import {GET_SALON_BY_SLUG, GET_SALON_ALL} from "../../entities/salon/actions/salonActions";
 import apolloClient from "../../app/graphql/apollo-client";
-import MainLayout from "../../app/layouts/MainLayout";
 import React from "react";
 import LeftLayout from "../../app/layouts/LeftLayout";
 import Stack from "@mui/material/Stack";

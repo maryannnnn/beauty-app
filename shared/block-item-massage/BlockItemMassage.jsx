@@ -18,8 +18,8 @@ const BlockItemMassage = ({item}) => {
                     <Image
                         src={item?.node?.AcfMassage?.imageAnons?.sourceUrl}
                         alt={item?.node?.AcfMassage?.imageAnons?.altText}
-                        width={380}
-                        height={194}
+                        width={350}
+                        height={350}
                         layout="intrinsic"
                     />
                 </div>

@@ -6,6 +6,16 @@
   height: 520px;
   border-bottom: 1px solid $black;
   background-color: $white-full;
+
+  &__block {
+    width: 100%;
+    text-align: center;
+
+    &-link {
+      @include title-h6;
+      @include link-black;
+    }
+  }
 }
 
 .swiper {
@@ -20,11 +30,6 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 40px 60px;
-
-  /* Center slide text vertically */
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
 }
 
 

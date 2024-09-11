@@ -1,7 +1,16 @@
 @import '../../app/scss/mixins';
 @import '../../app/scss/colors';
 
-.salon {
+.block-bonuses {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-bottom: 20px;
+}
+
+.bonus {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -72,22 +81,32 @@
     }
   }
 
+  &-block-center {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid $black;
+    background-color: $white;
+    margin-bottom: 30px;
+  }
+
+  &-block-bottom {
+    width: 100%;
+    border: 1px solid $black;
+    background-color: $white;
+    padding: 20px;
+    margin-bottom: 50px;
+  }
+
+  &-block-video {
+    padding-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  &-block-top {
+    padding-top: 20px;
+    margin-bottom: 30px;
+  }
+
 }
 
-.salon-block-center {
-  width: 100%;
-  padding: 20px;
-  border: 1px solid $black;
-  background-color: $white;
-}
 
-.salon-block-bottom {
-  width: 100%;
-  padding: 20px;
-  border: 1px solid $black;
-  background-color: $white;
-}
-
-.salon-block-video {
-  padding-top: 20px;
-}

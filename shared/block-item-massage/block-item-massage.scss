@@ -27,7 +27,13 @@
     @include body-md;
     color: $black;
     transition: color 0.3s ease;
+
+    &-img {
+      width: 350px;
+      height: 350px;
+    }
   }
+
   &:hover {
     .block-item-massage__title,
     .block-item-massage__info {

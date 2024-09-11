@@ -16,6 +16,12 @@ const MainTemplate = ({data, number, typeContent}) => {
                 : typeContent === contentType.posts ? 'category5'
                     : '')
 
+    const typeLinkIndex = (typeContent === contentType.bonuses ? 'bonus'
+        : typeContent === contentType.massages ? 'massage'
+            : typeContent === contentType.courses ? 'course'
+                : typeContent === contentType.posts ? 'blog'
+                    : '')
+
     return (
         <div className="main-template">
             <BlockHeader
@@ -29,7 +35,7 @@ const MainTemplate = ({data, number, typeContent}) => {
                 typeContent={typeContent}
             />
             <Link className={`main-template__link${typeCategory === 'category3' ? '-white' : ''}`}
-                  href={data[typeCategory]?.uri || '№'}>
+                  href={`/${typeLinkIndex}` || '#'} >
                 {buttonOptions.see}
             </Link>
         </div>
