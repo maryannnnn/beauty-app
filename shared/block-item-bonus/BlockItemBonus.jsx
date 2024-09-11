@@ -23,9 +23,9 @@ const BlockItemBonus = ({item}) => {
                         layout="intrinsic"
                     />
                 </div>
-                <div className="block-item-bonus__image-title">{trimText(item?.node?.title, sizeText.ma)}</div>
+                <div className="block-item-bonus__image-title">{trimText(item?.node?.title, sizeText.xa)}</div>
                 <div
-                    className="block-item-bonus__image-short">{trimText(item?.node?.AcfBonus?.titleShort, sizeText.ma)}</div>
+                    className="block-item-bonus__image-short">{trimText(item?.node?.AcfBonus?.titleShort, sizeText.xb)}</div>
                 <div className="block-item-bonus__image-overlay"></div>
             </div>
         </Link>

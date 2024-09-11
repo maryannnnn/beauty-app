@@ -2,9 +2,7 @@ import './index.scss';
 import './media.scss';
 import {useRouter} from 'next/router';
 import {useQuery} from "@apollo/client";
-import {GET_SALON_BY_SLUG, GET_SALON_ALL} from "../../entities/salon/actions/salonActions";
 import apolloClient from "../../app/graphql/apollo-client";
-import MainLayout from "../../app/layouts/MainLayout";
 import React from "react";
 import LeftLayout from "../../app/layouts/LeftLayout";
 import Stack from "@mui/material/Stack";
@@ -12,13 +10,13 @@ import Alert from "@mui/material/Alert";
 import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import Link from "next/link";
 import Image from "next/image";
-import {GET_BONUS_ALL, GET_BONUS_BY_SLUG} from "../../entities/bonus/actions/bonusActions";
+import {GET_MASSAGE_ALL, GET_MASSAGE_BY_SLUG} from "../../entities/massage/actions/massageActions";
 
 const MassagePage = ({initialData}) => {
     const router = useRouter();
     const {slug} = router.query;
 
-    const {loading, error, data} = useQuery(GET_BONUS_BY_SLUG, {
+    const {loading, error, data} = useQuery(GET_MASSAGE_BY_SLUG, {
         variables: {slug},
         skip: !slug,
         fetchPolicy: 'cache-and-network',
@@ -40,28 +38,28 @@ const MassagePage = ({initialData}) => {
         );
     }
 
-    const bonus = data?.bonusBy || initialData?.bonusBy;
+    const massage = data?.massageBy || initialData?.massageBy;
 
     const PageProps = {
-        title: bonus?.seo?.title || 'Компания',
-        description: bonus?.seo?.metaDesc || 'Компания'
+        title: massage?.seo?.title || 'Компания',
+        description: massage?.seo?.metaDesc || 'Компания'
     };
 
     return (
         <LeftLayout title={PageProps.title} description={PageProps.description}>
-            <div className="bonus">
+            <div className="massage">
                 <div className="container">
                     <>
-                        {bonus?.AcfBonus?.descriptionAnons && (
+                        {massage?.AcfMassage?.descriptionAnons && (
                             <>
-                                <h1 className="bonus__title">{cleanHtmlFull(bonus?.AcfBonus?.titleLong || '')}</h1>
-                                <div className="bonus__anons">
-                                    {bonus?.AcfBonus?.imageAnonsPage && (
-                                        <div className="bonus__anons-img">
-                                            <Link href={bonus?.AcfBonus?.imageAnonsPage?.sourceUrl}>
+                                <h1 className="massage__title">{cleanHtmlFull(massage?.AcfMassage?.titleLong || '')}</h1>
+                                <div className="massage__anons">
+                                    {massage?.AcfMassage?.imageAnonsPage && (
+                                        <div className="massage__anons-img">
+                                            <Link href={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}>
                                                 <Image
-                                                    src={bonus?.AcfBonus?.imageAnonsPage?.sourceUrl}
-                                                    alt={bonus?.AcfBonus?.imageAnonsPage?.altText || 'Image'}
+                                                    src={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}
+                                                    alt={massage?.AcfMassage?.imageAnonsPage?.altText || 'Image'}
                                                     width={400}
                                                     height={400}
                                                     layout="intrinsic"
@@ -69,23 +67,23 @@ const MassagePage = ({initialData}) => {
                                             </Link>
                                         </div>
                                     )}
-                                    <div className="bonus__anons-text"
-                                         dangerouslySetInnerHTML={{__html: bonus?.AcfBonus?.descriptionAnons || ''}}>
+                                    <div className="massage__anons-text"
+                                         dangerouslySetInnerHTML={{__html: massage?.AcfMassage?.descriptionAnons || ''}}>
                                     </div>
                                 </div>
                             </>
                         )}
-                        {bonus?.content && (
+                        {massage?.content && (
                             <>
-                                <div className="bonus-block-center">
-                                    <h2 className="bonus__title-main">{cleanHtmlFull(bonus?.AcfBonus?.titleCenter || '')}</h2>
-                                    <div className="bonus__description">
-                                        {bonus?.featuredImage?.node?.sourceUrl && (
-                                            <div className="bonus__description-img">
-                                                <Link href={bonus?.featuredImage?.node?.sourceUrl}>
+                                <div className="massage-block-center">
+                                    <h2 className="massage__title-main">{cleanHtmlFull(massage?.AcfMassage?.titleCenter || '')}</h2>
+                                    <div className="massage__description">
+                                        {massage?.featuredImage?.node?.sourceUrl && (
+                                            <div className="massage__description-img">
+                                                <Link href={massage?.featuredImage?.node?.sourceUrl}>
                                                     <Image
-                                                        src={bonus?.featuredImage?.node?.sourceUrl}
-                                                        alt={bonus?.featuredImage?.node?.altText || 'Image'}
+                                                        src={massage?.featuredImage?.node?.sourceUrl}
+                                                        alt={massage?.featuredImage?.node?.altText || 'Image'}
                                                         width={400}
                                                         height={400}
                                                         layout="intrinsic"
@@ -93,32 +91,32 @@ const MassagePage = ({initialData}) => {
                                                 </Link>
                                             </div>
                                         )}
-                                        <div className="bonus__description-text"
-                                             dangerouslySetInnerHTML={{__html: bonus?.content || ''}}>
+                                        <div className="massage__description-text"
+                                             dangerouslySetInnerHTML={{__html: massage?.content || ''}}>
                                         </div>
                                     </div>
                                 </div>
                             </>
                         )}
-                        {bonus?.AcfBonus?.video && (
-                            <div className="bonus-block-video">
-                                <h2 className="bonus__title-video">{cleanHtmlFull(bonus?.AcfBonus?.videoTitle || '')}</h2>
-                                <div className="bonus__video">
-                                    <div className="bonus__video-content"
-                                         dangerouslySetInnerHTML={{__html: bonus?.AcfBonus?.video || ''}}>
+                        {massage?.AcfMassage?.video && (
+                            <div className="massage-block-video">
+                                <h2 className="massage__title-video">{cleanHtmlFull(massage?.AcfMassage?.videoTitle || '')}</h2>
+                                <div className="massage__video">
+                                    <div className="massage__video-content"
+                                         dangerouslySetInnerHTML={{__html: massage?.AcfMassage?.video || ''}}>
                                     </div>
-                                    <div className="bonus__video-text"
-                                         dangerouslySetInnerHTML={{__html: bonus?.AcfBonus?.videoDescription || ''}}>
+                                    <div className="massage__video-text"
+                                         dangerouslySetInnerHTML={{__html: massage?.AcfMassage?.videoDescription || ''}}>
                                     </div>
                                 </div>
                             </div>
                         )}
-                        {bonus?.AcfBonus?.faqContent && (
-                            <div className="bonus-block-bottom">
-                                <h2 className="bonus__title-faq">{cleanHtmlFull(bonus?.AcfBonus?.faqTitle || '')}</h2>
-                                <div className="bonus__faq">
-                                    <div className="bonus__faq-content"
-                                         dangerouslySetInnerHTML={{__html: bonus?.AcfBonus?.faqContent || ''}}>
+                        {massage?.AcfMassage?.faqContent && (
+                            <div className="massage-block-bottom">
+                                <h2 className="massage__title-faq">{cleanHtmlFull(massage?.AcfMassage?.faqTitle || '')}</h2>
+                                <div className="massage__faq">
+                                    <div className="massage__faq-content"
+                                         dangerouslySetInnerHTML={{__html: massage?.AcfMassage?.faqContent || ''}}>
                                     </div>
                                 </div>
                             </div>
@@ -132,12 +130,12 @@ const MassagePage = ({initialData}) => {
 
 export async function getStaticPaths() {
     const {data} = await apolloClient.query({
-        query: GET_BONUS_ALL,
+        query: GET_MASSAGE_ALL,
     });
 
-    console.log("Fetched bonuses data: ", data);
+    console.log("Fetched massages data: ", data);
 
-    const paths = data.bonuses.edges.map(item => ({
+    const paths = data.massages.edges.map(item => ({
         params: {slug: item.node.slug},
     }));
 
@@ -148,7 +146,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({params}) {
     const {data} = await apolloClient.query({
-        query: GET_BONUS_BY_SLUG,
+        query: GET_MASSAGE_BY_SLUG,
         variables: {slug: params.slug},
     });
 
