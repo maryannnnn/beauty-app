@@ -3,7 +3,7 @@ import './media.scss';
 import {useRouter} from 'next/router';
 import {useQuery} from "@apollo/client";
 import apolloClient from "../../app/graphql/apollo-client";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import LeftLayout from "../../app/layouts/LeftLayout";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
@@ -11,8 +11,15 @@ import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import Link from "next/link";
 import Image from "next/image";
 import {GET_MASSAGE_ALL, GET_MASSAGE_BY_SLUG} from "../../entities/massage/actions/massageActions";
+import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
 
 const MassagePage = ({initialData}) => {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
     const router = useRouter();
     const {slug} = router.query;
 
@@ -38,7 +45,14 @@ const MassagePage = ({initialData}) => {
         );
     }
 
+    if (!isClient) {
+        return <div>Loading...</div>;
+    }
+
     const massage = data?.massageBy || initialData?.massageBy;
+    const testimonials = data?.testimonials?.edges || initialData?.testimonials?.edges || [];
+
+    const typeTestimonials = "massage"
 
     const PageProps = {
         title: massage?.seo?.title || 'Компания',
@@ -110,6 +124,9 @@ const MassagePage = ({initialData}) => {
                                     </div>
                                 </div>
                             </div>
+                        )}
+                        {testimonials && testimonials?.length > 0 && (
+                            <MainTestimonial data={data} type={typeTestimonials} />
                         )}
                         {massage?.AcfMassage?.faqContent && (
                             <div className="massage-block-bottom">
