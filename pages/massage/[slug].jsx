@@ -12,6 +12,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {GET_MASSAGE_ALL, GET_MASSAGE_BY_SLUG} from "../../entities/massage/actions/massageActions";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
+import Attributes from "../../widgets/attributes/Atributes";
 
 const MassagePage = ({initialData}) => {
     const [isClient, setIsClient] = useState(false);
@@ -87,6 +88,9 @@ const MassagePage = ({initialData}) => {
                                 </div>
                             </>
                         )}
+                        {massage && (
+                            <Attributes massage={massage}/>
+                        )}
                         {massage?.content && (
                             <>
                                 <div className="massage-block-center">
@@ -126,7 +130,7 @@ const MassagePage = ({initialData}) => {
                             </div>
                         )}
                         {testimonials && testimonials?.length > 0 && (
-                            <MainTestimonial data={data} type={typeTestimonials} />
+                            <MainTestimonial data={data} type={typeTestimonials}/>
                         )}
                         {massage?.AcfMassage?.faqContent && (
                             <div className="massage-block-bottom">

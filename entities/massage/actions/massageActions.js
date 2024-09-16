@@ -52,7 +52,6 @@ export const GET_MASSAGE_BY_SLUG = gql`
          czenaPaket
          czenaSeans
          effekty
-         kolichestvoPakete
          metodikiMassage {
             ... on Methodology {
               id
@@ -166,7 +165,6 @@ query  GetMassageAll {
             czenaPaket
             czenaSeans
             effekty
-            kolichestvoPakete
             metodikiMassage {
               ... on Methodology {
                 id

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import './footer-top.scss'
 import './media.scss'
 import FooterContact from "../../shared/footer-contact/FooterContact";
