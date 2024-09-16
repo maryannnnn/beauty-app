@@ -15,7 +15,7 @@ import apolloClient from '../app/graphql/apollo-client';
 import {GET_HOME_DATA} from "../entities/main/actions/mainActions";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
-import {mainTitle} from "../app/info/info";
+import {mainTitle, testimonialType} from "../app/info/info";
 
 const Index = ({initialData}) => {
     const PageProps = {
@@ -70,7 +70,7 @@ const Index = ({initialData}) => {
                     )}
 
                     {displayData.testimonials?.edges?.length > 0 && (
-                        <MainTestimonial data={displayData}/>
+                        <MainTestimonial data={displayData} type={testimonialType.main}/>
                     )}
 
                     {displayData.posts?.edges?.length > 0 && (

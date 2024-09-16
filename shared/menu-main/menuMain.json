@@ -140,7 +140,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/",
+            "path": "/salon/",
             "parentId": null,
             "order": 15,
             "label": "Салон"
@@ -149,7 +149,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/",
+            "path": "/salon/",
             "parentId": "cG9zdDozNjYy",
             "order": 16,
             "label": "Центр Массажа Крылья Ветра"
@@ -158,7 +158,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/obo-mne",
+            "path": "/salon/obo-mne",
             "parentId": "cG9zdDozNjYy",
             "order": 16,
             "label": "Обо мне"
@@ -167,7 +167,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/professionalizm",
+            "path": "/salon/professionalizm",
             "parentId": "cG9zdDozNjYy",
             "order": 17,
             "label": "Профессионализм"
@@ -176,7 +176,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/komfort",
+            "path": "/salon/komfort",
             "parentId": "cG9zdDozNjYy",
             "order": 18,
             "label": "Комфорт"
@@ -185,7 +185,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/uiut",
+            "path": "/salon/uiut",
             "parentId": "cG9zdDozNjYy",
             "order": 19,
             "label": "Домашний уют"
@@ -194,7 +194,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/my-dayom-vam-vybor",
+            "path": "/salon/my-dayom-vam-vybor",
             "parentId": "cG9zdDozNjYy",
             "order": 19,
             "label": "Даём вам выбор"
@@ -203,7 +203,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/my-ekonomim-vam-vremya",
+            "path": "/salon/my-ekonomim-vam-vremya",
             "parentId": "cG9zdDozNjYy",
             "order": 19,
             "label": "Экономим вам время"
@@ -212,7 +212,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/bezopasnost",
+            "path": "/salon/bezopasnost",
             "parentId": "cG9zdDozNjYy",
             "order": 20,
             "label": "Безопасность"
@@ -221,7 +221,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/sertificate",
+            "path": "/salon/sertificate",
             "parentId": "cG9zdDozNjYy",
             "order": 21,
             "label": "Сертификаты"
@@ -230,7 +230,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/oplata",
+            "path": "/salon/oplata",
             "parentId": "cG9zdDozNjYy",
             "order": 22,
             "label": "Оплата"
@@ -239,7 +239,7 @@
         {
           "node": {
             "id": "cG9zdDozNjYy",
-            "path": "salon/contact",
+            "path": "/salon/contact",
             "parentId": "cG9zdDozNjYy",
             "order": 22,
             "label": "Контакты"
