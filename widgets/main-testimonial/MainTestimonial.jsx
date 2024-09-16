@@ -19,9 +19,12 @@ import {buttonOptions} from "../../shared/button-options/button-options";
 
 const MainTestimonial = ({data, type}) => {
 
-    console.log("MMainTestimonial data: ", data);
+    console.log("MainTestimonial data: ", data);
 
-    const typeCategory = 'category4'
+    const typeCategory = 'category4';
+
+    // Безопасная проверка на наличие testimonials
+    const testimonials = data?.testimonials?.edges?.length ? data.testimonials.edges : [];
 
     return (
         <div className='main-testimonial'>
@@ -33,31 +36,36 @@ const MainTestimonial = ({data, type}) => {
                         typeCategory={typeCategory}
                     />
                 )}
-                <Swiper
-                    style={{
-                        '--swiper-navigation-color': theme.palette.secondary.contrastText,
-                        '--swiper-pagination-color': theme.palette.secondary.contrastText,
-                    }}
-                    speed={600}
-                    cssMode={true}
-                    navigation={true}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    mousewheel={true}
-                    keyboard={true}
-                    modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-                    className="mySwiper"
-                >
-                    {data.testimonials?.edges
-                        .filter(el => el?.node?.AcfTestimonial?.front === true)
-                        .slice(0, 7)
-                        .map(item => (
-                            <SwiperSlide key={item?.node?.id}>
-                                <BlockSlideTestimonial item={item}/>
-                            </SwiperSlide>
-                        ))}
-                </Swiper>
+                {testimonials.length > 0 ? (
+                    <Swiper
+                        style={{
+                            '--swiper-navigation-color': theme.palette.secondary.contrastText,
+                            '--swiper-pagination-color': theme.palette.secondary.contrastText,
+                        }}
+                        speed={600}
+                        cssMode={true}
+                        navigation={true}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        mousewheel={true}
+                        keyboard={true}
+                        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+                        className="mySwiper"
+                    >
+                        {testimonials
+                            .filter(el => el?.node?.AcfTestimonial?.front === true)
+                            .slice(0, 7)
+                            .map(item => (
+                                <SwiperSlide key={item?.node?.id}>
+                                    <BlockSlideTestimonial item={item} />
+                                </SwiperSlide>
+                            ))
+                        }
+                    </Swiper>
+                ) : (
+                    <p>No testimonials available at the moment.</p> // Фallback в случае отсутствия отзывов
+                )}
                 <div className='main-testimonial__block'>
                     <Link className='main-testimonial__block-link' href='/testimonial'>
                         {buttonOptions.see}
@@ -68,5 +76,5 @@ const MainTestimonial = ({data, type}) => {
     );
 }
 
-export default MainTestimonial
+export default MainTestimonial;
 

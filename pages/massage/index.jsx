@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../app/scss/app.scss';
 import './index.scss';
 import './media.scss';
@@ -12,28 +12,38 @@ import Image from "next/image";
 import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import {GET_MASSAGE_ALL} from "../../entities/massage/actions/massageActions";
 import BlockItemMassage from "../../shared/block-item-massage/BlockItemMassage";
+import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
 
 const IndexMassage = ({initialData}) => {
+
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const {loading, error, data} = useQuery(GET_MASSAGE_ALL, {
         fetchPolicy: "cache-first",
         nextFetchPolicy: "cache-and-network",
     });
 
-    const massage = data?.massage || initialData?.massage;
-    const massages = data?.massages?.edges || initialData?.massages?.edges;
+    const massage = data?.massage || initialData?.massage || {};
+    const massages = data?.massages?.edges || initialData?.massages?.edges || [];
+    const testimonials = data?.testimonials?.edges || initialData?.testimonials?.edges || [];
 
     const PageProps = {
         title: massage?.seo?.title || 'Компания',
         description: massage?.seo?.metaDesc || 'Компания'
     };
 
+    const typeTestimonials = "massage"
+
     return (
         <LeftLayout title={PageProps.title} description={PageProps.description}>
             <div className="massage">
                 <div className="container">
                     {loading && !massage ? (
-                        <div>...</div>
+                        <div>Loading...</div>
                     ) : error ? (
                         <Stack sx={{width: '100%'}} spacing={2}>
                             <Alert severity="error">
@@ -42,7 +52,7 @@ const IndexMassage = ({initialData}) => {
                                 )) : 'An error occurred'}
                             </Alert>
                         </Stack>
-                    ) : (
+                    ) : isClient && (
                         <>
                             {massage?.AcfMassage?.descriptionAnons && (
                                 <div className="massage-block-top">
@@ -69,8 +79,8 @@ const IndexMassage = ({initialData}) => {
                             )}
                             <div className="block-massages">
                                 {massages?.filter(el => el.node?.id !== massage.id)
-                                    .map(item => (
-                                        <div key={item?.node?.id}>
+                                    .map((item, index) => (
+                                        <div key={item?.node?.id || index}>
                                             <BlockItemMassage item={item}/>
                                         </div>
                                     ))}
@@ -114,6 +124,9 @@ const IndexMassage = ({initialData}) => {
                                     </div>
                                 </div>
                             )}
+                            {testimonials && testimonials?.length > 0 && (
+                                <MainTestimonial data={data} type={typeTestimonials} />
+                            )}
                             {massage?.AcfMassage?.faqTitle && (
                                 <div className="massage-block-bottom">
                                     <h2 className="massage__title-gallery">{cleanHtmlFull(massage?.AcfMassage?.faqTitle || '')}</h2>
@@ -133,16 +146,16 @@ const IndexMassage = ({initialData}) => {
 };
 
 export async function getStaticProps() {
-    const {data} = await apolloClient.query({
-        query: GET_MASSAGE_ALL
-    });
-
-    return {
-        props: {
-            initialData: data
-        },
-        // revalidate: 86400, // Пересборка каждый день
-    };
+    try {
+        const {data} = await apolloClient.query({query: GET_MASSAGE_ALL});
+        return {
+            props: {initialData: data},
+            // revalidate: 86400, // Пересборка каждый день
+        };
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return {props: {initialData: {}}};
+    }
 }
 
 export default IndexMassage;
