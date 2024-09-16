@@ -1,0 +1,45 @@
+@import '../../app/scss/mixins';
+@import '../../app/scss/colors';
+
+.attributes {
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 10px;
+      padding-bottom: 20px;
+      width: 450px;
+
+      &-title {
+        @include title-h5;
+        color: $brown-7;
+      }
+
+      &-text {
+        width: 500px;
+
+        &__row {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+
+        &__link {
+          @include link-brown;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+
