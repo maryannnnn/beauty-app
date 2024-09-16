@@ -36,6 +36,41 @@ export const GET_MASSAGE_BY_SLUG = gql`
         }
       }
     }
+    testimonials {
+      edges {
+        node {
+          id
+          AcfTestimonial {
+            afterTaste
+            descriptionAnons
+            front
+            whatProcess
+            whyChiced
+            groupInfoPost {
+              speciality
+              position
+              fullName
+              imageAuthor {
+                altText
+                sourceUrl
+                uri
+              }
+            }
+          }
+          title
+          uri
+          categories {
+            edges {
+              node {
+                id
+                uri
+                name
+              }
+            }
+          }
+        }
+      }
+    }    
   }
 `;
 

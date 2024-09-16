@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './menu-nain.scss'
 import './media.scss'
-// import {useQuery} from "@apollo/client";
-// import client from '@/app/graphql/apollo-client';
-// import {GET_MENU_MAIN} from "@/entities/menu/actions/menuActions";
 import {Box, CircularProgress, Stack, Alert, Button, Popover, Typography, Link as MuiLink} from '@mui/material';
 import Link from "next/link";
 import {checkMenuItem, getMenuItems} from "../utils/utils-menu";

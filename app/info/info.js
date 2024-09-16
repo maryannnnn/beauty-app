@@ -52,3 +52,10 @@ export const contentType = {
     posts: 'posts',
     category: 'category'
 }
+
+export const testimonialType = {
+    main: 'main',
+    massage: 'massage',
+    course: 'course',
+    post: 'post',
+}
