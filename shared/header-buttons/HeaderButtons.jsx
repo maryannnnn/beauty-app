@@ -5,12 +5,14 @@ import ButtonBrown from "@/shared/button-brown/ButtonBrown";
 import {buttonOptions} from "../button-options/button-options";
 
 const HeaderButtons = () => {
-    const massageHandler = () => {
 
+
+    const massageHandler = () => {
+        window.open('https://calendly.com/sansaranervana/massage', '_blank');
     }
 
     const courseHandler = () => {
-
+        window.open('https://calendly.com/sansaranervana/massage', '_blank');
     }
 
     return (
