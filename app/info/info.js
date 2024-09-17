@@ -16,6 +16,18 @@ export const mainTitle = {
         'для вас уникальную программу,  куда включат наиболее эффективные и результативные процедуры.'
 }
 
+export const attributeTitleMassage = 'Основные элементы массажа'
+
+export const attributeTitleCourse = 'Основные элементы курса'
+
+export const attributePriceMassage = 'Цена массажа'
+
+export const attributePriceCourse = 'Цена курса'
+
+export const testimonialTitleMassage = 'Отзывы наших клиентов о массаже'
+
+export const testimonialTitleCourse = 'Отзывы наших клиентов о курсе обучения на массажиста'
+
 export const sizeText = {
     xa: 10,
     xb: 25,

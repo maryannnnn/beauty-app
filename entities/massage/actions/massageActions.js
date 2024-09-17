@@ -50,6 +50,7 @@ export const GET_MASSAGE_BY_SLUG = gql`
          }
          aromaty
          czenaPaket
+         czenaPaket2
          czenaSeans
          effekty
          metodikiMassage {
@@ -163,6 +164,7 @@ query  GetMassageAll {
             }
             aromaty
             czenaPaket
+            czenaPaket2
             czenaSeans
             effekty
             metodikiMassage {

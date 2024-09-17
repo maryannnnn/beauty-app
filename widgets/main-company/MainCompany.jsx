@@ -17,7 +17,7 @@ const MainCompany = ({data}) => {
     const router = useRouter();
 
     const handleClick = () => {
-        router.push('salon');
+        router.push('/salon');
     };
 
     return (
