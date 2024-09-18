@@ -71,3 +71,42 @@ export const testimonialType = {
     course: 'course',
     post: 'post',
 }
+
+export const breadcrumbType = [
+    {
+        id: 'main',
+        title: 'Главная',
+        url: '/'
+    },
+    {
+        id: 'salon',
+        title: 'Салон',
+        url: '/salon'
+    },
+    {
+        id: 'massage',
+        title: 'Массаж',
+        url: '/massage'
+    },
+    {
+        id: 'course',
+        title: 'Курсы',
+        url: '/course'
+    },
+    {
+        id: 'blog',
+        title: 'Блог',
+        url: '/blog'
+    },
+    {
+        id: 'testimonial',
+        title: 'Отзывы',
+        url: '/testimonial'
+    },
+    {
+        id: 'bonus',
+        title: 'Акции',
+        url: '/bonus'
+    },
+]
+

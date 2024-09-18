@@ -13,7 +13,9 @@ import Image from "next/image";
 import {GET_MASSAGE_ALL, GET_MASSAGE_BY_SLUG} from "../../entities/massage/actions/massageActions";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
 import Attributes from "../../widgets/attributes/Atributes";
-import {attributeTitleMassage, testimonialTitleMassage} from "../../app/info/info";
+import {attributeTitleMassage, breadcrumbType, testimonialTitleMassage} from "../../app/info/info";
+import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
+
 
 const MassagePage = ({initialData}) => {
     const [isClient, setIsClient] = useState(false);
@@ -54,7 +56,7 @@ const MassagePage = ({initialData}) => {
     const massage = data?.massageBy || initialData?.massageBy;
     const testimonials = data?.testimonials?.edges || initialData?.testimonials?.edges || [];
 
-    const typeTestimonials = "massage"
+    const typeMaterial = "massage"
 
     const PageProps = {
         title: massage?.seo?.title || 'Компания',
@@ -69,6 +71,7 @@ const MassagePage = ({initialData}) => {
                         {massage?.AcfMassage?.descriptionAnons && (
                             <>
                                 <h1 className="massage__title">{cleanHtmlFull(massage?.AcfMassage?.titleLong || '')}</h1>
+                                <Breadcrumbs material={massage} typeMaterial={typeMaterial} />
                                 <div className="massage__anons">
                                     {massage?.AcfMassage?.imageAnonsPage && (
                                         <div className="massage__anons-img">
@@ -136,7 +139,7 @@ const MassagePage = ({initialData}) => {
                         {testimonials && testimonials?.length > 0 && (
                             <>
                                 <h2 className="massage__title-main">{testimonialTitleMassage}</h2>
-                                <MainTestimonial data={data} type={typeTestimonials}/>
+                                <MainTestimonial data={data} type={typeMaterial}/>
                             </>
                         )}
                         {massage?.AcfMassage?.faqContent && (

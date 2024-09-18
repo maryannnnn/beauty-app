@@ -13,6 +13,7 @@ import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import {GET_MASSAGE_ALL} from "../../entities/massage/actions/massageActions";
 import BlockItemMassage from "../../shared/block-item-massage/BlockItemMassage";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
+import {testimonialTitleMassage} from "../../app/info/info";
 
 const IndexMassage = ({initialData}) => {
 
@@ -125,7 +126,10 @@ const IndexMassage = ({initialData}) => {
                                 </div>
                             )}
                             {testimonials && testimonials?.length > 0 && (
-                                <MainTestimonial data={data} type={typeTestimonials} />
+                                <>
+                                    <h2 className="massage__title-main">{testimonialTitleMassage}</h2>
+                                    <MainTestimonial data={data} type={typeTestimonials}/>
+                                </>
                             )}
                             {massage?.AcfMassage?.faqTitle && (
                                 <div className="massage-block-bottom">
