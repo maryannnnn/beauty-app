@@ -11,6 +11,7 @@ import Alert from "@mui/material/Alert";
 import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import Link from "next/link";
 import Image from "next/image";
+import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 
 const BonusPage = ({initialData}) => {
     const router = useRouter();
@@ -40,6 +41,8 @@ const BonusPage = ({initialData}) => {
 
     const bonus = data?.bonusBy || initialData?.bonusBy;
 
+    const typeMaterial = "bonus"
+
     const PageProps = {
         title: bonus?.seo?.title || 'Компания',
         description: bonus?.seo?.metaDesc || 'Компания'
@@ -53,6 +56,7 @@ const BonusPage = ({initialData}) => {
                         {bonus?.AcfBonus?.descriptionAnons && (
                             <>
                                 <h1 className="bonus__title">{cleanHtmlFull(bonus?.AcfBonus?.titleLong || '')}</h1>
+                                <Breadcrumbs material={bonus} typeMaterial={typeMaterial} />
                                 <div className="bonus__anons">
                                     {bonus?.AcfBonus?.imageAnonsPage && (
                                         <div className="bonus__anons-img">
@@ -154,7 +158,7 @@ export async function getStaticProps({params}) {
         props: {
             initialData: data,
         },
-        //revalidate: 2592000, // Revalidate every 30 days
+        revalidate: 2592000, // Revalidate every 30 days
     };
 }
 

@@ -11,6 +11,7 @@ import Alert from "@mui/material/Alert";
 import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import Link from "next/link";
 import Image from "next/image";
+import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 
 const SalonPage = ({initialData}) => {
     const router = useRouter();
@@ -40,6 +41,8 @@ const SalonPage = ({initialData}) => {
 
     const salon = data?.salonBy || initialData?.salonBy;
 
+    const typeMaterial = "salon"
+
     const PageProps = {
         title: salon?.seo?.title || 'Компания',
         description: salon?.seo?.metaDesc || 'Компания'
@@ -53,6 +56,7 @@ const SalonPage = ({initialData}) => {
                         {salon?.AcfSalon?.descriptionAnons && (
                             <>
                                 <h1 className="salon__title">{cleanHtmlFull(salon?.AcfSalon?.titleLong || '')}</h1>
+                                <Breadcrumbs material={salon} typeMaterial={typeMaterial} />
                                 <div className="salon__anons">
                                     {salon?.AcfSalon?.imageAnons && (
                                         <div className="salon__anons-img">
@@ -154,7 +158,7 @@ export async function getStaticProps({params}) {
         props: {
             initialData: data,
         },
-        //revalidate: 2592000, // Revalidate every 30 days
+        revalidate: 2592000, // Revalidate every 30 days
     };
 }
 

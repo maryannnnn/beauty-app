@@ -141,7 +141,7 @@ export async function getStaticProps() {
         props: {
             initialData: data
         },
-        // revalidate: 86400, // Пересборка каждый день
+        revalidate: 2592000, // Revalidate every 30 days
     };
 }
 

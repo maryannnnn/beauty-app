@@ -133,12 +133,14 @@ const Attributes = ({massage}) => {
                     <div className="attributes__price-info">
                         {attributesArrayPrice.length > 0 &&
                         attributesArrayPrice.map(item =>
-                            <div className="attributes__price-info__element">
-                                <div
-                                    className="attributes__price-info__element-title">{item?.title}: &nbsp;</div>
-                                <div
-                                    className="attributes__price-info__element-text">{item?.value}&#8362;</div>
-                            </div>
+                            item.value && (
+                                <div className="attributes__price-info__element">
+                                    <div
+                                        className="attributes__price-info__element-title">{item?.title}: &nbsp;</div>
+                                    <div
+                                        className="attributes__price-info__element-text">{item?.value}&#8362;</div>
+                                </div>
+                            )
                         )}
                     </div>
                     <div className="attributes__price-button">
