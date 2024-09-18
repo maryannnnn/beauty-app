@@ -23,13 +23,12 @@ const MainTestimonial = ({data, type}) => {
 
     const typeCategory = 'category4';
 
-    // Безопасная проверка на наличие testimonials
     const testimonials = data?.testimonials?.edges?.length ? data.testimonials.edges : [];
 
     return (
         <div className='main-testimonial'>
             <div className='container'>
-                {type === 'main' && (
+                {type === 'Отзывы' && (
                     <BlockHeader
                         title={data[typeCategory]?.AcfCategory?.categoryTitleLong1 || ''}
                         content={data[typeCategory]?.AcfCategory?.categoryDescriptionAnons || ''}
@@ -54,14 +53,18 @@ const MainTestimonial = ({data, type}) => {
                         className="mySwiper"
                     >
                         {testimonials
-                            .filter(el => el?.node?.AcfTestimonial?.front === true)
+                            .filter(el =>
+                                el?.node?.categories?.edges &&
+                                el.node.categories.edges.some(category => category?.node?.name === type)
+                            )
                             .slice(0, 7)
-                            .map(item => (
-                                <SwiperSlide key={item?.node?.id}>
-                                    <BlockSlideTestimonial item={item} />
+                            .map(el => (
+                                <SwiperSlide key={el?.node?.id}>
+                                    <BlockSlideTestimonial item={el}/>
                                 </SwiperSlide>
                             ))
                         }
+
                     </Swiper>
                 ) : (
                     <p>No testimonials available at the moment.</p> // Фallback в случае отсутствия отзывов

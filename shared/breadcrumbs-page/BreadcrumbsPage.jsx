@@ -1,8 +1,8 @@
-import Typography from '@mui/material/Typography';
+import './breadcrumbs-page.scss'
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
 import {breadcrumbType} from "../../app/info/info";
 import React from "react";
+import Link from "next/link";
 
 const BreadcrumbsPage = ({material, typeMaterial}) => {
 
@@ -11,24 +11,26 @@ const BreadcrumbsPage = ({material, typeMaterial}) => {
         console.info('You clicked a breadcrumbs-page.');
     }
 
+    const breadcrumb = breadcrumbType.find(item => item.id === typeMaterial);
+
+    const breadcrumbMain = breadcrumbType.find(item => item.id === 'main');
+
      return (
          <div role="presentation" onClick={handleClick}>
              <Breadcrumbs aria-label="breadcrumb">
                  <Link
-                     underline="hover"
-                     color="inherit"
-                     href={breadcrumbType.find(item => item.id === 'main')?.url}
+                     className="breadcrumb-link"
+                     href={breadcrumbMain?.url}
                  >
-                     {breadcrumbType.find(item => item.id === 'main')?.title}
+                     {breadcrumbMain?.title}
                  </Link>
                  <Link
-                     underline="hover"
-                     color="inherit"
-                     href={breadcrumbType.find(item => item.id === typeMaterial)?.url}
+                     className="breadcrumb-link"
+                     href={breadcrumb?.url}
                  >
-                     {breadcrumbType.find(item => item.id === typeMaterial)?.title}
+                     {breadcrumb?.title}
                  </Link>
-                 <Typography sx={{ color: 'text.primary' }}>{material?.title}</Typography>
+                 <div className="breadcrumb-title">{material?.title}</div>
              </Breadcrumbs>
          </div>
      )
