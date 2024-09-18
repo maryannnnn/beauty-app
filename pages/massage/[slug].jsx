@@ -13,7 +13,7 @@ import Image from "next/image";
 import {GET_MASSAGE_ALL, GET_MASSAGE_BY_SLUG} from "../../entities/massage/actions/massageActions";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
 import Attributes from "../../widgets/attributes/Atributes";
-import {attributeTitleMassage, breadcrumbType, testimonialTitleMassage} from "../../app/info/info";
+import {attributeTitleMassage, breadcrumbType, testimonialTitleMassage, testimonialType} from "../../app/info/info";
 import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 
 
@@ -139,7 +139,7 @@ const MassagePage = ({initialData}) => {
                         {testimonials && testimonials?.length > 0 && (
                             <>
                                 <h2 className="massage__title-main">{testimonialTitleMassage}</h2>
-                                <MainTestimonial data={data} type={typeMaterial}/>
+                                <MainTestimonial data={data} type={testimonialType.massage}/>
                             </>
                         )}
                         {massage?.AcfMassage?.faqContent && (

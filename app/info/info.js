@@ -66,10 +66,16 @@ export const contentType = {
 }
 
 export const testimonialType = {
-    main: 'main',
-    massage: 'massage',
-    course: 'course',
-    post: 'post',
+    main: 'Отзывы',
+    massage: 'Массаж',
+    course: 'Курсы',
+    post: 'Блог',
+}
+
+export const testimonialOptions = {
+    reason: 'Причина выбора',
+    process: 'Что в процессе',
+    taste: 'Послевкусие'
 }
 
 export const breadcrumbType = [

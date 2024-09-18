@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import React from "react";
 import {trimText, trimTextFullCleanedHTML} from "../utils/utils-content";
-import {sizeText} from "../../app/info/info";
+import {sizeText, testimonialOptions} from "../../app/info/info";
 
 const BlockSlideTestimonial = ({item}) => {
 
@@ -38,15 +38,15 @@ const BlockSlideTestimonial = ({item}) => {
             </div>
             <Link className="block-slide-testimonial__text" href={item?.node?.uri}>
                 <div className="block-slide-testimonial__text-row">
-                    <div className="block-slide-testimonial__text-row-title">Причина выбора:&nbsp;</div>
+                    <div className="block-slide-testimonial__text-row-title">{testimonialOptions.reason}:&nbsp;</div>
                     <div>{trimText(item?.node?.AcfTestimonial?.whyChiced, sizeText.xt)}</div>
                 </div>
                 <div className="block-slide-testimonial__text-row">
-                    <div className="block-slide-testimonial__text-row-title">Что в процессе:&nbsp;</div>
+                    <div className="block-slide-testimonial__text-row-title">{testimonialOptions.process}:&nbsp;</div>
                     <div>{trimText(item?.node?.AcfTestimonial?.whatProcess, sizeText.xt)}</div>
                 </div>
                 <div className="block-slide-testimonial__text-row">
-                    <div className="block-slide-testimonial__text-row-title">Послевкусие:&nbsp;</div>
+                    <div className="block-slide-testimonial__text-row-title">{testimonialOptions.taste}:&nbsp;</div>
                     <div>{trimText(item?.node?.AcfTestimonial?.afterTaste, sizeText.xt)}</div>
                 </div>
                 <div className="block-slide-testimonial__text-description">
