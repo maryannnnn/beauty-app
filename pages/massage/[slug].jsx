@@ -12,7 +12,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {GET_MASSAGE_ALL, GET_MASSAGE_BY_SLUG} from "../../entities/massage/actions/massageActions";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
-import Attributes from "../../widgets/attributes/Atributes";
+import AttributesMassage from "../../widgets/attributes-massage/AtributesMassage";
 import {attributeTitleMassage, breadcrumbType, testimonialTitleMassage, testimonialType} from "../../app/info/info";
 import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 
@@ -95,7 +95,7 @@ const MassagePage = ({initialData}) => {
                         {massage && (
                             <>
                                 <h2 className="massage__title-main">{attributeTitleMassage}</h2>
-                                <Attributes massage={massage}/>
+                                <AttributesMassage massage={massage}/>
                             </>
                         )}
                         {massage?.content && (

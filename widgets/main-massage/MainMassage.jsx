@@ -12,7 +12,7 @@ const MainMassage = ({ data }) => {
             <div className="container">
                 <MainTemplate
                     data={data}
-                    number={numberItems.numberSix}
+                    number={numberItems.numberSeven}
                     typeContent={contentType.massages}
                 />
             </div>

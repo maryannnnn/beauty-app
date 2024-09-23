@@ -85,6 +85,15 @@
         },
         {
           "node": {
+            "id": "cG9zdDozODc0",
+            "path": "/massage/bible-massage/",
+            "parentId": "cG9zdDozNjc4",
+            "order": 9,
+            "label": "Библейский массаж"
+          }
+        },
+        {
+          "node": {
             "id": "cG9zdDozNjc5",
             "path": "/course",
             "parentId": null,
@@ -107,7 +116,7 @@
             "path": "/course/massazh-dlya-lyubitelej/",
             "parentId": "cG9zdDozNjc5",
             "order": 11,
-            "label": "СПА-Терапефт"
+            "label": "Массаж для любителей"
           }
         },
         {
@@ -116,7 +125,7 @@
             "path": "/course/spa-terapeft",
             "parentId": "cG9zdDozNjc5",
             "order": 12,
-            "label": "Массаж для любителей"
+            "label": "СПА-Терапефт"
           }
         },
         {
