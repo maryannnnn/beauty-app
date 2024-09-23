@@ -24,6 +24,8 @@ export const attributePriceMassage = 'Цена массажа'
 
 export const attributePriceCourse = 'Цена курса'
 
+export const attributeParametersCourse = 'Почему стоит учиться в центре Крыльях Ветра?'
+
 export const testimonialTitleMassage = 'Отзывы наших клиентов о массаже'
 
 export const testimonialTitleCourse = 'Отзывы наших клиентов о курсе обучения на массажиста'
@@ -51,7 +53,9 @@ export const numberItems = {
     numberTwo: 2,
     numberThree: 3,
     numberFour: 4,
+    numberFive: 5,
     numberSix: 6,
+    numberSeven: 7,
     numberEight: 8
 }
 
@@ -62,7 +66,9 @@ export const contentType = {
     courses: 'courses',
     testimonials: 'testimonials',
     posts: 'posts',
-    category: 'category'
+    category: 'category',
+    methodology: 'methodology',
+    procedure: 'procedure'
 }
 
 export const testimonialType = {

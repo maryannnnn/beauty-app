@@ -2,24 +2,31 @@ import './index.scss';
 import './media.scss';
 import {useRouter} from 'next/router';
 import {useQuery} from "@apollo/client";
-import {GET_SALON_BY_SLUG, GET_SALON_ALL} from "../../entities/salon/actions/salonActions";
+import {GET_COURSE_BY_SLUG, GET_COURSE_ALL} from "../../entities/course/actions/courseActions";
 import apolloClient from "../../app/graphql/apollo-client";
-import MainLayout from "../../app/layouts/MainLayout";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import LeftLayout from "../../app/layouts/LeftLayout";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import Link from "next/link";
 import Image from "next/image";
+import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
+import {attributeTitleCourse, testimonialTitleCourse, testimonialType} from "../../app/info/info";
+import AttributesCourse from "../../widgets/attributes-course/AtributesCourse";
+import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
 
-const SalonPage = ({initialData}) => {
+const CoursePage = ({initialData}) => {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
     const router = useRouter();
     const {slug} = router.query;
 
-    console.log("Slug data: ", slug);
-
-    const {loading, error, data} = useQuery(GET_SALON_BY_SLUG, {
+    const {loading, error, data} = useQuery(GET_COURSE_BY_SLUG, {
         variables: {slug},
         skip: !slug,
         fetchPolicy: 'cache-and-network',
@@ -30,95 +37,121 @@ const SalonPage = ({initialData}) => {
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return (
+            <Stack sx={{width: '100%'}} spacing={2}>
+                <Alert severity="error">
+                    {error.graphQLErrors ? error.graphQLErrors.map((err, index) => (
+                        <div key={index}>{err.message}</div>
+                    )) : 'An error occurred'}
+                </Alert>
+            </Stack>
+        );
     }
 
-    const salon = data?.salonBy || initialData?.salonBy;
+    if (!isClient) {
+        return <div>Loading...</div>;
+    }
+
+    const course = data?.courseBy || initialData?.courseBy;
+    const testimonials = data?.testimonials?.edges || initialData?.testimonials?.edges || [];
+
+    const typeMaterial = "course"
 
     const PageProps = {
-        title: salon?.seo?.title || 'Компания',
-        description: salon?.seo?.metaDesc || 'Компания'
+        title: course?.seo?.title || 'Компания',
+        description: course?.seo?.metaDesc || 'Компания'
     };
 
     return (
         <LeftLayout title={PageProps.title} description={PageProps.description}>
-            <div className="salon">
+            <div className="course">
                 <div className="container">
-                    {error ? (
-                        <Stack sx={{width: '100%'}} spacing={2}>
-                            <Alert severity="error">
-                                {error.graphQLErrors ? error.graphQLErrors.map((err, index) => (
-                                    <div key={index}>{err.message}</div>
-                                )) : 'An error occurred'}
-                            </Alert>
-                        </Stack>
-                    ) : (
-                        <>
-                            <h1 className="salon__title">{cleanHtmlFull(salon?.AcfSalon?.titleLong)}</h1>
-                            <div className="salon__anons">
-                                <div className="salon__anons-img">
-                                    {salon?.AcfSalon?.imageAnons && (
-                                        <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
-                                            <Image
-                                                src={salon?.AcfSalon?.imageAnons?.sourceUrl}
-                                                alt={salon?.AcfSalon?.imageAnons?.altText}
-                                                width={500}
-                                                height={400}
-                                                layout="intrinsic"
-                                            />
-                                        </Link>
-                                    )}
-                                </div>
-                                <div className="salon__anons-text"
-                                     dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.descriptionAnons}}>
-                                </div>
-                            </div>
-                            <div className="salon-block-center">
-                                <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter)}</h2>
-                                <div className="salon__description">
-                                    {salon?.AcfSalon?.imageAnons && (
-                                        <div className="salon__description-img">
-                                            <Link href={salon?.featuredImage?.node?.sourceUrl}>
+                    <>
+                        {course?.AcfCourse?.descriptionAnons && (
+                            <>
+                                <h1 className="course__title">{cleanHtmlFull(course?.AcfCourse?.titleLong || '')}</h1>
+                                <Breadcrumbs material={course} typeMaterial={typeMaterial} />
+                                <div className="course__anons">
+                                    {course?.AcfCourse?.imageAnonsPage && (
+                                        <div className="course__anons-img">
+                                            <Link href={course?.AcfCourse?.imageAnonsPage?.sourceUrl}>
                                                 <Image
-                                                    src={salon?.featuredImage?.node?.sourceUrl}
-                                                    alt={salon?.featuredImage?.node?.altText}
-                                                    width={500}
+                                                    src={course?.AcfCourse?.imageAnonsPage?.sourceUrl}
+                                                    alt={course?.AcfCourse?.imageAnonsPage?.altText || 'Image'}
+                                                    width={400}
                                                     height={400}
                                                     layout="intrinsic"
                                                 />
                                             </Link>
                                         </div>
                                     )}
-                                    <div className="salon__description-text"
-                                         dangerouslySetInnerHTML={{__html: salon?.content}}>
+                                    <div className="course__anons-text"
+                                         dangerouslySetInnerHTML={{__html: course?.AcfCourse?.descriptionAnons || ''}}>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                        {course && (
+                            <>
+                                <h2 className="course__title-main">{attributeTitleCourse}</h2>
+                                <AttributesCourse course={course}/>
+                            </>
+                        )}
+                        {course?.content && (
+                            <>
+                                <div className="course-block-center">
+                                    <h2 className="course__title-main">{cleanHtmlFull(course?.AcfCourse?.titleCenter || '')}</h2>
+                                    <div className="course__description">
+                                        {course?.featuredImage?.node?.sourceUrl && (
+                                            <div className="course__description-img">
+                                                <Link href={course?.featuredImage?.node?.sourceUrl}>
+                                                    <Image
+                                                        src={course?.featuredImage?.node?.sourceUrl}
+                                                        alt={course?.featuredImage?.node?.altText || 'Image'}
+                                                        width={400}
+                                                        height={400}
+                                                        layout="intrinsic"
+                                                    />
+                                                </Link>
+                                            </div>
+                                        )}
+                                        <div className="course__description-text"
+                                             dangerouslySetInnerHTML={{__html: course?.content || ''}}>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                        {course?.AcfCourse?.video && (
+                            <div className="course-block-video">
+                                <h2 className="course__title-video">{cleanHtmlFull(course?.AcfCourse?.videoTitle || '')}</h2>
+                                <div className="course__video">
+                                    <div className="course__video-content"
+                                         dangerouslySetInnerHTML={{__html: course?.AcfCourse?.video || ''}}>
+                                    </div>
+                                    <div className="course__video-text"
+                                         dangerouslySetInnerHTML={{__html: course?.AcfCourse?.videoDescription || ''}}>
                                     </div>
                                 </div>
                             </div>
-                            {salon?.AcfSalon?.video && (
-                                <div className="salon-block-video">
-                                    <h2
-                                        className="salon__title-video">{cleanHtmlFull(salon?.AcfSalon?.videoTitle)}</h2>
-                                    <div className="salon__video">
-                                        <div className="salon__video-content"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.video}}>
-                                        </div>
-                                        <div className="salon__video-text"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.videoDescription}}>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                            <div className="salon-block-bottom">
-                                <h2 className="salon__title-faq">{cleanHtmlFull(salon?.AcfSalon?.faqTitle)}</h2>
-                                <div className="salon__faq">
-
-                                    <div className="salon__faq-content"
-                                         dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent}}>
+                        )}
+                        {testimonials && testimonials?.length > 0 && (
+                            <>
+                                <h2 className="course__title-main">{testimonialTitleCourse}</h2>
+                                <MainTestimonial data={data} type={testimonialType.course}/>
+                            </>
+                        )}
+                        {course?.AcfCourse?.faqContent && (
+                            <div className="course-block-bottom">
+                                <h2 className="course__title-faq">{cleanHtmlFull(course?.AcfCourse?.faqTitle || '')}</h2>
+                                <div className="course__faq">
+                                    <div className="course__faq-content"
+                                         dangerouslySetInnerHTML={{__html: course?.AcfCourse?.faqContent || ''}}>
                                     </div>
                                 </div>
                             </div>
-                        </>
-                    )}
+                        )}
+                    </>
                 </div>
             </div>
         </LeftLayout>
@@ -127,12 +160,12 @@ const SalonPage = ({initialData}) => {
 
 export async function getStaticPaths() {
     const {data} = await apolloClient.query({
-        query: GET_SALON_ALL,
+        query: GET_COURSE_ALL,
     });
 
-    console.log("Fetched salons data: ", data);
+    console.log("Fetched courses data: ", data);
 
-    const paths = data.salons.edges.map(item => ({
+    const paths = data.courses.edges.map(item => ({
         params: {slug: item.node.slug},
     }));
 
@@ -143,7 +176,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({params}) {
     const {data} = await apolloClient.query({
-        query: GET_SALON_BY_SLUG,
+        query: GET_COURSE_BY_SLUG,
         variables: {slug: params.slug},
     });
 
@@ -155,7 +188,7 @@ export async function getStaticProps({params}) {
     };
 }
 
-export default SalonPage;
+export default CoursePage;
 
 
 

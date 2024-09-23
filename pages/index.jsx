@@ -73,9 +73,9 @@ const Index = ({initialData}) => {
                         <MainTestimonial data={displayData} type={testimonialType.main}/>
                     )}
 
-                    {displayData.posts?.edges?.length > 0 && (
-                        <MainPost data={displayData}/>
-                    )}
+                    {/*{displayData.posts?.edges?.length > 0 && (*/}
+                    {/*    <MainPost data={displayData}/>*/}
+                    {/*)}*/}
                 </>
             )}
             <SpeedInsights/>
