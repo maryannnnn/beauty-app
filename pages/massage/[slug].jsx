@@ -185,7 +185,7 @@ export async function getStaticProps({params}) {
         props: {
             initialData: data,
         },
-        //revalidate: 2592000, // Revalidate every 30 days
+        revalidate: 2592000, // Revalidate every 30 days
     };
 }
 

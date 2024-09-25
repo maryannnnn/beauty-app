@@ -1,6 +1,17 @@
 @import '../../app/scss/mixins';
 @import '../../app/scss/colors';
 
+.block__testimonial {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  &-title {
+    @include title-h4;
+    color: $brown-7;
+  }
+}
+
 .block-slide-testimonial {
   display: flex;
   flex-direction: row;

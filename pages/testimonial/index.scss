@@ -1,7 +1,7 @@
 @import '../../app/scss/mixins';
 @import '../../app/scss/colors';
 
-.salon {
+.testimonial {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -74,20 +74,20 @@
 
 }
 
-.salon-block-center {
+.testimonial-block-center {
   width: 100%;
   padding: 20px;
   border: 1px solid $black;
   background-color: $white;
 }
 
-.salon-block-bottom {
+.testimonial-block-bottom {
   width: 100%;
   padding: 20px;
   border: 1px solid $black;
   background-color: $white;
 }
 
-.salon-block-video {
+.testimonial-block-video {
   padding-top: 20px;
 }

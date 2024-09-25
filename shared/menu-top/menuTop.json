@@ -20,16 +20,6 @@
             "label": "Отзывы"
           }
         },
-
-        {
-          "node": {
-            "id": "cG9zdDoxNTE5",
-            "path": "/blog",
-            "parentId": null,
-            "order": 5,
-            "label": "Блог"
-          }
-        },
         {
           "node": {
             "id": "cG9zdDoxNDY3",

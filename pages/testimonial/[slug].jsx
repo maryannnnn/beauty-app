@@ -2,9 +2,8 @@ import './index.scss';
 import './media.scss';
 import {useRouter} from 'next/router';
 import {useQuery} from "@apollo/client";
-import {GET_SALON_BY_SLUG, GET_SALON_ALL} from "../../entities/salon/actions/salonActions";
+import {GET_TESTIMONIAL_BY_SLUG, GET_TESTIMONIAL_ALL} from "../../entities/testimonial/actions/testimonialActions";
 import apolloClient from "../../app/graphql/apollo-client";
-import MainLayout from "../../app/layouts/MainLayout";
 import React from "react";
 import LeftLayout from "../../app/layouts/LeftLayout";
 import Stack from "@mui/material/Stack";
@@ -12,14 +11,15 @@ import Alert from "@mui/material/Alert";
 import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import Link from "next/link";
 import Image from "next/image";
+import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 
-const SalonPage = ({initialData}) => {
+const TestimonialPage = ({initialData}) => {
     const router = useRouter();
     const {slug} = router.query;
 
     console.log("Slug data: ", slug);
 
-    const {loading, error, data} = useQuery(GET_SALON_BY_SLUG, {
+    const {loading, error, data} = useQuery(GET_TESTIMONIAL_BY_SLUG, {
         variables: {slug},
         skip: !slug,
         fetchPolicy: 'cache-and-network',
@@ -33,16 +33,18 @@ const SalonPage = ({initialData}) => {
         return <div>Error: {error.message}</div>;
     }
 
-    const salon = data?.salonBy || initialData?.salonBy;
+    const testimonial = data?.testimonialBy || initialData?.testimonialBy;
+
+    const typeMaterial = "testimonial"
 
     const PageProps = {
-        title: salon?.seo?.title || 'Компания',
-        description: salon?.seo?.metaDesc || 'Компания'
+        title: testimonial?.seo?.title || 'Компания',
+        description: testimonial?.seo?.metaDesc || 'Компания'
     };
 
     return (
         <LeftLayout title={PageProps.title} description={PageProps.description}>
-            <div className="salon">
+            <div className="testimonial">
                 <div className="container">
                     {error ? (
                         <Stack sx={{width: '100%'}} spacing={2}>
@@ -54,34 +56,46 @@ const SalonPage = ({initialData}) => {
                         </Stack>
                     ) : (
                         <>
-                            <h1 className="salon__title">{cleanHtmlFull(salon?.AcfSalon?.titleLong)}</h1>
-                            <div className="salon__anons">
-                                <div className="salon__anons-img">
-                                    {salon?.AcfSalon?.imageAnons && (
-                                        <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
+                            <h1 className="testimonial__title">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleLong)}</h1>
+                            <Breadcrumbs material={testimonial} typeMaterial={typeMaterial} />
+                            <div className="testimonial__anons">
+                                <div className="testimonial__anons-img">
+                                    {testimonial?.AcfTestimonial?.imageAnons ? (
+                                        <Link href={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}>
                                             <Image
-                                                src={salon?.AcfSalon?.imageAnons?.sourceUrl}
-                                                alt={salon?.AcfSalon?.imageAnons?.altText}
+                                                src={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}
+                                                alt={testimonial?.AcfTestimonial?.imageAnons?.altText}
                                                 width={500}
                                                 height={400}
                                                 layout="intrinsic"
                                             />
                                         </Link>
-                                    )}
+                                    ) : testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor ? (
+                                        <Link href={testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.sourceUrl}>
+                                            <Image
+                                                src={testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.sourceUrl}
+                                                alt={testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.altText}
+                                                width={500}
+                                                height={400}
+                                                layout="intrinsic"
+                                            />
+                                        </Link>
+                                    ) : ('')
+                                    }
                                 </div>
-                                <div className="salon__anons-text"
-                                     dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.descriptionAnons}}>
+                                <div className="testimonial__anons-text"
+                                     dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons}}>
                                 </div>
                             </div>
-                            <div className="salon-block-center">
-                                <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter)}</h2>
-                                <div className="salon__description">
-                                    {salon?.AcfSalon?.imageAnons && (
-                                        <div className="salon__description-img">
-                                            <Link href={salon?.featuredImage?.node?.sourceUrl}>
+                            <div className="testimonial-block-center">
+                                <h2 className="testimonial__title-main">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleCenter)}</h2>
+                                <div className="testimonial__description">
+                                    {testimonial?.AcfTestimonial?.imageAnons && (
+                                        <div className="testimonial__description-img">
+                                            <Link href={testimonial?.featuredImage?.node?.sourceUrl}>
                                                 <Image
-                                                    src={salon?.featuredImage?.node?.sourceUrl}
-                                                    alt={salon?.featuredImage?.node?.altText}
+                                                    src={testimonial?.featuredImage?.node?.sourceUrl}
+                                                    alt={testimonial?.featuredImage?.node?.altText}
                                                     width={500}
                                                     height={400}
                                                     layout="intrinsic"
@@ -89,31 +103,31 @@ const SalonPage = ({initialData}) => {
                                             </Link>
                                         </div>
                                     )}
-                                    <div className="salon__description-text"
-                                         dangerouslySetInnerHTML={{__html: salon?.content}}>
+                                    <div className="testimonial__description-text"
+                                         dangerouslySetInnerHTML={{__html: testimonial?.content}}>
                                     </div>
                                 </div>
                             </div>
-                            {salon?.AcfSalon?.video && (
-                                <div className="salon-block-video">
+                            {testimonial?.AcfTestimonial?.video && (
+                                <div className="testimonial-block-video">
                                     <h2
-                                        className="salon__title-video">{cleanHtmlFull(salon?.AcfSalon?.videoTitle)}</h2>
-                                    <div className="salon__video">
-                                        <div className="salon__video-content"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.video}}>
+                                        className="testimonial__title-video">{cleanHtmlFull(testimonial?.AcfTestimonial?.videoTitle)}</h2>
+                                    <div className="testimonial__video">
+                                        <div className="testimonial__video-content"
+                                             dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.video}}>
                                         </div>
-                                        <div className="salon__video-text"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.videoDescription}}>
+                                        <div className="testimonial__video-text"
+                                             dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.videoDescription}}>
                                         </div>
                                     </div>
                                 </div>
                             )}
-                            <div className="salon-block-bottom">
-                                <h2 className="salon__title-faq">{cleanHtmlFull(salon?.AcfSalon?.faqTitle)}</h2>
-                                <div className="salon__faq">
+                            <div className="testimonial-block-bottom">
+                                <h2 className="testimonial__title-faq">{cleanHtmlFull(testimonial?.AcfTestimonial?.faqTitle)}</h2>
+                                <div className="testimonial__faq">
 
-                                    <div className="salon__faq-content"
-                                         dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent}}>
+                                    <div className="testimonial__faq-content"
+                                         dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.faqContent}}>
                                     </div>
                                 </div>
                             </div>
@@ -127,12 +141,12 @@ const SalonPage = ({initialData}) => {
 
 export async function getStaticPaths() {
     const {data} = await apolloClient.query({
-        query: GET_SALON_ALL,
+        query: GET_TESTIMONIAL_ALL,
     });
 
-    console.log("Fetched salons data: ", data);
+    console.log("Fetched testimonials data: ", data);
 
-    const paths = data.salons.edges.map(item => ({
+    const paths = data.testimonials.edges.map(item => ({
         params: {slug: item.node.slug},
     }));
 
@@ -143,7 +157,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({params}) {
     const {data} = await apolloClient.query({
-        query: GET_SALON_BY_SLUG,
+        query: GET_TESTIMONIAL_BY_SLUG,
         variables: {slug: params.slug},
     });
 
@@ -155,7 +169,7 @@ export async function getStaticProps({params}) {
     };
 }
 
-export default SalonPage;
+export default TestimonialPage;
 
 
 
