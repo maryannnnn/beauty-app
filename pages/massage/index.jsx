@@ -152,7 +152,7 @@ export async function getStaticProps() {
         const {data} = await apolloClient.query({query: GET_MASSAGE_ALL});
         return {
             props: {initialData: data},
-            // revalidate: 86400, // Пересборка каждый день
+            revalidate: 86400, // Пересборка каждый день
         };
     } catch (error) {
         console.error('Error fetching data:', error);

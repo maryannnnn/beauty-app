@@ -9,6 +9,8 @@ import {sizeText, testimonialOptions} from "../../app/info/info";
 const BlockSlideTestimonial = ({item}) => {
 
     return (
+        <div className="block__testimonial">
+        <h3 className="block__testimonial-title">{item?.node?.title}</h3>
         <div className="block-slide-testimonial">
             <div className="block-slide-testimonial__img-wrapper">
                 <Image
@@ -53,6 +55,7 @@ const BlockSlideTestimonial = ({item}) => {
                     {trimTextFullCleanedHTML(item?.node?.AcfTestimonial?.descriptionAnons, sizeText.m)}
                 </div>
             </Link>
+        </div>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../app/scss/app.scss';
 import './index.scss';
 import './media.scss';
@@ -6,31 +6,92 @@ import Link from "next/link";
 import LeftLayout from "../../app/layouts/LeftLayout";
 import {useQuery} from "@apollo/client";
 import apolloClient from '../../app/graphql/apollo-client';
-import {GET_SALON_ALL} from "../../entities/salon/actions/salonActions";
+import {GET_TESTIMONIAL_ALL} from "../../entities/testimonial/actions/testimonialActions";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import Image from "next/image";
 import {cleanHtml, cleanHtmlFull, trimTextFullCleanedHTML} from "../../shared/utils/utils-content";
+import BlockSlideTestimonial from "../../shared/block-slide-testimonial/BlockSlideTestimonial";
+import Pagination from "../../shared/paginagion/Pagination";
+import FilterTestimonial from "../../shared/filter-testimonial/FilterTestimonial";
 
-const IndexSalon = ({initialData}) => {
+const IndexTestimonial = ({initialData}) => {
+    const [isClient, setIsClient] = useState(false);
+    const [filters, setFilters] = useState({title: '', categoryId: 'All', itemsPerPage: 5})
+    const [filteredTestimonials, setFilteredTestimonials] = useState([])
 
-    const {loading, error, data} = useQuery(GET_SALON_ALL, {
+    const {loading, error, data} = useQuery(GET_TESTIMONIAL_ALL, {
         fetchPolicy: "cache-first",
         nextFetchPolicy: "cache-and-network",
     });
 
-    const salon = data?.salon || initialData?.salon;
+    const testimonial = data?.testimonial || initialData?.testimonial;
+    const testimonials = data?.testimonials?.edges || initialData?.testimonials?.edges || [];
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    useEffect(() => {
+        if (!testimonials || testimonials.length === 0) {
+            console.log("Нет отзывов для фильтрации");
+            return;
+        }
+
+        const filtered = testimonials.filter(item => {
+            // Сравниваем название отзыва
+            const titleMatches = item?.node?.title?.toLowerCase().includes(filters?.title?.toLowerCase().trim());
+
+            // Проверяем наличие категорий у отзыва и фильтруем по категории
+            const categoryMatches = filters?.categoryId === 'All' ||
+                (item?.node?.categories?.edges && item?.node?.categories?.edges?.some(categoryEdge => {
+                    const categoryName = categoryEdge?.node?.name?.toLowerCase().trim();
+                    const filterCategoryId = filters?.categoryId?.toLowerCase().trim();
+
+                    console.log("Категория отзыва:", categoryName);
+                    console.log("Выбранная категория:", filterCategoryId);
+
+                    return categoryName === filterCategoryId;
+                }));
+
+            // Логируем результаты фильтрации
+            console.log("Совпадение по названию:", titleMatches);
+            console.log("Совпадение по категории:", categoryMatches);
+
+            return titleMatches && categoryMatches;
+        });
+
+        console.log("Отфильтрованные отзывы:", filtered);
+        setFilteredTestimonials(filtered);
+    }, [filters, testimonials]);
+
+
+
+
+    const reviewsPerPage = filters.itemsPerPage; // Количество отзывов на странице
+    const totalReviews = testimonials.length; // Общее количество отзывов
+    const totalPages = Math.ceil(totalReviews / reviewsPerPage) // Рассчет количества страниц
+    const [currentPage, setCurrentPage] = useState(1);
+
+    // Получение отзывов для текущей страницы
+    const getCurrentPageReviews = (currentPage) => {
+        const startIndex = (currentPage - 1) * reviewsPerPage;
+        const endIndex = startIndex + reviewsPerPage;
+        return filteredTestimonials.slice(startIndex, endIndex);
+    };
+
+    const currentReviews = getCurrentPageReviews(currentPage);
 
     const PageProps = {
-        title: salon?.seo?.title || 'Компания',
-        description: salon?.seo?.metaDesc || 'Компания'
+        title: testimonial?.seo?.title || 'Компания',
+        description: testimonial?.seo?.metaDesc || 'Компания'
     };
 
     return (
         <LeftLayout title={PageProps.title} description={PageProps.description}>
-            <div className="salon">
+            <div className="testimonial">
                 <div className="container">
-                    {loading && !salon ? (
+                    {loading && !testimonial ? (
                         <div>...</div>
                     ) : error ? (
                         <Stack sx={{width: '100%'}} spacing={2}>
@@ -40,76 +101,43 @@ const IndexSalon = ({initialData}) => {
                                 )) : 'An error occurred'}
                             </Alert>
                         </Stack>
-                    ) : (
+                    ) : isClient && (
                         <>
-                            <h1 className="salon__title">{cleanHtmlFull(salon?.AcfSalon?.titleLong)}</h1>
-                            <div className="salon__anons">
-                                <div className="salon__anons-img">
-                                    <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
-                                        <Image
-                                            src={salon?.AcfSalon?.imageAnons?.sourceUrl}
-                                            alt={salon?.AcfSalon?.imageAnons?.altText}
-                                            width={500}
-                                            height={400}
-                                            layout="intrinsic"
-                                        />
-                                    </Link>
-                                </div>
-                                <div className="salon__anons-text"
-                                     dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.descriptionAnons}}>
-                                </div>
-                            </div>
-                            <div className="salon-block-center">
-                                <h2 className="salon__title-main">{cleanHtmlFull(salon?.AcfSalon?.titleCenter)}</h2>
-                                <div className="salon__description">
-                                    <div className="salon__description-img">
-                                        <Image
-                                            src={salon?.featuredImage?.node?.sourceUrl}
-                                            alt={salon?.featuredImage?.node?.altText}
-                                            width={500}
-                                            height={600}
-                                            layout="intrinsic"
-                                        />
-                                    </div>
-                                    <div className="salon__description-text"
-                                         dangerouslySetInnerHTML={{__html: salon?.content}}>
-                                    </div>
-                                </div>
-                            </div>
-                            {salon?.AcfSalon?.video && (
-                                <div className="salon-block-video">
-                                    <h2
-                                        className="salon__title-video">{cleanHtmlFull(salon?.AcfSalon?.videoTitle)}</h2>
-                                    <div className="salon__video">
-                                        <div className="salon__video-content"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.video}}>
-                                        </div>
-                                        <div className="salon__video-text"
-                                             dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.videoDescription}}>
+                            {testimonial?.AcfTestimonial?.descriptionAnons && (
+                                <div className="testimonial-block-top">
+                                    <h1 className="testimonial__title">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleLong || '')}</h1>
+                                    <div className="testimonial__anons">
+                                        {testimonial?.AcfTestimonial?.imageAnons && (
+                                            <div className="testimonial__anons-img">
+                                                <Link href={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}>
+                                                    <Image
+                                                        src={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}
+                                                        alt={testimonial?.AcfTestimonial?.imageAnons?.altText}
+                                                        width={400}
+                                                        height={400}
+                                                        layout="intrinsic"
+                                                    />
+                                                </Link>
+                                            </div>
+                                        )}
+                                        <div className="testimonial__anons-text"
+                                             dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons || ''}}>
                                         </div>
                                     </div>
                                 </div>
                             )}
-                            <div className="salon-block-bottom">
-                                <h2 className="salon__title-gallery">{cleanHtmlFull(salon?.AcfSalon?.faqTitle)}</h2>
-                                <div className="salon__gallery">
-
-                                    <div className="salon__gallery-content"
-                                         dangerouslySetInnerHTML={{__html: salon?.AcfSalon?.faqContent}}>
-                                    </div>
-                                </div>
+                            <div className="testimonial__filter">
+                                <FilterTestimonial filter={filters} setFilter={setFilters}/>
                             </div>
-
-
-                            {/*<ul>*/}
-                            {/*    {displayData?.salons?.edges?.map(item => (*/}
-                            {/*        <li key={item?.node?.id}>*/}
-                            {/*            <Link href={item?.node?.uri}>*/}
-                            {/*                <div>{item?.node?.title}</div>*/}
-                            {/*            </Link>*/}
-                            {/*        </li>*/}
-                            {/*    ))}*/}
-                            {/*</ul>*/}
+                            <div className="block-testimonials">
+                                {currentReviews?.length > 0 && currentReviews.filter(el => el.node?.id !== testimonial.id)
+                                    .map(item => (
+                                        <div key={item?.id}>
+                                            <BlockSlideTestimonial item={item} />
+                                        </div>
+                                    ))}
+                            </div>
+                            <Pagination totalPages={totalPages} currentPage={currentPage} setPageNumber={setCurrentPage} />
                         </>
                     )}
                 </div>
@@ -120,7 +148,7 @@ const IndexSalon = ({initialData}) => {
 
 export async function getStaticProps() {
     const {data} = await apolloClient.query({
-        query: GET_SALON_ALL
+        query: GET_TESTIMONIAL_ALL
     });
 
     console.log("Fetched data:", data);
@@ -133,7 +161,7 @@ export async function getStaticProps() {
     };
 }
 
-export default IndexSalon;
+export default IndexTestimonial;
 
 
 

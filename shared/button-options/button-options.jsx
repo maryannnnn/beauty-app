@@ -4,5 +4,6 @@ export const buttonOptions = {
     detail: 'Подробнее',
     massage: 'Запись-массаж',
     course: 'Запись-курсы',
-    see: 'Смотреть еще'
+    see: 'Смотреть еще',
+    break: 'Сбросить'
 }

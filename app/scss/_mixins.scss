@@ -154,3 +154,33 @@
   }
 }
 
+//@mixin button {
+//  @include title-7;
+//  color: $light-1;
+//  background-color: $orange;
+//  border-radius: 0 10px;
+//  border: 1px solid $dark-1;
+//  cursor: pointer;
+//  &:hover {
+//    color: $dark-1;
+//    background-color: $orange-2;
+//  }
+//}
+
+@mixin button-2 {
+  @include title-h6;
+  color: $black;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  &:hover {
+    background-color: $white-full;
+  }
+}
+
+@mixin button-2__active {
+  color: $black;
+  background-color: $white-full;
+  border-radius: 5px;
+}
+

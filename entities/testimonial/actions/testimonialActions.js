@@ -1,44 +1,166 @@
 import {gql} from '@apollo/client';
 
-export const GET_BONUS = gql`
-  query GetBonus {
-    category(id: "dGVybToxMzQx") {
+export const GET_TESTIMONIAL_BY_SLUG = gql`
+  query GetTestimonialBySlug($slug: String!) {
+    testimonialBy(slug: $slug) {
       id
-      name
+      title
+      content
       uri
-      AcfCategory {
-        categoryTitleLong1
-        categoryDescriptionAnons
+      featuredImage {
+        node {
+          altText
+          sourceUrl
+        }
       }
       seo {
-        title
-        metaKeywords
-        metaDesc
+          metaDesc
+          title
       }
-    }   
+      categories {
+        edges {
+            node {
+                id
+                name
+            }
+        }
+      }
+      AcfTestimonial {
+        faqContent
+        faqTitle
+        videoTitle
+        videoDescription
+        video
+        titleLong
+        titleShort
+        descriptionAnons
+        titleCenter
+        imageAnons {
+          altText
+          sourceUrl
+        }
+        afterTaste
+        front
+        whatProcess
+        whyChiced
+        groupInfoPost {
+            speciality
+            position
+            fullName
+            imageAuthor {
+              altText
+              sourceUrl
+              uri
+            }
+        }
+      }
+    }
   }
 `;
 
-export const GET_BONUS_ALL = gql`
-  query GetBonusAll {
-    bonuses {
+export const GET_TESTIMONIAL_ALL = gql`
+  query GetTestimonialAll {
+    testimonials {
       edges {
         node {
           id
-          AcfBonus {
+          title
+          content
+          uri
+          featuredImage {
+            node {
+              altText
+              sourceUrl
+            }
+          }
+          seo {
+            metaDesc
+            title
+          }
+          categories {
+            edges {
+                node {
+                    id
+                    name
+                }
+            }
+          }
+          AcfTestimonial {
+            faqContent
+            faqTitle
+            videoTitle
+            videoDescription
+            video
             titleLong
             titleShort
+            descriptionAnons
+            titleCenter
             imageAnons {
-              uri
-              title
               altText
+              sourceUrl
             }
-            banner
+            afterTaste
+            front
+            whatProcess
+            whyChiced
+            groupInfoPost {
+              speciality
+              position
+              fullName
+              imageAuthor {
+                altText
+                sourceUrl
+                uri
+              }
+            }
           }
-          uri
-          title
         }
       }
+    }
+    testimonial(id: "cG9zdDo0NDM4") {
+      id
+      title
+      content
+      uri
+      featuredImage {
+        node {
+          altText
+          sourceUrl
+        }
+      }
+      seo {
+        metaDesc
+        title
+      }
+      AcfTestimonial {
+            faqContent
+            faqTitle
+            videoTitle
+            videoDescription
+            video
+            titleLong
+            titleShort
+            descriptionAnons
+            titleCenter
+            imageAnons {
+              altText
+              sourceUrl
+            }
+            afterTaste
+            front
+            whatProcess
+            whyChiced
+            groupInfoPost {
+              speciality
+              position
+              fullName
+              imageAuthor {
+                altText
+                sourceUrl
+                uri
+              }
+            }
+       }
     }
   }
 `;
