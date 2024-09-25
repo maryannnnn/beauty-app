@@ -67,6 +67,7 @@ export const GET_TESTIMONIAL_ALL = gql`
           title
           content
           uri
+          slug
           featuredImage {
             node {
               altText

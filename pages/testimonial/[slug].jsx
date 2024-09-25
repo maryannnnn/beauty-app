@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 import {useQuery} from "@apollo/client";
 import {GET_TESTIMONIAL_BY_SLUG, GET_TESTIMONIAL_ALL} from "../../entities/testimonial/actions/testimonialActions";
 import apolloClient from "../../app/graphql/apollo-client";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import LeftLayout from "../../app/layouts/LeftLayout";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
@@ -14,6 +14,12 @@ import Image from "next/image";
 import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 
 const TestimonialPage = ({initialData}) => {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
     const router = useRouter();
     const {slug} = router.query;
 
@@ -31,6 +37,10 @@ const TestimonialPage = ({initialData}) => {
 
     if (error) {
         return <div>Error: {error.message}</div>;
+    }
+
+    if (!isClient) {
+        return <div>Loading...</div>;
     }
 
     const testimonial = data?.testimonialBy || initialData?.testimonialBy;
@@ -58,6 +68,11 @@ const TestimonialPage = ({initialData}) => {
                         <>
                             <h1 className="testimonial__title">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleLong)}</h1>
                             <Breadcrumbs material={testimonial} typeMaterial={typeMaterial} />
+                            <div className="testimonial__personal">
+                                <div className="testimonial__name">{cleanHtmlFull(testimonial?.AcfTestimonial?.groupInfoPost?.fullName)}</div>
+                                <div className="testimonial__name">{cleanHtmlFull(testimonial?.AcfTestimonial?.groupInfoPost?.speciality)}</div>
+                            </div>
+
                             <div className="testimonial__anons">
                                 <div className="testimonial__anons-img">
                                     {testimonial?.AcfTestimonial?.imageAnons ? (
@@ -75,8 +90,8 @@ const TestimonialPage = ({initialData}) => {
                                             <Image
                                                 src={testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.sourceUrl}
                                                 alt={testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.altText}
-                                                width={500}
-                                                height={400}
+                                                width={200}
+                                                height={200}
                                                 layout="intrinsic"
                                             />
                                         </Link>
@@ -86,6 +101,15 @@ const TestimonialPage = ({initialData}) => {
                                 <div className="testimonial__anons-text"
                                      dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons}}>
                                 </div>
+                            </div>
+                            <div className="testimonial__anons-text"
+                                 dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.whyChiced}}>
+                            </div>
+                            <div className="testimonial__anons-text"
+                                 dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.whatProcess}}>
+                            </div>
+                            <div className="testimonial__anons-text"
+                                 dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.afterTaste}}>
                             </div>
                             <div className="testimonial-block-center">
                                 <h2 className="testimonial__title-main">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleCenter)}</h2>
