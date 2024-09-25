@@ -72,6 +72,30 @@
     }
   }
 
+  &__personal {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
+
+    &-name {
+      @include title-h4;
+      color: $black;
+    }
+  }
+  &__taste {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 7px;
+    padding-bottom: 15px;
+
+    &-title {
+      @include title-h5;
+      font-weight: bold;
+    }
+  }
+
 }
 
 .testimonial-block-center {
@@ -91,3 +115,11 @@
 .testimonial-block-video {
   padding-top: 20px;
 }
+
+.divider {
+  margin: 20px 0;
+  border: none;
+  height: 1px;
+  background-color: #ccc; /* Цвет линии */
+}
+
