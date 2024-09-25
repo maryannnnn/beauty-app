@@ -103,29 +103,10 @@ const IndexTestimonial = ({initialData}) => {
                         </Stack>
                     ) : isClient && (
                         <>
-                            {testimonial?.AcfTestimonial?.descriptionAnons && (
-                                <div className="testimonial-block-top">
-                                    <h1 className="testimonial__title">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleLong || '')}</h1>
-                                    <div className="testimonial__anons">
-                                        {testimonial?.AcfTestimonial?.imageAnons && (
-                                            <div className="testimonial__anons-img">
-                                                <Link href={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}>
-                                                    <Image
-                                                        src={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}
-                                                        alt={testimonial?.AcfTestimonial?.imageAnons?.altText}
-                                                        width={400}
-                                                        height={400}
-                                                        layout="intrinsic"
-                                                    />
-                                                </Link>
-                                            </div>
-                                        )}
-                                        <div className="testimonial__anons-text"
-                                             dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons || ''}}>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
+                            <h1 className="testimonial__title">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleLong || '')}</h1>
+                            <div className="testimonial__anons-text"
+                                 dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons || ''}}>
+                            </div>
                             <div className="testimonial__filter">
                                 <FilterTestimonial filter={filters} setFilter={setFilters}/>
                             </div>

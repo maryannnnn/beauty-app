@@ -12,6 +12,7 @@ import {cleanHtmlFull} from "../../shared/utils/utils-content";
 import Link from "next/link";
 import Image from "next/image";
 import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
+import {testimonialOptions} from "../../app/info/info";
 
 const TestimonialPage = ({initialData}) => {
     const [isClient, setIsClient] = useState(false);
@@ -67,71 +68,86 @@ const TestimonialPage = ({initialData}) => {
                     ) : (
                         <>
                             <h1 className="testimonial__title">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleLong)}</h1>
-                            <Breadcrumbs material={testimonial} typeMaterial={typeMaterial} />
+                            <Breadcrumbs material={testimonial} typeMaterial={typeMaterial}/>
                             <div className="testimonial__personal">
-                                <div className="testimonial__name">{cleanHtmlFull(testimonial?.AcfTestimonial?.groupInfoPost?.fullName)}</div>
-                                <div className="testimonial__name">{cleanHtmlFull(testimonial?.AcfTestimonial?.groupInfoPost?.speciality)}</div>
-                            </div>
-
-                            <div className="testimonial__anons">
-                                <div className="testimonial__anons-img">
-                                    {testimonial?.AcfTestimonial?.imageAnons ? (
-                                        <Link href={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}>
-                                            <Image
-                                                src={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}
-                                                alt={testimonial?.AcfTestimonial?.imageAnons?.altText}
-                                                width={500}
-                                                height={400}
-                                                layout="intrinsic"
-                                            />
-                                        </Link>
-                                    ) : testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor ? (
-                                        <Link href={testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.sourceUrl}>
-                                            <Image
-                                                src={testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.sourceUrl}
-                                                alt={testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.altText}
-                                                width={200}
-                                                height={200}
-                                                layout="intrinsic"
-                                            />
-                                        </Link>
-                                    ) : ('')
-                                    }
+                                <div
+                                    className="testimonial__personal-name">{cleanHtmlFull(testimonial?.AcfTestimonial?.groupInfoPost?.fullName)}
                                 </div>
-                                <div className="testimonial__anons-text"
-                                     dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons}}>
+                                {testimonial?.AcfTestimonial?.groupInfoPost?.speciality && (
+                                    <div className="testimonial__personal-name">
+                                        {cleanHtmlFull(testimonial.AcfTestimonial.groupInfoPost.speciality)}
+                                    </div>
+                                )}
+                            </div>
+                            <div className="testimonial__anons-img">
+                                {testimonial?.AcfTestimonial?.imageAnons?.sourceUrl ? (
+                                    <Link href={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}>
+                                        <Image
+                                            src={testimonial.AcfTestimonial.imageAnons.sourceUrl}
+                                            alt={testimonial.AcfTestimonial.imageAnons.altText || 'No alt text'}
+                                            width={500}
+                                            height={400}
+                                            layout="intrinsic"
+                                        />
+                                    </Link>
+                                ) : testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.sourceUrl ? (
+                                    <Link href={testimonial.AcfTestimonial.groupInfoPost.imageAuthor.sourceUrl}>
+                                        <Image
+                                            src={testimonial.AcfTestimonial.groupInfoPost.imageAuthor.sourceUrl}
+                                            alt={testimonial.AcfTestimonial.groupInfoPost.imageAuthor.altText || 'No alt text'}
+                                            width={150}
+                                            height={150}
+                                            layout="intrinsic"
+                                        />
+                                    </Link>
+                                ) : null}
+                            </div>
+                            <div className="testimonial__anons-text"
+                                 dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons || ''}}>
+                            </div>
+                            <div className="divider"></div>
+                            <div className='testimonial__taste'>
+                                <div className='testimonial__taste-title'>{testimonialOptions.reason}:&nbsp;</div>
+                                <div className="testimonial__tate-text"
+                                     dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.whyChiced}}>
                                 </div>
                             </div>
-                            <div className="testimonial__anons-text"
-                                 dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.whyChiced}}>
+                            <div className='testimonial__taste'>
+                                <div className='testimonial__taste-title'>{testimonialOptions.process}:&nbsp;</div>
+                                <div className="testimonial__tate-text"
+                                     dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.whatProcess}}>
+                                </div>
                             </div>
-                            <div className="testimonial__anons-text"
-                                 dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.whatProcess}}>
+                            <div className='testimonial__taste'>
+                                <div className='testimonial__taste-title'>{testimonialOptions.taste}:&nbsp;</div>
+                                <div className="testimonial__tate-text"
+                                     dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.afterTaste}}>
+                                </div>
                             </div>
-                            <div className="testimonial__anons-text"
-                                 dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.afterTaste}}>
-                            </div>
-                            <div className="testimonial-block-center">
-                                <h2 className="testimonial__title-main">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleCenter)}</h2>
-                                <div className="testimonial__description">
-                                    {testimonial?.AcfTestimonial?.imageAnons && (
-                                        <div className="testimonial__description-img">
-                                            <Link href={testimonial?.featuredImage?.node?.sourceUrl}>
-                                                <Image
-                                                    src={testimonial?.featuredImage?.node?.sourceUrl}
-                                                    alt={testimonial?.featuredImage?.node?.altText}
-                                                    width={500}
-                                                    height={400}
-                                                    layout="intrinsic"
-                                                />
-                                            </Link>
+                            <div className="divider"></div>
+                            {testimonial?.content && (
+                                <div className="testimonial-block-center">
+                                    <h2 className="testimonial__title-main">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleCenter)}</h2>
+                                    <div className="testimonial__description">
+                                        {testimonial?.AcfTestimonial?.imageAnons && (
+                                            <div className="testimonial__description-img">
+                                                <Link href={testimonial?.featuredImage?.node?.sourceUrl}>
+                                                    <Image
+                                                        src={testimonial?.featuredImage?.node?.sourceUrl}
+                                                        alt={testimonial?.featuredImage?.node?.altText}
+                                                        width={500}
+                                                        height={400}
+                                                        layout="intrinsic"
+                                                    />
+                                                </Link>
+                                            </div>
+                                        )}
+                                        <div className="testimonial__description-text"
+                                             dangerouslySetInnerHTML={{__html: testimonial?.content}}>
                                         </div>
-                                    )}
-                                    <div className="testimonial__description-text"
-                                         dangerouslySetInnerHTML={{__html: testimonial?.content}}>
                                     </div>
                                 </div>
-                            </div>
+                            )}
                             {testimonial?.AcfTestimonial?.video && (
                                 <div className="testimonial-block-video">
                                     <h2
@@ -146,15 +162,17 @@ const TestimonialPage = ({initialData}) => {
                                     </div>
                                 </div>
                             )}
-                            <div className="testimonial-block-bottom">
-                                <h2 className="testimonial__title-faq">{cleanHtmlFull(testimonial?.AcfTestimonial?.faqTitle)}</h2>
-                                <div className="testimonial__faq">
+                            {testimonial?.AcfTestimonial?.faqContent && (
+                                <div className="testimonial-block-bottom">
+                                    <h2 className="testimonial__title-faq">{cleanHtmlFull(testimonial?.AcfTestimonial?.faqTitle)}</h2>
+                                    <div className="testimonial__faq">
 
-                                    <div className="testimonial__faq-content"
-                                         dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.faqContent}}>
+                                        <div className="testimonial__faq-content"
+                                             dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.faqContent}}>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            )}
                         </>
                     )}
                 </div>
