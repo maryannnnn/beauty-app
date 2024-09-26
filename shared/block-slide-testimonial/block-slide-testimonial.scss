@@ -10,6 +10,7 @@
   &-title {
     @include title-h4;
     @include link-black;
+    padding-bottom: 15px;
   }
 }
 

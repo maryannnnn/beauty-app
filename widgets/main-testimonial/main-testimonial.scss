@@ -6,7 +6,7 @@
   height: 520px;
  // border-bottom: 1px solid $black;
   background-color: $white-full;
-  margin-bottom: 150px;
+  margin-bottom: 200px;
 
   &__block {
     width: 100%;
@@ -31,9 +31,15 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 40px 60px;
-  background-color: $white-full;
 }
 
-
+.mySwiper {
+  font-size: 18px;
+  color: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 40px 60px;
+  background-color: $white-full;
+}
 
 
