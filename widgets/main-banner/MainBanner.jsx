@@ -31,7 +31,7 @@ const MainBanner = ({ data }) => {
                 }}
                 navigation={true}
                 modules={[Parallax, Pagination, Navigation]}
-                className="mySwiper"
+                className="mySwiper-banner"
             >
                 <div
                     slot="container-start"
