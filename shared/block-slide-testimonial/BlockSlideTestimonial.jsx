@@ -2,17 +2,26 @@ import './block-slide-testimonial.scss'
 import './media.scss'
 import Link from "next/link";
 import Image from 'next/image';
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {trimText, trimTextFullCleanedHTML} from "../utils/utils-content";
 import {sizeText, testimonialOptions} from "../../app/info/info";
 
 const BlockSlideTestimonial = ({item}) => {
 
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) return null;
+
+
     return (
         <div className="block__testimonial">
-            {/*<Link className="block-slide-testimonial__text" href={item?.node?.uri}>*/}
+            <Link className="block-slide-testimonial__title-link" href={item?.node?.uri}>
                 <h3 className="block__testimonial-title">{item?.node?.title}</h3>
-            {/*</Link>*/}
+            </Link>
             <div className="block-slide-testimonial">
                 <div className="block-slide-testimonial__img-wrapper">
                     <Image

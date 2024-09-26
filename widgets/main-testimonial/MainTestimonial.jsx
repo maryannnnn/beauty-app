@@ -52,7 +52,7 @@ const MainTestimonial = ({data, type}) => {
                         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
                         className="mySwiper"
                     >
-                        {testimonials
+                        {testimonials.length > 0 && testimonials
                             .filter(el =>
                                 el?.node?.categories?.edges &&
                                 el.node.categories.edges.some(category => category?.node?.name === type)
