@@ -1,2 +1,15 @@
 @import '../../app/scss/mixins';
 @import '../../app/scss/colors';
+
+@media screen and (max-width: 767px) {
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1218px) {
+  .main-testimonial {
+    height: 320px;
+    margin-bottom: 450px;
+
+  }
+}
+

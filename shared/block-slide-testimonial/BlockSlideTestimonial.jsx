@@ -62,11 +62,11 @@ const BlockSlideTestimonial = ({item}) => {
                             className="block-slide-testimonial__text-row-title">{testimonialOptions.process}:&nbsp;</div>
                         <div>{trimText(item?.node?.AcfTestimonial?.whatProcess, sizeText.xt)}</div>
                     </div>
-                    <div className="block-slide-testimonial__text-row">
+                    <div className="block-slide-testimonial__text-row-taste">
                         <div className="block-slide-testimonial__text-row-title">{testimonialOptions.taste}:&nbsp;</div>
                         <div>{trimText(item?.node?.AcfTestimonial?.afterTaste, sizeText.xt)}</div>
                     </div>
-                    <div className="block-slide-testimonial__text-description">
+                    <div className="block-slide-testimonial__text-description-taste">
                         {trimTextFullCleanedHTML(item?.node?.AcfTestimonial?.descriptionAnons, sizeText.m)}
                     </div>
                 </Link>
