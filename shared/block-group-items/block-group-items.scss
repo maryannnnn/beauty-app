@@ -2,9 +2,11 @@
 @import '../../app/scss/colors';
 
 .block-group-items {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  place-items: start;
+  height: 100%;
 
   &-massages {
     display: grid;
