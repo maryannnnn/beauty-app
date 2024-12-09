@@ -37,7 +37,7 @@ const MainBanner = ({ data }) => {
                     slot="container-start"
                     className="parallax-bg"
                     style={{
-                         'background-image': `url('/images/banners/banner_2.jpg')`,
+                         'background-image': `url('/images/banners/banner_4.jpg')`,
                     }}
                     data-swiper-parallax="-23%"
                 >

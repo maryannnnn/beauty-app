@@ -14,7 +14,7 @@ const HeaderMiddle = () => {
                     <div className='header-middle__inner-logo'>
                         <Link href="/" className="header-middle__inner">
                             <Image
-                                src="/logo_3.png"
+                                src="/logo_6.png"
                                 alt="Logo"
                                 width={343}
                                 height={60}

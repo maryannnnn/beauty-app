@@ -85,14 +85,16 @@
   &-block-center {
     width: 100%;
     padding: 20px;
-    border: 1px solid $black;
+    border-bottom: 1px solid $brown-7;
+    border-top: 1px solid $brown-7;
     background-color: $white;
     margin-bottom: 30px;
   }
 
   &-block-bottom {
     width: 100%;
-    border: 1px solid $black;
+    border-bottom: 1px solid $brown-7;
+    border-top: 1px solid $brown-7;
     background-color: $white;
     padding: 20px;
     margin-bottom: 50px;

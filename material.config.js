@@ -3,15 +3,15 @@ import {createTheme} from '@mui/material/styles';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#865547',
-            dark: '#3E2F2C',
-            light: '#AB8D7A',
-            contrastText: '#E1CECA',
+            main: '#868585',
+            dark: '#3e3d3d',
+            light: '#adacac',
+            contrastText: '#dedddd',
         },
         secondary: {
-            main: '#333300',
+            main: '#323232',
             dark: '#4D4D1A',
-            light: '#666633',
+            light: '#656565',
             contrastText: '#821936',
         },
         three: {
@@ -86,7 +86,7 @@ const theme = createTheme({
         MuiPopover: {
             styleOverrides: {
                 paper: {
-                    backgroundColor: '#E1CECA',
+                    backgroundColor: '#e2e2e2',
                     padding: '16px',
                 },
             },
@@ -98,7 +98,7 @@ const theme = createTheme({
                     textDecoration: 'none',
                     '&:hover': {
                         textDecoration: 'underline',
-                        color: '#AB8D7A',
+                        color: '#adadad',
                     },
                 },
             },
