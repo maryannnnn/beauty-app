@@ -1,4 +1,5 @@
 import './block-item-course.scss'
+import './attributes-course.scss'
 import './media.scss'
 import Link from "next/link";
 import Image from 'next/image';
@@ -20,24 +21,10 @@ const BlockItemCourse = ({item}) => {
 
     return (
         <>
-            <Link className="block-item-course" href={item?.node?.uri}>
-                <div className="block-item-course__img">
-                    <Image
-                        src={item?.node?.AcfCourse?.imageAnons?.sourceUrl}
-                        alt={item?.node?.AcfCourse?.imageAnons?.altText}
-                        width={549}
-                        height={274}
-                        layout="intrinsic"
-                    />
-                </div>
-                <div className="block-item-course__img-overlay "></div>
+            <Link className="attributes__course-block" href={item?.node?.uri}>
                 <div className="block-item-course__info">
-                    <div className="block-item-course__info-link">
-                        Курсы
-                    </div>
-
-                    <div className="block-item-course__info-title">{item?.node?.title}</div>
-                    <div className="block-item-course__info-description-anons">
+                     <div className="attributes__course-block-title">{item?.node?.title}</div>
+                    <div className="attributes__course-block-text">
                         {trimTextFullCleanedHTML(item?.node?.AcfCourse?.descriptionAnons, sizeText.s)}
                     </div>
                     <ButtonRed name={buttonOptions.detail} type="submit"
