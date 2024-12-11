@@ -1,4 +1,5 @@
-import './block-item-massage.scss'
+// import './block-item-massage.scss'
+import './attributes-massage.scss'
 import './media.scss'
 import Link from "next/link";
 import Image from 'next/image';
@@ -11,21 +12,12 @@ const BlockItemMassage = ({item}) => {
     console.log("BlockItemMassage data: ", item);
 
     return (
-        <Link className="block-item-massage" href={item?.node?.uri}>
-            <div className="block-item-massage__title">{trimText(item?.node?.title, sizeText.xp)}</div>
-            <div className="block-item-massage__info">
-                <div className="block-item-massage__info-img">
-                    <Image
-                        src={item?.node?.AcfMassage?.imageAnons?.sourceUrl}
-                        alt={item?.node?.AcfMassage?.imageAnons?.altText}
-                        width={350}
-                        height={350}
-                        layout="intrinsic"
-                    />
-                </div>
-                <div
-                    className="block-item-massage__info-anons">{trimTextFullCleanedHTML(item?.node?.AcfMassage?.descriptionAnons, sizeText.xs)}</div>
-            </div>
+        <Link className="attributes__massage-block" href={item?.node?.uri}>
+            <div className="attributes__massage-block-title">{trimText(item?.node?.title, sizeText.xp)}</div>
+
+            <div
+                className="attributes__massage-block-text">{trimTextFullCleanedHTML(item?.node?.AcfMassage?.descriptionAnons, sizeText.xs)}</div>
+
         </Link>
     )
 }
