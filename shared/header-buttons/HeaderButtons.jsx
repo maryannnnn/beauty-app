@@ -8,11 +8,11 @@ const HeaderButtons = () => {
 
 
     const massageHandler = () => {
-        window.open('https://calendly.com/sansaranervana/massage', '_blank');
+        window.open('https://wa.me/972504246045', '_blank');
     }
 
     const courseHandler = () => {
-        window.open('https://calendly.com/sansaranervana/massage', '_blank');
+        window.open('https://wa.me/972504246045', '_blank');
     }
 
     return (

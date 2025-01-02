@@ -2,8 +2,8 @@
 export const buttonOptions = {
     read: 'Читать далее',
     detail: 'Подробнее',
-    massage: 'Запись-массаж',
-    course: 'Запись-курсы',
+    massage: 'Хочу массаж',
+    course: 'Хочу курсы',
     see: 'Смотреть еще',
     break: 'Сбросить'
 }
