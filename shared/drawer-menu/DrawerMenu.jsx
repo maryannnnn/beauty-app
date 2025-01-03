@@ -1,4 +1,5 @@
 import * as React from 'react';
+import "./media.scss"
 import Drawer from '@mui/material/Drawer';
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -12,7 +13,7 @@ const DrawerMenu = () => {
     };
 
     return (
-        <div>
+        <div className="icon-button-hide">
             <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -20,16 +21,17 @@ const DrawerMenu = () => {
                 edge="start"
                 sx={{
                     marginRight: 2,
-                    ...(open && { display: 'none' }),
+                    ...(open && {display: 'none'}),
                 }}
             >
-                <MenuIcon />
+                <MenuIcon/>
             </IconButton>
             <Drawer open={open} onClose={toggleDrawer(false)}>
-                <DrawerList toggleDrawer={toggleDrawer} />
+                <DrawerList toggleDrawer={toggleDrawer}/>
             </Drawer>
         </div>
-    );
+    )
+        ;
 }
 
 export default DrawerMenu

@@ -1,2 +1,22 @@
 @import '../../app/scss/mixins';
 @import '../../app/scss/colors';
+
+@media screen and (max-width: 767px) {
+  .header-middle {
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1218px) {
+
+
+}
+
