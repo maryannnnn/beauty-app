@@ -6,6 +6,16 @@
   font-style: normal;
   font-size: 37px;
   line-height: 140%;
+
+  @media (max-width: 1218px) {
+    font-size: 34px;
+    line-height: 140%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    line-height: 130%;
+  }
 }
 
 @mixin title-h2 {
@@ -13,6 +23,16 @@
   font-style: normal;
   font-size: 32px;
   line-height: 140%;
+
+  @media (max-width: 1218px) {
+    font-size: 30px;
+    line-height: 140%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    line-height: 130%;
+  }
 }
 
 @mixin title-h3 {
@@ -20,6 +40,16 @@
   font-style: normal;
   font-size: 28px;
   line-height: 140%;
+
+  @media (max-width: 1218px) {
+    font-size: 26px;
+    line-height: 140%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+    line-height: 130%;
+  }
 }
 
 @mixin title-h4 {
@@ -27,6 +57,16 @@
   font-style: normal;
   font-size: 24px;
   line-height: 140%;
+
+  @media (max-width: 1218px) {
+    font-size: 22px;
+    line-height: 140%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    line-height: 130%;
+  }
 }
 
 @mixin title-h5 {
@@ -34,6 +74,16 @@
   font-style: normal;
   font-size: 20px;
   line-height: 140%;
+
+  @media (max-width: 1218px) {
+    font-size: 18px;
+    line-height: 140%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 130%;
+  }
 }
 
 @mixin title-h6 {
@@ -41,6 +91,16 @@
   font-style: normal;
   font-size: 16px;
   line-height: 140%;
+
+  @media (max-width: 1218px) {
+    font-size: 15px;
+    line-height: 140%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 130%;
+  }
 }
 
 @mixin title-banner {
@@ -48,6 +108,16 @@
   font-style: normal;
   font-size: 128px;
   line-height: 140%;
+
+  @media (max-width: 1218px) {
+    font-size: 96px;
+    line-height: 140%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 64px;
+    line-height: 130%;
+  }
 }
 
 @mixin body-xl {
@@ -55,6 +125,16 @@
   font-style: normal;
   font-size: 20px;
   line-height: 180%;
+
+  @media (max-width: 1218px) {
+    font-size: 18px;
+    line-height: 175%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 170%;
+  }
 }
 
 @mixin body-lg {
@@ -62,6 +142,16 @@
   font-style: normal;
   font-size: 18px;
   line-height: 180%;
+
+  @media (max-width: 1218px) {
+    font-size: 16px;
+    line-height: 175%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    line-height: 170%;
+  }
 }
 
 @mixin body-md {
@@ -69,6 +159,16 @@
   font-style: normal;
   font-size: 16px;
   line-height: 180%;
+
+  @media (max-width: 1218px) {
+    font-size: 15px;
+    line-height: 175%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 170%;
+  }
 }
 
 @mixin body-sm {
@@ -76,6 +176,16 @@
   font-style: normal;
   font-size: 14px;
   line-height: 180%;
+
+  @media (max-width: 1218px) {
+    font-size: 13px;
+    line-height: 175%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 170%;
+  }
 }
 
 @mixin body-xs {
@@ -83,6 +193,16 @@
   font-style: normal;
   font-size: 12px;
   line-height: 180%;
+
+  @media (max-width: 1218px) {
+    font-size: 11px;
+    line-height: 175%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+    line-height: 170%;
+  }
 }
 
 @mixin caption-lg {
@@ -90,6 +210,16 @@
   font-style: normal;
   font-size: 14px;
   line-height: 180%;
+
+  @media (max-width: 1218px) {
+    font-size: 13px;
+    line-height: 175%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 170%;
+  }
 }
 
 @mixin caption-md {
@@ -97,6 +227,16 @@
   font-style: normal;
   font-size: 12px;
   line-height: 180%;
+
+  @media (max-width: 1218px) {
+    font-size: 11px;
+    line-height: 175%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+    line-height: 170%;
+  }
 }
 
 @mixin caption-sm {
@@ -104,6 +244,16 @@
   font-style: normal;
   font-size: 10px;
   line-height: 180%;
+
+  @media (max-width: 1218px) {
+    font-size: 9px;
+    line-height: 175%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 8px;
+    line-height: 170%;
+  }
 }
 
 @mixin link-red {
