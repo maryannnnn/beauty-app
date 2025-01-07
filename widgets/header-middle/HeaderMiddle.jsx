@@ -12,7 +12,7 @@ const HeaderMiddle = () => {
             <div className="container">
                 <div className="header-middle__inner">
                     <div className='header-middle__inner-logo'>
-                        <Link href="/" className="header-middle__inner">
+                        <Link href="/" className="header-middle__inner-logo-link">
                             <Image
                                 src="/logo_6.png"
                                 alt="Logo"
