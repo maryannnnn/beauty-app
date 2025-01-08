@@ -9,7 +9,6 @@ const HeaderBottom = () => {
         <div className='header-bottom'>
             <div className='container'>
                 <div className='header-bottom__inner'>
-                    <DrawerMenu/>
                     <MenuMain/>
                 </div>
                 <div className=''>
