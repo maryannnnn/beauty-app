@@ -21,11 +21,13 @@ const DrawerMenu = () => {
                 edge="start"
                 sx={{
                     marginRight: 2,
-                    ...(open && {display: 'none'}),
+                    padding: '12px', // Увеличение кликабельной области
+                    ...(open && { display: 'none' }),
                 }}
             >
-                <MenuIcon/>
+                <MenuIcon sx={{ fontSize: 40 }} />
             </IconButton>
+
             <Drawer open={open} onClose={toggleDrawer(false)}>
                 <DrawerList toggleDrawer={toggleDrawer}/>
             </Drawer>
