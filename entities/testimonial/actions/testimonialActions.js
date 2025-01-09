@@ -39,10 +39,7 @@ export const GET_TESTIMONIAL_BY_SLUG = gql`
           altText
           sourceUrl
         }
-        afterTaste
         front
-        whatProcess
-        whyChiced
         groupInfoPost {
             speciality
             position
@@ -100,10 +97,7 @@ export const GET_TESTIMONIAL_ALL = gql`
               altText
               sourceUrl
             }
-            afterTaste
             front
-            whatProcess
-            whyChiced
             groupInfoPost {
               speciality
               position
@@ -147,10 +141,7 @@ export const GET_TESTIMONIAL_ALL = gql`
               altText
               sourceUrl
             }
-            afterTaste
             front
-            whatProcess
-            whyChiced
             groupInfoPost {
               speciality
               position

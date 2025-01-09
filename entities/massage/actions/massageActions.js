@@ -95,11 +95,8 @@ export const GET_MASSAGE_BY_SLUG = gql`
           id
           menuOrder
           AcfTestimonial {
-            afterTaste
             descriptionAnons
             front
-            whatProcess
-            whyChiced
             groupInfoPost {
               speciality
               position
@@ -246,11 +243,8 @@ query  GetMassageAll {
         node {
           id
           AcfTestimonial {
-            afterTaste
             descriptionAnons
             front
-            whatProcess
-            whyChiced
             groupInfoPost {
               speciality
               position

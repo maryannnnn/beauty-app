@@ -103,11 +103,8 @@ export const GET_COURSE_BY_SLUG = gql`
         node {
           id
           AcfTestimonial {
-            afterTaste
             descriptionAnons
             front
-            whatProcess
-            whyChiced
             groupInfoPost {
               speciality
               position
@@ -263,11 +260,8 @@ query  GetCourseAll {
         node {
           id
           AcfTestimonial {
-            afterTaste
             descriptionAnons
             front
-            whatProcess
-            whyChiced
             groupInfoPost {
               speciality
               position
