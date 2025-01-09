@@ -4,6 +4,7 @@ export const GET_COURSE_BY_SLUG = gql`
   query GetCourseBySlug($slug: String!) {
     courseBy(slug: $slug) {
       id
+      menuOrder
       title
       content
       featuredImage {
@@ -141,6 +142,7 @@ query  GetCourseAll {
     edges {
         node {
           id
+          menuOrder
           AcfCourse {
             titleLong
             titleShort
@@ -227,6 +229,7 @@ query  GetCourseAll {
   }
   course(id: "cG9zdDo0NDkx") {
         id
+        menuOrder
         title
         content(format: RENDERED)
         featuredImage {

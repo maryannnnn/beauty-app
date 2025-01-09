@@ -78,6 +78,7 @@ const IndexCourse = ({initialData}) => {
                             )}
                             <div className="block-courses">
                                 {courses?.filter(el => el.node?.id !== course.id)
+                                    .sort((a, b) => a.node?.menuOrder - b.node?.menuOrder)
                                     .map((item, index) => (
                                         <div key={item?.node?.id || index}>
                                             <BlockItemCourse item={item}/>

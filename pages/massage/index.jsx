@@ -78,6 +78,7 @@ const IndexMassage = ({initialData}) => {
                             )}
                             <div className="block-massages">
                                 {massages?.filter(el => el.node?.id !== massage.id)
+                                    .sort((a, b) => a.node?.menuOrder - b.node?.menuOrder)
                                     .map((item, index) => (
                                         <div key={item?.node?.id || index}>
                                             <BlockItemMassage item={item}/>

@@ -43,6 +43,7 @@ query  GetSalonAll {
     edges {
         node {
           id
+          menuOrder
           AcfSalon{
             titleLong
             titleShort
@@ -61,6 +62,7 @@ query  GetSalonAll {
   }
   salon(id: "cG9zdDozNjk2") {
         id
+        menuOrder
         title
         content(format: RENDERED)
         featuredImage {
