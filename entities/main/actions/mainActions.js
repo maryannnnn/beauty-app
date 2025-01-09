@@ -135,11 +135,8 @@ export const GET_HOME_DATA = gql`
         node {
           id
           AcfTestimonial {
-            afterTaste
             descriptionAnons
             front
-            whatProcess
-            whyChiced
             groupInfoPost {
               speciality
               position

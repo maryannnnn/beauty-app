@@ -18,60 +18,17 @@ const BlockSlideTestimonial = ({item}) => {
 
 
     return (
-        <div className="block__testimonial">
-            <Link className="block-slide-testimonial__title-link" href={item?.node?.uri}>
-                <h3 className="block__testimonial-title">{item?.node?.title}</h3>
-            </Link>
-            <div className="block-slide-testimonial">
-                <div className="block-slide-testimonial__img-wrapper">
-                    <Image
-                        src={item?.node?.AcfTestimonial?.groupInfoPost?.imageAuthor?.sourceUrl}
-                        alt={item?.node?.AcfTestimonial?.groupInfoPost?.imageAuthor?.altText}
-                        width={134}
-                        height={134}
-                        layout="intrinsic"
-                    />
+        <Link className="block-testimonial" href={item?.node?.uri}>
+            <h3 className="block-testimonial__title">{item?.node?.title}</h3>
+            <div className="block-testimonial__author">
+                <div className="block-testimonial__author-name">
+                    {trimText(item?.node?.AcfTestimonial?.groupInfoPost?.fullName, sizeText.ma)}
                 </div>
-                <div className="block-slide-testimonial__author">
-                    <div className="block-slide-testimonial__author-name">
-                        {trimText(item?.node?.AcfTestimonial?.groupInfoPost?.fullName, sizeText.ma)}
-                    </div>
-                    {item?.node?.AcfTestimonial?.groupInfoPost?.speciality && (
-                        <div className="block-slide-testimonial__author-speciality">
-                            {trimText(item?.node?.AcfTestimonial?.groupInfoPost?.speciality, sizeText.ma)}
-                        </div>
-                    )}
-                </div>
-                <div className="block-slide-testimonial__icon">
-                    <Image
-                        src="/images/testimonials/pencil.png"
-                        alt="Icon"
-                        width={61}
-                        height={178}
-                        layout="intrinsic"
-                    />
-                </div>
-                <Link className="block-slide-testimonial__text" href={item?.node?.uri}>
-                    <div className="block-slide-testimonial__text-row">
-                        <div
-                            className="block-slide-testimonial__text-row-title">{testimonialOptions.reason}:&nbsp;</div>
-                        <div>{trimText(item?.node?.AcfTestimonial?.whyChiced, sizeText.xt)}</div>
-                    </div>
-                    <div className="block-slide-testimonial__text-row">
-                        <div
-                            className="block-slide-testimonial__text-row-title">{testimonialOptions.process}:&nbsp;</div>
-                        <div>{trimText(item?.node?.AcfTestimonial?.whatProcess, sizeText.xt)}</div>
-                    </div>
-                    <div className="block-slide-testimonial__text-row-taste">
-                        <div className="block-slide-testimonial__text-row-title">{testimonialOptions.taste}:&nbsp;</div>
-                        <div>{trimText(item?.node?.AcfTestimonial?.afterTaste, sizeText.xt)}</div>
-                    </div>
-                    <div className="block-slide-testimonial__text-description-taste">
-                        {trimTextFullCleanedHTML(item?.node?.AcfTestimonial?.descriptionAnons, sizeText.m)}
-                    </div>
-                </Link>
             </div>
-        </div>
+            <div className="block-testimonial__text">
+                {trimTextFullCleanedHTML(item?.node?.AcfTestimonial?.descriptionAnons, sizeText.m)}
+            </div>
+        </Link>
     );
 }
 

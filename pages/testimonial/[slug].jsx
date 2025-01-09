@@ -73,11 +73,11 @@ const TestimonialPage = ({initialData}) => {
                                 <div
                                     className="testimonial__personal-name">{cleanHtmlFull(testimonial?.AcfTestimonial?.groupInfoPost?.fullName)}
                                 </div>
-                                {testimonial?.AcfTestimonial?.groupInfoPost?.speciality && (
-                                    <div className="testimonial__personal-name">
-                                        {cleanHtmlFull(testimonial.AcfTestimonial.groupInfoPost.speciality)}
-                                    </div>
-                                )}
+                                {/*{testimonial?.AcfTestimonial?.groupInfoPost?.speciality && (*/}
+                                {/*    <div className="testimonial__personal-name">*/}
+                                {/*        {cleanHtmlFull(testimonial.AcfTestimonial.groupInfoPost.speciality)}*/}
+                                {/*    </div>*/}
+                                {/*)}*/}
                             </div>
                             <div className="testimonial__anons-img">
                                 {testimonial?.AcfTestimonial?.imageAnons?.sourceUrl ? (
@@ -105,26 +105,6 @@ const TestimonialPage = ({initialData}) => {
                             <div className="testimonial__anons-text"
                                  dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons || ''}}>
                             </div>
-                            <div className="divider"></div>
-                            <div className='testimonial__taste'>
-                                <div className='testimonial__taste-title'>{testimonialOptions.reason}:&nbsp;</div>
-                                <div className="testimonial__tate-text"
-                                     dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.whyChiced}}>
-                                </div>
-                            </div>
-                            <div className='testimonial__taste'>
-                                <div className='testimonial__taste-title'>{testimonialOptions.process}:&nbsp;</div>
-                                <div className="testimonial__tate-text"
-                                     dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.whatProcess}}>
-                                </div>
-                            </div>
-                            <div className='testimonial__taste'>
-                                <div className='testimonial__taste-title'>{testimonialOptions.taste}:&nbsp;</div>
-                                <div className="testimonial__tate-text"
-                                     dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.afterTaste}}>
-                                </div>
-                            </div>
-                            <div className="divider"></div>
                             {testimonial?.content && (
                                 <div className="testimonial-block-center">
                                     <h2 className="testimonial__title-main">{cleanHtmlFull(testimonial?.AcfTestimonial?.titleCenter)}</h2>
