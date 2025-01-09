@@ -68,6 +68,7 @@ const IndexSalon = ({initialData}) => {
                             )}
                             <div className="block-salons">
                                 {salons?.filter(el => el.node?.id !== salon.id)
+                                    .sort((a, b) => a.node?.menuOrder - b.node?.menuOrder)
                                     .map(item => (
                                         <div key={item?.node?.id}>
                                             <BlockItemSalons item={item}/>

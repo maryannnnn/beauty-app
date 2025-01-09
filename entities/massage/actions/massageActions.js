@@ -4,6 +4,7 @@ export const GET_MASSAGE_BY_SLUG = gql`
   query GetMassageBySlug($slug: String!) {
     massageBy(slug: $slug) {
       id
+      menuOrder
       title
       content
       featuredImage {
@@ -92,6 +93,7 @@ export const GET_MASSAGE_BY_SLUG = gql`
       edges {
         node {
           id
+          menuOrder
           AcfTestimonial {
             afterTaste
             descriptionAnons
@@ -132,6 +134,7 @@ query  GetMassageAll {
     edges {
         node {
           id
+          menuOrder
           AcfMassage {
             titleLong
             titleShort
@@ -209,6 +212,7 @@ query  GetMassageAll {
   }
   massage(id: "cG9zdDo0MTEy") {
         id
+        menuOrder
         title
         content(format: RENDERED)
         featuredImage {

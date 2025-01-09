@@ -69,6 +69,7 @@ const IndexBonus = ({initialData}) => {
                             )}
                             <div className="block-bonuses">
                                 {bonuses?.filter(el => el.node?.id !== bonus.id)
+                                    .sort((a, b) => a.node?.menuOrder - b.node?.menuOrder)
                                     .map(item => (
                                         <div key={item?.node?.id}>
                                             <BlockItemBonus item={item}/>
