@@ -17,6 +17,7 @@ const BlockGroupItems = ({data, number, typeContent}) => {
             {
                 data[typeContent]?.edges
                     .filter(el => el?.node?.categories?.edges && el.node.categories.edges.length > 0)
+                    .sort((a, b) => a.node?.menuOrder - b.node?.menuOrder)
                     .slice(0, number)
                     .map((item) => (
                         <li key={item?.node?.id}>

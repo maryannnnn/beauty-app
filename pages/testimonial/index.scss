@@ -11,91 +11,16 @@
     color: $black;
     padding-top: 15px;
     padding-bottom: 15px;
-
-    //&-main {
-    //  @include title-h2;
-    //  color: $brown-7;
-    //  padding-bottom: 15px;
-    //}
-    //
-    //&-video {
-    //  @include title-h2;
-    //  color: $brown-7;
-    //  padding-bottom: 15px;
-    //}
-    //&-faq {
-    //  @include title-h2;
-    //  color: $brown-7;
-    //  padding-bottom: 15px;
-    //}
   }
 
   &__anons {
     display: block;
     padding-bottom: 20px;
 
-    //&-img {
-    //  float: left;
-    //  margin-right: 20px;
-    //}
-
     &-text {
       text-align: justify;
     }
   }
-
-  //&__description {
-  //  display: block;
-  //  padding-bottom: 20px;
-  //
-  //  &-img {
-  //    float: right;
-  //    margin-left: 20px;
-  //  }
-  //
-  //  &-text {
-  //    text-align: justify;
-  //  }
-  //}
-  //
-  //&__video {
-  //  display: block;
-  //  padding-bottom: 20px;
-  //
-  //  &-content {
-  //    float: left;
-  //    margin-right: 20px;
-  //  }
-  //
-  //  &-text {
-  //    text-align: justify;
-  //  }
-  //}
-
-  //&__personal {
-  //  display: flex;
-  //  justify-content: flex-start;
-  //  flex-direction: row;
-  //  gap: 20px;
-  //
-  //  &-name {
-  //    @include title-h4;
-  //    color: $black;
-  //  }
-  //}
-  //&__taste {
-  //  display: flex;
-  //  justify-content: flex-start;
-  //  flex-direction: row;
-  //  gap: 7px;
-  //  padding-bottom: 15px;
-  //
-  //  &-title {
-  //    @include title-h5;
-  //    font-weight: bold;
-  //  }
-  //}
-
 }
 
 .block-testimonials {
@@ -105,30 +30,5 @@
   gap: 20px;
 }
 
-//.testimonial-block-center {
-//  width: 100%;
-//  padding: 20px;
-//  border-bottom: 1px solid $brown-7;
-//  border-top: 1px solid $brown-7;
-//  background-color: $white;
-//}
-//
-//.testimonial-block-bottom {
-//  width: 100%;
-//  padding: 20px;
-//  border-bottom: 1px solid $brown-7;
-//  border-top: 1px solid $brown-7;
-//  background-color: $white;
-//}
-//
-//.testimonial-block-video {
-//  padding-top: 20px;
-//}
-//
-//.divider {
-//  margin: 20px 0;
-//  border: none;
-//  height: 1px;
-//  background-color: #ccc; /* Цвет линии */
-//}
+
 

@@ -30,6 +30,7 @@ export const GET_HOME_DATA = gql`
       edges {
         node {
           id
+          menuOrder
           AcfSalon{
             titleLong
             titleShort
@@ -49,6 +50,7 @@ export const GET_HOME_DATA = gql`
       edges {
         node {
           id
+          menuOrder
           AcfBonus {
             titleLong
             titleShort
@@ -78,6 +80,7 @@ export const GET_HOME_DATA = gql`
       edges {
         node {
           id
+          menuOrder
           AcfMassage {
             titleLong
             descriptionAnons
@@ -106,6 +109,7 @@ export const GET_HOME_DATA = gql`
       edges {
         node {
           id
+          menuOrder
           AcfCourse {
             titleLong
             descriptionAnons
@@ -134,6 +138,7 @@ export const GET_HOME_DATA = gql`
       edges {
         node {
           id
+          menuOrder
           AcfTestimonial {
             descriptionAnons
             front
@@ -166,6 +171,7 @@ export const GET_HOME_DATA = gql`
       edges {
         node {
           id
+          menuOrder
           AcfPost {
             titleLong
             descriptionAnons
