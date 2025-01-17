@@ -1,0 +1,28 @@
+@import '../../app/scss/mixins';
+@import '../../app/scss/colors';
+
+@media screen and (max-width: 767px) {
+  .course {
+    &__anons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    &__description {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+  }
+
+  .block-courses {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    padding-bottom: 40px;
+  }
+
+}
