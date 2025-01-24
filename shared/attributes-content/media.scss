@@ -3,10 +3,8 @@
 
 @media screen and (max-width: 767px) {
   .attributes__content {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
-    padding-bottom: 40px;
+    &-block {
+      width: 380px;
+    }
   }
-
 }
