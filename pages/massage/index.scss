@@ -71,8 +71,18 @@
     padding-bottom: 20px;
 
     &-content {
-      float: left;
-      margin-right: 20px;
+      position: relative;
+      width: 50%; /* Половина ширины экрана, если нужно обтекание */
+      max-width: 100%;
+      float: left; /* Обтекание текста справа */
+      margin-right: 20px; /* Отступ от текста */
+
+      iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        display: block;
+      }
     }
 
     &-text {
@@ -109,5 +119,8 @@
   }
 
 }
+
+
+
 
 

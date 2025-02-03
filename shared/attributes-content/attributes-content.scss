@@ -3,11 +3,11 @@
 
 .attributes__content {
   display: flex;
-  flex-direction: column;
-  //flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   //justify-content: flex-start;
   justify-content: space-between;
-  //width: 100%;
+  width: 100%;
   //display: grid;
   //grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -18,7 +18,7 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 10px;
-    width: 700px;
+    width: 350px;
     border: none; /* Убираем жесткий бордюр */
     padding: 20px;
     border-radius: 10px; /* Добавляем скругленные углы */
