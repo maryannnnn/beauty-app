@@ -3,7 +3,8 @@
 
 .attributes__price  {
   display: flex;
-  fflex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-start;
   gap: 100px;
   padding-bottom: 40px;
