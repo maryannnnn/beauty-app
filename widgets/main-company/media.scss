@@ -3,9 +3,9 @@
 
 @media screen and (max-width: 767px) {
   .main-company {
-    //display: none;
 
     &__content {
+      flex-direction: column;
 
       &-info-description {
         overflow: hidden; /* Скрывает содержимое, выходящее за пределы */
@@ -21,15 +21,27 @@
         display: none;
       }
     }
-
-    &__content-video {
-      align-items: center;
-      padding-top: 20px;
-    }
   }
 
   .main-company__content-video {
-    display: none;
+    display: flex; /* Позволяет адаптировать размер */
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    width: 100%;
+    //max-width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .main-company__content-video iframe {
+    width: 100%;
+    height: auto !important; /* Принудительное уменьшение */
+    min-height: 180px; /* Минимальная высота для мобильных */
+    max-height: 50vh; /* Ограничение по высоте */
+    aspect-ratio: 16 / 9;
+    display: block;
+    transition: width 0.3s ease, height 0.3s ease; /* Плавная адаптация */
   }
 }
 
