@@ -19,10 +19,11 @@ const YouTubeVideoWithCover = () => {
             {showVideo ? (
                 <DynamicYouTubeVideo  />
             ) : (
-                <div onClick={handleShowVideo} className="youtube-video-wrapper__cover">
-                    <Image src='/images/video/tovman.jpg' alt="YouTube cover" width={560} height={315} />
-                    <div className="youtube-video-wrapper__cover-play">▶</div>
-                </div>
+                <DynamicYouTubeVideo  />
+                // <div onClick={handleShowVideo} className="youtube-video-wrapper__cover">
+                //     <Image src='/images/video/tovman.jpg' alt="YouTube cover" width={560} height={315} />
+                //     <div className="youtube-video-wrapper__cover-play">▶</div>
+                // </div>
             )}
         </div>
     );
