@@ -17,6 +17,7 @@ import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import {mainTitle, testimonialType} from "../app/info/info";
 
+
 const Index = ({initialData}) => {
     const PageProps = {
         title: 'Главная',
