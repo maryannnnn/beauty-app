@@ -15,6 +15,11 @@ import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
 import AttributesMassage from "../../widgets/attributes-massage/AtributesMassage";
 import {attributeTitleMassage, breadcrumbType, testimonialTitleMassage, testimonialType} from "../../app/info/info";
 import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
+import GalleryLightbox from "../../shared/gallegry-lightbox/GalleryLightbox";
+import LightGallery from "lightgallery/react";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
 
 
 const MassagePage = ({initialData}) => {
@@ -71,19 +76,25 @@ const MassagePage = ({initialData}) => {
                         {massage?.AcfMassage?.descriptionAnons && (
                             <>
                                 <h1 className="massage__title">{cleanHtmlFull(massage?.AcfMassage?.titleLong || '')}</h1>
-                                <Breadcrumbs material={massage} typeMaterial={typeMaterial} />
+                                <Breadcrumbs material={massage} typeMaterial={typeMaterial}/>
                                 <div className="massage__anons">
                                     {massage?.AcfMassage?.imageAnonsPage && (
                                         <div className="massage__anons-img">
-                                            <Link href={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}>
-                                                <Image
-                                                    src={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}
-                                                    alt={massage?.AcfMassage?.imageAnonsPage?.altText || 'Image'}
-                                                    width={400}
-                                                    height={400}
-                                                    layout="intrinsic"
-                                                />
-                                            </Link>
+                                            <LightGallery
+                                                elementClassNames={'masonry-gallery-demo'}
+                                                plugins={[lgZoom, lgShare, lgHash]}
+                                                speed={500}
+                                            >
+                                                <a href={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}>
+                                                    <Image
+                                                        src={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}
+                                                        alt={massage?.AcfMassage?.imageAnonsPage?.altText || 'Image'}
+                                                        width={400}
+                                                        height={400}
+                                                        layout="intrinsic"
+                                                    />
+                                                </a>
+                                            </LightGallery>
                                         </div>
                                     )}
                                     <div className="massage__anons-text"
@@ -98,22 +109,37 @@ const MassagePage = ({initialData}) => {
                                 <AttributesMassage massage={massage}/>
                             </>
                         )}
+
+                        {massage?.galleryImages && massage?.galleryImages?.length > 0 && (
+                            <div className="massage-block-gallery">
+                                <h2 className="massage__title-main">
+                                    {cleanHtmlFull(massage?.AcfMassage?.titleCenter || '')}
+                                </h2>
+                                <GalleryLightbox images={massage?.galleryImages ?? []}/>
+                            </div>
+                        )}
+
                         {massage?.content && (
-                            <>
                                 <div className="massage-block-center">
                                     <h2 className="massage__title-main">{cleanHtmlFull(massage?.AcfMassage?.titleCenter || '')}</h2>
                                     <div className="massage__description">
                                         {massage?.featuredImage?.node?.sourceUrl && (
                                             <div className="massage__description-img">
-                                                <Link href={massage?.featuredImage?.node?.sourceUrl}>
-                                                    <Image
-                                                        src={massage?.featuredImage?.node?.sourceUrl}
-                                                        alt={massage?.featuredImage?.node?.altText || 'Image'}
-                                                        width={400}
-                                                        height={400}
-                                                        layout="intrinsic"
-                                                    />
-                                                </Link>
+                                                <LightGallery
+                                                    elementClassNames={'masonry-gallery-demo'}
+                                                    plugins={[lgZoom, lgShare, lgHash]}
+                                                    speed={500}
+                                                >
+                                                    <a href={massage?.featuredImage?.node?.sourceUrl}>
+                                                        <Image
+                                                            src={massage?.featuredImage?.node?.sourceUrl}
+                                                            alt={massage?.featuredImage?.node?.altText || 'Image'}
+                                                            width={400}
+                                                            height={400}
+                                                            layout="intrinsic"
+                                                        />
+                                                    </a>
+                                                </LightGallery>
                                             </div>
                                         )}
                                         <div className="massage__description-text"
@@ -121,8 +147,8 @@ const MassagePage = ({initialData}) => {
                                         </div>
                                     </div>
                                 </div>
-                            </>
                         )}
+
                         {massage?.AcfMassage?.video && (
                             <div className="massage-block-video">
                                 <h2 className="massage__title-video">{cleanHtmlFull(massage?.AcfMassage?.videoTitle || '')}</h2>

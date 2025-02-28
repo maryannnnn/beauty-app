@@ -7,6 +7,13 @@ export const GET_MASSAGE_BY_SLUG = gql`
       menuOrder
       title
       content
+      galleryImages {
+        title
+        altText
+        description
+        id
+        sourceUrl
+      }
       featuredImage {
         node {
           altText
@@ -204,6 +211,13 @@ query  GetMassageAll {
           title
           uri
           slug
+          galleryImages {
+            title
+            altText
+            description
+            id
+            sourceUrl
+          }
         }
     }
   }
