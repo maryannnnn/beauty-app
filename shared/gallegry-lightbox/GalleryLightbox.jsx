@@ -1,15 +1,14 @@
-import React, {FC, useEffect} from 'react';
-import LightGallery from 'lightgallery/react';
+import React from 'react';
 import lgZoom from 'lightgallery/plugins/zoom';
 import './gallery-lightbox.scss';
 import lgShare from 'lightgallery/plugins/share';
 import lgHash from 'lightgallery/plugins/hash';
-//import Masonry from 'masonry-layout';
-import imagesLoaded from 'imagesloaded';
-import dynamic from "next/dynamic";
 import Image from "next/image";
-
-const Masonry = dynamic(() => import("masonry-layout"), {ssr: false});
+import dynamic from "next/dynamic";
+const LightGallery = dynamic(() => import("lightgallery/react"), { ssr: false });
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-share.css";
 
 
 const GalleryLightbox = ({images}) => {
