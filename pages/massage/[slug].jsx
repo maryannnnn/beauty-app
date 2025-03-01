@@ -8,7 +8,6 @@ import LeftLayout from "../../app/layouts/LeftLayout";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import {cleanHtmlFull} from "../../shared/utils/utils-content";
-import Link from "next/link";
 import Image from "next/image";
 import {GET_MASSAGE_ALL, GET_MASSAGE_BY_SLUG} from "../../entities/massage/actions/massageActions";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
@@ -16,10 +15,14 @@ import AttributesMassage from "../../widgets/attributes-massage/AtributesMassage
 import {attributeTitleMassage, breadcrumbType, testimonialTitleMassage, testimonialType} from "../../app/info/info";
 import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 import GalleryLightbox from "../../shared/gallegry-lightbox/GalleryLightbox";
-import LightGallery from "lightgallery/react";
 import lgZoom from "lightgallery/plugins/zoom";
 import lgShare from "lightgallery/plugins/share";
 import lgHash from "lightgallery/plugins/hash";
+import dynamic from "next/dynamic";
+const LightGallery = dynamic(() => import("lightgallery/react"), { ssr: false });
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-share.css";
 
 
 const MassagePage = ({initialData}) => {
