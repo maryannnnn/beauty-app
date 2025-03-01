@@ -27,6 +27,7 @@ export const GET_COURSE_BY_SLUG = gql`
         titleShort
         descriptionAnons
         titleCenter
+        titleGallery
         imageAnonsPage {
           altText
           sourceUrl
@@ -249,6 +250,7 @@ query  GetCourseAll {
          titleShort
          descriptionAnons
          titleCenter
+         titleGallery
          imageAnonsPage {
           altText
           sourceUrl

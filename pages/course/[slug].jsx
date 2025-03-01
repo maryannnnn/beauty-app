@@ -15,6 +15,15 @@ import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 import {attributeTitleCourse, testimonialTitleCourse, testimonialType} from "../../app/info/info";
 import AttributesCourse from "../../widgets/attributes-course/AtributesCourse";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
+import GalleryLightbox from "../../shared/gallegry-lightbox/GalleryLightbox";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
+import dynamic from "next/dynamic";
+const LightGallery = dynamic(() => import("lightgallery/react"), {ssr: false});
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-share.css";
 
 const CoursePage = ({initialData}) => {
     const [isClient, setIsClient] = useState(false);
@@ -70,19 +79,25 @@ const CoursePage = ({initialData}) => {
                         {course?.AcfCourse?.descriptionAnons && (
                             <>
                                 <h1 className="course__title">{cleanHtmlFull(course?.AcfCourse?.titleLong || '')}</h1>
-                                <Breadcrumbs material={course} typeMaterial={typeMaterial} />
+                                <Breadcrumbs material={course} typeMaterial={typeMaterial}/>
                                 <div className="course__anons">
                                     {course?.AcfCourse?.imageAnonsPage && (
                                         <div className="course__anons-img">
-                                            <Link href={course?.AcfCourse?.imageAnonsPage?.sourceUrl}>
-                                                <Image
-                                                    src={course?.AcfCourse?.imageAnonsPage?.sourceUrl}
-                                                    alt={course?.AcfCourse?.imageAnonsPage?.altText || 'Image'}
-                                                    width={400}
-                                                    height={400}
-                                                    layout="intrinsic"
-                                                />
-                                            </Link>
+                                            <LightGallery
+                                                elementClassNames={'masonry-gallery-demo'}
+                                                plugins={[lgZoom, lgShare, lgHash]}
+                                                speed={500}
+                                            >
+                                                <a href={course?.AcfCourse?.imageAnonsPage?.sourceUrl}>
+                                                    <Image
+                                                        src={course?.AcfCourse?.imageAnonsPage?.sourceUrl}
+                                                        alt={course?.AcfCourse?.imageAnonsPage?.altText || 'Image'}
+                                                        width={400}
+                                                        height={400}
+                                                        layout="intrinsic"
+                                                    />
+                                                </a>
+                                            </LightGallery>
                                         </div>
                                     )}
                                     <div className="course__anons-text"
@@ -97,6 +112,16 @@ const CoursePage = ({initialData}) => {
                                 <AttributesCourse course={course}/>
                             </>
                         )}
+
+                        {course?.galleryImages && course?.galleryImages?.length > 0 && (
+                            <div className="course-block-gallery">
+                                <h2 className="course__title-main">
+                                    {cleanHtmlFull(course?.AcfCourse?.titleGallery || '')}
+                                </h2>
+                                <GalleryLightbox images={course?.galleryImages ?? []}/>
+                            </div>
+                        )}
+
                         {course?.content && (
                             <>
                                 <div className="course-block-center">
@@ -104,15 +129,21 @@ const CoursePage = ({initialData}) => {
                                     <div className="course__description">
                                         {course?.featuredImage?.node?.sourceUrl && (
                                             <div className="course__description-img">
-                                                <Link href={course?.featuredImage?.node?.sourceUrl}>
-                                                    <Image
-                                                        src={course?.featuredImage?.node?.sourceUrl}
-                                                        alt={course?.featuredImage?.node?.altText || 'Image'}
-                                                        width={400}
-                                                        height={400}
-                                                        layout="intrinsic"
-                                                    />
-                                                </Link>
+                                                <LightGallery
+                                                    elementClassNames={'masonry-gallery-demo'}
+                                                    plugins={[lgZoom, lgShare, lgHash]}
+                                                    speed={500}
+                                                >
+                                                    <a href={course?.featuredImage?.node?.sourceUrl}>
+                                                        <Image
+                                                            src={course?.featuredImage?.node?.sourceUrl}
+                                                            alt={course?.featuredImage?.node?.altText || 'Image'}
+                                                            width={400}
+                                                            height={400}
+                                                            layout="intrinsic"
+                                                        />
+                                                    </a>
+                                                </LightGallery>
                                             </div>
                                         )}
                                         <div className="course__description-text"

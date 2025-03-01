@@ -34,6 +34,7 @@ export const GET_MASSAGE_BY_SLUG = gql`
         titleShort
         descriptionAnons
         titleCenter
+        titleGallery
         imageAnonsPage {
           altText
           sourceUrl
@@ -246,6 +247,7 @@ query  GetMassageAll {
          titleShort
          descriptionAnons
          titleCenter
+         titleGallery
          imageAnonsPage {
           altText
           sourceUrl
