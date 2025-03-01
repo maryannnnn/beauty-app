@@ -14,6 +14,15 @@ import {GET_MASSAGE_ALL} from "../../entities/massage/actions/massageActions";
 import BlockItemMassage from "../../shared/block-item-massage/BlockItemMassage";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
 import {testimonialTitleMassage, testimonialType} from "../../app/info/info";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
+import dynamic from "next/dynamic";
+
+const LightGallery = dynamic(() => import("lightgallery/react"), {ssr: false});
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-share.css";
 
 const IndexMassage = ({initialData}) => {
 
@@ -59,15 +68,21 @@ const IndexMassage = ({initialData}) => {
                                     <div className="massage__anons">
                                         {massage?.AcfMassage?.imageAnonsPage && (
                                             <div className="massage__anons-img">
-                                                <Link href={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}>
-                                                    <Image
-                                                        src={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}
-                                                        alt={massage?.AcfMassage?.imageAnonsPage?.altText}
-                                                        width={400}
-                                                        height={400}
-                                                        layout="intrinsic"
-                                                    />
-                                                </Link>
+                                                <LightGallery
+                                                    elementClassNames={'masonry-gallery-demo'}
+                                                    plugins={[lgZoom, lgShare, lgHash]}
+                                                    speed={500}
+                                                >
+                                                    <a href={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}>
+                                                        <Image
+                                                            src={massage?.AcfMassage?.imageAnonsPage?.sourceUrl}
+                                                            alt={massage?.AcfMassage?.imageAnonsPage?.altText}
+                                                            width={400}
+                                                            height={400}
+                                                            layout="intrinsic"
+                                                        />
+                                                    </a>
+                                                </LightGallery>
                                             </div>
                                         )}
                                         <div className="massage__anons-text"
@@ -92,15 +107,21 @@ const IndexMassage = ({initialData}) => {
                                         <div className="massage__description">
                                             {massage?.featuredImage?.node?.sourceUrl && (
                                                 <div className="massage__description-img">
-                                                    <Link href={massage?.featuredImage?.node?.sourceUrl}>
-                                                        <Image
-                                                            src={massage?.featuredImage?.node?.sourceUrl || ''}
-                                                            alt={massage?.featuredImage?.node?.altText || ''}
-                                                            width={400}
-                                                            height={600}
-                                                            layout="intrinsic"
-                                                        />
-                                                    </Link>
+                                                    <LightGallery
+                                                        elementClassNames={'masonry-gallery-demo'}
+                                                        plugins={[lgZoom, lgShare, lgHash]}
+                                                        speed={500}
+                                                    >
+                                                        <a href={massage?.featuredImage?.node?.sourceUrl}>
+                                                            <Image
+                                                                src={massage?.featuredImage?.node?.sourceUrl || ''}
+                                                                alt={massage?.featuredImage?.node?.altText || ''}
+                                                                width={400}
+                                                                height={600}
+                                                                layout="intrinsic"
+                                                            />
+                                                        </a>
+                                                    </LightGallery>
                                                 </div>
                                             )}
                                             <div className="massage__description-text"

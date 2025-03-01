@@ -116,7 +116,7 @@ const MassagePage = ({initialData}) => {
                         {massage?.galleryImages && massage?.galleryImages?.length > 0 && (
                             <div className="massage-block-gallery">
                                 <h2 className="massage__title-main">
-                                    {cleanHtmlFull(massage?.AcfMassage?.titleCenter || '')}
+                                    {cleanHtmlFull(massage?.AcfMassage?.titleGallery || '')}
                                 </h2>
                                 <GalleryLightbox images={massage?.galleryImages ?? []}/>
                             </div>
