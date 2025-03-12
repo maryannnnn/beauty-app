@@ -7,6 +7,13 @@ export const GET_COURSE_BY_SLUG = gql`
       menuOrder
       title
       content
+      galleryImages {
+        title
+        altText
+        description
+        id
+        sourceUrl
+      }
       featuredImage {
         node {
           altText
@@ -222,6 +229,13 @@ query  GetCourseAll {
           title
           uri
           slug
+          galleryImages {
+        title
+        altText
+        description
+        id
+        sourceUrl
+      }
         }
     }
   }

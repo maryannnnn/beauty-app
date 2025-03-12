@@ -14,6 +14,7 @@ import {GET_MASSAGE_ALL} from "../../entities/massage/actions/massageActions";
 import BlockItemMassage from "../../shared/block-item-massage/BlockItemMassage";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
 import {testimonialTitleMassage, testimonialType} from "../../app/info/info";
+
 import lgZoom from "lightgallery/plugins/zoom";
 import lgShare from "lightgallery/plugins/share";
 import lgHash from "lightgallery/plugins/hash";
