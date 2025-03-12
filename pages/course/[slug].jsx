@@ -15,6 +15,7 @@ import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 import {attributeTitleCourse, testimonialTitleCourse, testimonialType} from "../../app/info/info";
 import AttributesCourse from "../../widgets/attributes-course/AtributesCourse";
 import MainTestimonial from "../../widgets/main-testimonial/MainTestimonial";
+
 import GalleryLightbox from "../../shared/gallegry-lightbox/GalleryLightbox";
 import lgZoom from "lightgallery/plugins/zoom";
 import lgShare from "lightgallery/plugins/share";
