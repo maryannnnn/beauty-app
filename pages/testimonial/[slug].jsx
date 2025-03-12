@@ -14,6 +14,16 @@ import Image from "next/image";
 import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 import {testimonialOptions} from "../../app/info/info";
 
+import lgZoom from "lightgallery/plugins/zoom";
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
+import dynamic from "next/dynamic";
+
+const LightGallery = dynamic(() => import("lightgallery/react"), {ssr: false});
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-share.css";
+
 const TestimonialPage = ({initialData}) => {
     const [isClient, setIsClient] = useState(false);
 
@@ -79,31 +89,45 @@ const TestimonialPage = ({initialData}) => {
                                 {/*    </div>*/}
                                 {/*)}*/}
                             </div>
-                            <div className="testimonial__anons-img">
-                                {testimonial?.AcfTestimonial?.imageAnons?.sourceUrl ? (
-                                    <Link href={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}>
-                                        <Image
-                                            src={testimonial.AcfTestimonial.imageAnons.sourceUrl}
-                                            alt={testimonial.AcfTestimonial.imageAnons.altText || 'No alt text'}
-                                            width={500}
-                                            height={400}
-                                            layout="intrinsic"
-                                        />
-                                    </Link>
-                                ) : testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.sourceUrl ? (
-                                    <Link href={testimonial.AcfTestimonial.groupInfoPost.imageAuthor.sourceUrl}>
-                                        <Image
-                                            src={testimonial.AcfTestimonial.groupInfoPost.imageAuthor.sourceUrl}
-                                            alt={testimonial.AcfTestimonial.groupInfoPost.imageAuthor.altText || 'No alt text'}
-                                            width={150}
-                                            height={150}
-                                            layout="intrinsic"
-                                        />
-                                    </Link>
-                                ) : null}
-                            </div>
-                            <div className="testimonial__anons-text"
-                                 dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons || ''}}>
+                            <div className="testimonial__anons">
+                                <div className="testimonial__anons-img">
+                                    {testimonial?.AcfTestimonial?.imageAnons?.sourceUrl ? (
+                                        <LightGallery
+                                            elementClassNames={'masonry-gallery-demo'}
+                                            plugins={[lgZoom, lgShare, lgHash]}
+                                            speed={500}
+                                        >
+                                            <a href={testimonial?.AcfTestimonial?.imageAnons?.sourceUrl}>
+                                                <Image
+                                                    src={testimonial.AcfTestimonial.imageAnons.sourceUrl}
+                                                    alt={testimonial.AcfTestimonial.imageAnons.altText || 'No alt text'}
+                                                    width={500}
+                                                    height={400}
+                                                    layout="intrinsic"
+                                                />
+                                            </a>
+                                        </LightGallery>
+                                    ) : testimonial?.AcfTestimonial?.groupInfoPost?.imageAuthor?.sourceUrl ? (
+                                        <LightGallery
+                                            elementClassNames={'masonry-gallery-demo'}
+                                            plugins={[lgZoom, lgShare, lgHash]}
+                                            speed={500}
+                                        >
+                                            <a href={testimonial.AcfTestimonial.groupInfoPost.imageAuthor.sourceUrl}>
+                                                <Image
+                                                    src={testimonial.AcfTestimonial.groupInfoPost.imageAuthor.sourceUrl}
+                                                    alt={testimonial.AcfTestimonial.groupInfoPost.imageAuthor.altText || 'No alt text'}
+                                                    width={150}
+                                                    height={150}
+                                                    layout="intrinsic"
+                                                />
+                                            </a>
+                                        </LightGallery>
+                                    ) : null}
+                                </div>
+                                <div className="testimonial__anons-text"
+                                     dangerouslySetInnerHTML={{__html: testimonial?.AcfTestimonial?.descriptionAnons || ''}}>
+                                </div>
                             </div>
                             {testimonial?.content && (
                                 <div className="testimonial-block-center">
@@ -111,15 +135,21 @@ const TestimonialPage = ({initialData}) => {
                                     <div className="testimonial__description">
                                         {testimonial?.AcfTestimonial?.imageAnons && (
                                             <div className="testimonial__description-img">
-                                                <Link href={testimonial?.featuredImage?.node?.sourceUrl}>
-                                                    <Image
-                                                        src={testimonial?.featuredImage?.node?.sourceUrl}
-                                                        alt={testimonial?.featuredImage?.node?.altText}
-                                                        width={500}
-                                                        height={400}
-                                                        layout="intrinsic"
-                                                    />
-                                                </Link>
+                                                <LightGallery
+                                                    elementClassNames={'masonry-gallery-demo'}
+                                                    plugins={[lgZoom, lgShare, lgHash]}
+                                                    speed={500}
+                                                >
+                                                    <a href={testimonial?.featuredImage?.node?.sourceUrl}>
+                                                        <Image
+                                                            src={testimonial?.featuredImage?.node?.sourceUrl}
+                                                            alt={testimonial?.featuredImage?.node?.altText}
+                                                            width={500}
+                                                            height={400}
+                                                            layout="intrinsic"
+                                                        />
+                                                    </a>
+                                                </LightGallery>
                                             </div>
                                         )}
                                         <div className="testimonial__description-text"

@@ -13,6 +13,16 @@ import Image from "next/image";
 import {cleanHtml, cleanHtmlFull, trimTextFullCleanedHTML} from "../../shared/utils/utils-content";
 import BlockItemSalons from "../../shared/block-item-salons/BlockItemSalons";
 
+import lgZoom from "lightgallery/plugins/zoom";
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
+import dynamic from "next/dynamic";
+
+const LightGallery = dynamic(() => import("lightgallery/react"), {ssr: false});
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-share.css";
+
 const IndexSalon = ({initialData}) => {
     const {loading, error, data} = useQuery(GET_SALON_ALL, {
         fetchPolicy: "cache-first",
@@ -49,15 +59,21 @@ const IndexSalon = ({initialData}) => {
                                     <div className="salon__anons">
                                         {salon?.AcfSalon?.imageAnons && (
                                             <div className="salon__anons-img">
-                                                <Link href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
-                                                    <Image
-                                                        src={salon?.AcfSalon?.imageAnons?.sourceUrl}
-                                                        alt={salon?.AcfSalon?.imageAnons?.altText}
-                                                        width={400}
-                                                        height={400}
-                                                        layout="intrinsic"
-                                                    />
-                                                </Link>
+                                                <LightGallery
+                                                    elementClassNames={'masonry-gallery-demo'}
+                                                    plugins={[lgZoom, lgShare, lgHash]}
+                                                    speed={500}
+                                                >
+                                                    <a href={salon?.AcfSalon?.imageAnons?.sourceUrl}>
+                                                        <Image
+                                                            src={salon?.AcfSalon?.imageAnons?.sourceUrl}
+                                                            alt={salon?.AcfSalon?.imageAnons?.altText}
+                                                            width={400}
+                                                            height={400}
+                                                            layout="intrinsic"
+                                                        />
+                                                    </a>
+                                                </LightGallery>
                                             </div>
                                         )}
                                         <div className="salon__anons-text"
@@ -82,15 +98,21 @@ const IndexSalon = ({initialData}) => {
                                         <div className="salon__description">
                                             {salon?.featuredImage?.node?.sourceUrl && (
                                                 <div className="salon__description-img">
-                                                    <Link href={salon?.featuredImage?.node?.sourceUrl}>
-                                                        <Image
-                                                            src={salon?.featuredImage?.node?.sourceUrl || ''}
-                                                            alt={salon?.featuredImage?.node?.altText || ''}
-                                                            width={400}
-                                                            height={600}
-                                                            layout="intrinsic"
-                                                        />
-                                                    </Link>
+                                                    <LightGallery
+                                                        elementClassNames={'masonry-gallery-demo'}
+                                                        plugins={[lgZoom, lgShare, lgHash]}
+                                                        speed={500}
+                                                    >
+                                                        <a href={salon?.featuredImage?.node?.sourceUrl}>
+                                                            <Image
+                                                                src={salon?.featuredImage?.node?.sourceUrl || ''}
+                                                                alt={salon?.featuredImage?.node?.altText || ''}
+                                                                width={400}
+                                                                height={600}
+                                                                layout="intrinsic"
+                                                            />
+                                                        </a>
+                                                    </LightGallery>
                                                 </div>
                                             )}
                                             <div className="salon__description-text"

@@ -13,6 +13,16 @@ import Link from "next/link";
 import Image from "next/image";
 import Breadcrumbs from "../../shared/breadcrumbs-page/BreadcrumbsPage";
 
+import lgZoom from "lightgallery/plugins/zoom";
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
+import dynamic from "next/dynamic";
+
+const LightGallery = dynamic(() => import("lightgallery/react"), {ssr: false});
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-share.css";
+
 const BonusPage = ({initialData}) => {
     const router = useRouter();
     const {slug} = router.query;
@@ -56,19 +66,25 @@ const BonusPage = ({initialData}) => {
                         {bonus?.AcfBonus?.descriptionAnons && (
                             <>
                                 <h1 className="bonus__title">{cleanHtmlFull(bonus?.AcfBonus?.titleLong || '')}</h1>
-                                <Breadcrumbs material={bonus} typeMaterial={typeMaterial} />
+                                <Breadcrumbs material={bonus} typeMaterial={typeMaterial}/>
                                 <div className="bonus__anons">
                                     {bonus?.AcfBonus?.imageAnonsPage && (
                                         <div className="bonus__anons-img">
-                                            <Link href={bonus?.AcfBonus?.imageAnonsPage?.sourceUrl}>
-                                                <Image
-                                                    src={bonus?.AcfBonus?.imageAnonsPage?.sourceUrl}
-                                                    alt={bonus?.AcfBonus?.imageAnonsPage?.altText || 'Image'}
-                                                    width={400}
-                                                    height={400}
-                                                    layout="intrinsic"
-                                                />
-                                            </Link>
+                                            <LightGallery
+                                                elementClassNames={'masonry-gallery-demo'}
+                                                plugins={[lgZoom, lgShare, lgHash]}
+                                                speed={500}
+                                            >
+                                                <a href={bonus?.AcfBonus?.imageAnonsPage?.sourceUrl}>
+                                                    <Image
+                                                        src={bonus?.AcfBonus?.imageAnonsPage?.sourceUrl}
+                                                        alt={bonus?.AcfBonus?.imageAnonsPage?.altText || 'Image'}
+                                                        width={400}
+                                                        height={400}
+                                                        layout="intrinsic"
+                                                    />
+                                                </a>
+                                            </LightGallery>
                                         </div>
                                     )}
                                     <div className="bonus__anons-text"
@@ -84,15 +100,21 @@ const BonusPage = ({initialData}) => {
                                     <div className="bonus__description">
                                         {bonus?.featuredImage?.node?.sourceUrl && (
                                             <div className="bonus__description-img">
-                                                <Link href={bonus?.featuredImage?.node?.sourceUrl}>
-                                                    <Image
-                                                        src={bonus?.featuredImage?.node?.sourceUrl}
-                                                        alt={bonus?.featuredImage?.node?.altText || 'Image'}
-                                                        width={400}
-                                                        height={400}
-                                                        layout="intrinsic"
-                                                    />
-                                                </Link>
+                                                <LightGallery
+                                                    elementClassNames={'masonry-gallery-demo'}
+                                                    plugins={[lgZoom, lgShare, lgHash]}
+                                                    speed={500}
+                                                >
+                                                    <a href={bonus?.featuredImage?.node?.sourceUrl}>
+                                                        <Image
+                                                            src={bonus?.featuredImage?.node?.sourceUrl}
+                                                            alt={bonus?.featuredImage?.node?.altText || 'Image'}
+                                                            width={400}
+                                                            height={400}
+                                                            layout="intrinsic"
+                                                        />
+                                                    </a>
+                                                </LightGallery>
                                             </div>
                                         )}
                                         <div className="bonus__description-text"

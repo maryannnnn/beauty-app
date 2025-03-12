@@ -5,6 +5,7 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  padding-bottom: 50px;
 
   &__title {
     @include title-h1;
@@ -16,6 +17,25 @@
   &__anons {
     display: block;
     padding-bottom: 20px;
+
+    &-img {
+      float: left;
+      margin-right: 20px;
+    }
+
+    &-text {
+      text-align: justify;
+    }
+  }
+
+  &__description {
+    display: block;
+    padding-bottom: 20px;
+
+    &-img {
+      float: right;
+      margin-left: 20px;
+    }
 
     &-text {
       text-align: justify;
