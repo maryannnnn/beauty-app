@@ -2,20 +2,14 @@
 @import '../../app/scss/colors';
 
 .attributes__content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  gap: 18px;
-  padding-bottom: 40px;
+
 
   &-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 10px;
-    width: 350px;
+    //display: flex;
+    //flex-direction: column;
+    //justify-content: flex-start;
+    //gap: 10px;
+    //width: 350px;
     border: none; /* Убираем жесткий бордюр */
     padding: 20px;
     border-radius: 10px; /* Добавляем скругленные углы */
