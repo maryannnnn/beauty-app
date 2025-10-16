@@ -304,19 +304,6 @@
   }
 }
 
-//@mixin button {
-//  @include title-7;
-//  color: $light-1;
-//  background-color: $orange;
-//  border-radius: 0 10px;
-//  border: 1px solid $dark-1;
-//  cursor: pointer;
-//  &:hover {
-//    color: $dark-1;
-//    background-color: $orange-2;
-//  }
-//}
-
 @mixin button-2 {
   @include title-h6;
   color: $black;
